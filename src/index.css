@@ -77,3 +77,9 @@ footer{
 .rev li {
   margin: 20px 0;
 }
+
+/* SEARCHBAR */
+.search {
+  display: flex;
+  flex-direction: column;
+}
