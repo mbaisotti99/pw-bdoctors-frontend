@@ -11,6 +11,13 @@ html, body, #root {
   flex-direction: column;
 }
 
+.container{
+  flex: 1 !important;
+}
+
+
+/* Layout */
+
 header{
   text-align: center;
   padding: 50px;
@@ -25,6 +32,37 @@ footer{
   text-align: center;
 }
 
-.container{
-  flex: 1 !important;
+/* Details */
+
+.detailCard{
+  border: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  margin: 50px 100px;
+  text-align: center;
+}
+
+.detailCard li {
+  margin: 20px 0;
+}
+
+.details{
+  list-style: none;
+}
+
+
+/* Reviews */
+
+.reviewCard{
+  border: 1px solid lightgray;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.rev{
+  list-style: none;
+}
+
+.rev li {
+  margin: 20px 0;
 }
