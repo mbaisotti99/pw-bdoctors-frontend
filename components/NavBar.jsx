@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.min.css";
+// import "bootstrap/bootstrap-icons/font/bootstrap-icons.min.css";
 
 const NavBar = () => {
     // Stato per gestire l'apertura/chiusura del menu su mobile

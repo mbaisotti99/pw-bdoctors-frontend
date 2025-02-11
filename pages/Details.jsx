@@ -85,7 +85,7 @@ const Details = () => {
         <div className="container">
             <div className="detailCard">
                 <ul className="details">
-                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={200} /></li>
+                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={200} className="docImg"/></li>
                     <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
                     <li>{doctor.email}</li>
                     <li>{doctor.telefono}</li>
