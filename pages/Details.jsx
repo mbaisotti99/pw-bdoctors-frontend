@@ -54,6 +54,8 @@ const Details = () => {
         return count
     }
 
+    
+
     return(
         <div className="container">
             <div className="detailCard">
