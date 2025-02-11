@@ -3,6 +3,7 @@ import axios from "axios";
 import DoctorCard from "./DoctorCard";
 
 const DoctorList = () => {
+
     const [doctors, setDoctors] = useState([]);
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -18,7 +19,7 @@ const DoctorList = () => {
 
     return (
         <>
-            <section>
+            <section className="mb-5">
                 {doctors.length > 0 ? (
                     <div className="row g-4">
                         {doctors.map((doctor) => (
@@ -35,6 +36,7 @@ const DoctorList = () => {
             </section>
         </>
     );
+    
 };
 
 export default DoctorList;

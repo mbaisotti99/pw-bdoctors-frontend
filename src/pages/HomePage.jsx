@@ -1,3 +1,4 @@
+// PAGE RENDER
 const HomePage = () => {
     return(
         <div className="container">
@@ -6,4 +7,5 @@ const HomePage = () => {
     )
 }
 
+// EXPORT
 export default HomePage

@@ -1,6 +1,8 @@
+// DATA
 import { Outlet } from "react-router-dom"
 import NavBar from "../components/NavBar"
 
+// PAGE LAYOUT
 const Layout = () => {
     return(
         <>
@@ -11,4 +13,5 @@ const Layout = () => {
     )
 }
 
+// EXPORT
 export default Layout

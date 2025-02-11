@@ -1,6 +1,9 @@
+// DATA
 import { Link } from "react-router-dom";
 
+// CARD RENDER
 const DoctorCard = ({ doctor }) => {
+
     const { nome, cognome, specializzazione, citta, immagine, slug } = doctor;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -15,7 +18,7 @@ const DoctorCard = ({ doctor }) => {
             </div>
             <div className="card-body">
                 <h5 className="card-title">Dr. {nome} {cognome}</h5>
-                <div className="mb-2">
+                <div className="mb-5">
                     <span className="badge bg-primary">{specializzazione}</span>
                 </div>
                 <p className="card-text">
@@ -35,4 +38,5 @@ const DoctorCard = ({ doctor }) => {
     );
 };
 
+// EXPORT
 export default DoctorCard;

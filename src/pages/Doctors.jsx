@@ -1,22 +1,34 @@
-import DoctorsList from "../components/DoctorsList"
+// DATA
+import DoctorsList from "../components/DoctorsList";
 import { Link } from "react-router-dom";
 
+// PAGE RENDER
 const Doctors = () => {
+
     return (
-        <div className="container">
-            <section className="presentation">
-                <h1>Trova il tuo Specialista</h1>
-                <p>Scopri i migliori medici specialisti nella tua zona</p>
+
+        <div className="container mt-4">
+            <section className="presentation mb-5">
+                
+                {/* TITOLO SEZIONE */}
+                <h1 className="mb-5">Ecco lo specialista che fa per te!</h1>
+
+                {/* BOTTONE CREA MEDICO */}
                 <Link
-                    className="create-btn"
+                    className="create-btn btn btn-primary"
                     to="/medici/registrazione"
                 >
                     + Registrati come Medico
                 </Link>
             </section>
+
+            {/* LISTA MEDICI */}
             <DoctorsList />
         </div>
-    )
-}
 
-export default Doctors
+    )
+
+};
+
+// EXPORT
+export default Doctors;
