@@ -13,7 +13,7 @@ const NavBar = () => {
     // Array di voci di menu per rendere la navbar più espandibile
     const navLinks = [
         { path: "/", label: "Home", icon: "bi-house" },
-        { path: "/doctors", label: "Dottori", icon: "bi-person-lines-fill" },
+        { path: "/medici", label: "Dottori", icon: "bi-person-lines-fill" },
         { path: "/search", label: "Cerca", icon: "bi-search" }
     ];
 
