@@ -1,3 +1,5 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 const Details = () => {
@@ -44,7 +46,11 @@ const Details = () => {
         }
       ];
 
-    const {id} = useParams()
+
+    const [reviews, setRev] = useState([])
+    const [doctor, setDoc] = useState({})
+
+    const {slug} = useParams()
 
     const printStars = (vote) => {
         let count = ""
@@ -54,24 +60,43 @@ const Details = () => {
         return count
     }
 
+    useEffect(() => {
+        axios
+        .get(`http://localhost:3000/medici/${slug}`)
+        .then((resp) => {
+            // console.log(resp);
+            setDoc(resp.data.data[0])
+            
+        })
+    },[])
+
+    useEffect(() => {
+        axios
+        .get(`http://localhost:3000/medici/${slug}/recensioni`)
+        .then((resp) => {
+            // console.log(resp);
+            setRev(resp.data.data)
+        })
+    }, [doctor])
+
     
 
     return(
         <div className="container">
             <div className="detailCard">
                 <ul className="details">
-                    <li><img src="https://thumbs.dreamstime.com/z/icona-femminile-di-medico-infermiere-symbol-67755768.jpg" alt="Nome doc" width={200} /></li>
-                    <li>Nome e Cognome di {id}</li>
-                    <li>Email</li>
-                    <li>Numero</li>
-                    <li>Specializzazione</li>
+                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={200} className="docImg"/></li>
+                    <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
+                    <li>{doctor.email}</li>
+                    <li>{doctor.telefono}</li>
+                    <li>{doctor.specializzazione}</li>
                 </ul>
             </div>
 
             <div className="reviews">
-                {recensioni.map((curRev) => {
+                {reviews.map((curRev, i) => {
                     return(
-                        <div className="reviewCard">
+                        <div className="reviewCard" key={i}>
                             <ul className="rev">
                                 <li>{curRev.nome_utente}</li>
                                 <li>{printStars(curRev.voto)}</li>
