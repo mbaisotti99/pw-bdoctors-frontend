@@ -13,8 +13,8 @@ const NavBar = () => {
     // Array di voci di menu per rendere la navbar più espandibile
     const navLinks = [
         { path: "/", label: "Home", icon: "bi-house" },
-        { path: "/advanced-search", label: "Ricerca Avanzata", icon: "bi-search" },
-        { path: "/doctor-registration", label: "Registrazione Dottore", icon: "bi-person-plus" }
+        { path: "/medici", label: "Ricerca Avanzata", icon: "bi-search" },
+        { path: "/registrati", label: "Registrazione Dottore", icon: "bi-person-plus" }
     ];
 
     return (
