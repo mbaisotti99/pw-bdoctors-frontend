@@ -3,58 +3,45 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 const Details = () => {
-    const recensioni = [
-        {
-          id: 1,
-          id_medico: 2,
-          recensione: "Ottimo dottore, molto professionale e attento alle esigenze del paziente.",
-          voto: 5,
-          nome_utente: "Marco Rossi",
-          email_utente: "marco.rossi@example.com"
-        },
-        {
-          id: 2,
-          id_medico: 2,
-          recensione: "Esperienza positiva, spiegazioni chiare e dettagliate.",
-          voto: 4,
-          nome_utente: "Anna Bianchi",
-          email_utente: "anna.bianchi@example.com"
-        },
-        {
-          id: 3,
-          id_medico: 2,
-          recensione: "Un po’ di attesa ma il medico è stato molto cortese.",
-          voto: 3,
-          nome_utente: "Luca Verdi",
-          email_utente: "luca.verdi@example.com"
-        },
-        {
-          id: 4,
-          id_medico: 2,
-          recensione: "Non mi sono trovato bene, tempi di attesa troppo lunghi.",
-          voto: 2,
-          nome_utente: "Giulia Neri",
-          email_utente: "giulia.neri@example.com"
-        },
-        {
-          id: 5,
-          id_medico: 2,
-          recensione: "Fantastico specialista, mi ha aiutato tantissimo.",
-          voto: 5,
-          nome_utente: "Paolo Gialli",
-          email_utente: "paolo.gialli@example.com"
-        }
-      ];
 
 
     const [reviews, setRev] = useState([])
     const [doctor, setDoc] = useState({})
+    const [popup, setPopup] = useState(false)
+    const [isErr, setIsErr] = useState(false)
 
-    const {slug} = useParams()
+    const { slug } = useParams()
+
+    const [formData, setFormData] = useState({
+        subject: "",
+        text: "",
+    });
+
+    const sendMail = (event) => {
+        event.preventDefault()
+        setIsErr(false)
+        axios
+            .post(`http://localhost:3000/medici/${slug}/send-mail`, formData)
+            .then((resp) => {
+                console.log(resp);
+                setPopup(true);
+                // (resp.status != 200) && setIsErr(true)
+            })
+            .catch((err) => {
+                setPopup(true);
+                setIsErr(true)  
+                console.log(err);
+                
+            })
+    }
+
+    const onMailChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value })
+    }
 
     const printStars = (vote) => {
         let count = ""
-        for (let i = 0; i < vote; i++){
+        for (let i = 0; i < vote; i++) {
             count += "⭐"
         }
         return count
@@ -62,40 +49,41 @@ const Details = () => {
 
     useEffect(() => {
         axios
-        .get(`http://localhost:3000/medici/${slug}`)
-        .then((resp) => {
-            // console.log(resp);
-            setDoc(resp.data.data[0])
-            
-        })
-    },[])
+            .get(`http://localhost:3000/medici/${slug}`)
+            .then((resp) => {
+                // console.log(resp);
+                setDoc(resp.data.data[0])
+
+            })
+    }, [])
 
     useEffect(() => {
         axios
-        .get(`http://localhost:3000/medici/${slug}/recensioni`)
-        .then((resp) => {
-            // console.log(resp);
-            setRev(resp.data.data)
-        })
+            .get(`http://localhost:3000/medici/${slug}/recensioni`)
+            .then((resp) => {
+                // console.log(resp);
+                setRev(resp.data.data)
+            })
+            
     }, [doctor])
 
-    
 
-    return(
+
+    return (
         <div className="container">
             <div className="detailCard">
                 <ul className="details">
-                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={200} className="docImg"/></li>
+                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} className="docImg" /></li>
                     <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
                     <li>{doctor.email}</li>
                     <li>{doctor.telefono}</li>
                     <li>{doctor.specializzazione}</li>
                 </ul>
             </div>
-
+            <h2 className="text-center mb-5">Recensioni</h2>
             <div className="reviews">
                 {reviews.map((curRev, i) => {
-                    return(
+                    return (
                         <div className="reviewCard" key={i}>
                             <ul className="rev">
                                 <li>{curRev.nome_utente}</li>
@@ -106,6 +94,40 @@ const Details = () => {
                     )
                 })}
             </div>
+            <h2 className="text-center my-5">Chiedi consulenza</h2>
+            <form onSubmit={sendMail}>
+                <div className="text-center">
+                    <label className="my-3" htmlFor="subject">Soggetto</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={onMailChange}
+                    />
+                    <label className="my-3" htmlFor="text">Testo</label>
+                    <textarea
+                        className="form-control mb-4"
+                        name="text"
+                        value={formData.text}
+                        onChange={onMailChange}
+                    />
+                    <button type="submit" className="btn btn-primary mb-4">Invia</button>
+                </div>
+                {popup && (
+                    <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
+                        <p className="fs-4 text-center w-100 m-0">
+                            {isErr ? (
+                                "Errore nell'invio della mail"
+                            ): (
+                                "Mail inviata con successo!"
+                                )}
+                        </p>
+                    </div>
+                )}
+
+
+            </form>
         </div>
     )
 }

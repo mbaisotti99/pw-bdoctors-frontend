@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./pages/HomePage";
 import Doctors from "./pages/Doctors";
 import Details from "./pages/Details";
-
+import FormRegistrazione from "./pages/FormRegistrazione";
 
 function App() {
   return (
@@ -14,10 +14,11 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/medici" element={<Doctors />} />
           <Route path="/medici/:slug" element={<Details />} />
+          <Route path="/registrati" element={<FormRegistrazione />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;
