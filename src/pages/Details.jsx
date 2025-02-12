@@ -9,37 +9,11 @@ const Details = () => {
 
     const [reviews, setRev] = useState([])
     const [doctor, setDoc] = useState({})
-    const [popup, setPopup] = useState(false)
-    const [isErr, setIsErr] = useState(false)
+
 
     const { slug } = useParams()
 
-    const [formData, setFormData] = useState({
-        subject: "",
-        text: "",
-    });
 
-    const sendMail = (event) => {
-        event.preventDefault()
-        setIsErr(false)
-        axios
-            .post(`http://localhost:3000/medici/${slug}/send-mail`, formData)
-            .then((resp) => {
-                console.log(resp);
-                setPopup(true);
-                // (resp.status != 200) && setIsErr(true)
-            })
-            .catch((err) => {
-                setPopup(true);
-                setIsErr(true)  
-                console.log(err);
-                
-            })
-    }
-
-    const onMailChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value })
-    }
 
     const printStars = (vote) => {
         let count = ""
@@ -66,7 +40,9 @@ const Details = () => {
                 setRev(resp.data.data)
             })
             
-    }, [doctor])
+    }, [doctor, reviews])
+
+
 
 
 
@@ -98,11 +74,7 @@ const Details = () => {
             <h2 className="text-center my-5">Chiedi consulenza</h2>
 
             <MailForm 
-                send={sendMail}
-                data={formData}
-                change={onMailChange}
-                popup={popup}
-                error={isErr}
+            medSlug={slug}
             />
 
             <h2 className="mt-5 text-center">Lascia una recensione</h2>
