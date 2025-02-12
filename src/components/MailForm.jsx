@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 
-const MailForm = ({medSlug}) => {
+const MailForm = ({ medSlug }) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
+
+    const [errMsg, setErrMsg] = useState("Errore nell'invio della recensione")
 
     const [formData, setFormData] = useState({
         subject: "",
@@ -22,9 +24,10 @@ const MailForm = ({medSlug}) => {
             })
             .catch((err) => {
                 setPopup(true);
-                setIsErr(true)  
+                setIsErr(true)
+                setErrMsg(err.response.data.message)
                 console.log(err);
-                
+
             })
     }
 
@@ -58,7 +61,7 @@ const MailForm = ({medSlug}) => {
                 <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
                     <p className="fs-4 text-center w-100 m-0">
                         {isErr ? (
-                            "Errore nell'invio della mail"
+                            `${errMsg}`
                         ) : (
                             "Mail inviata con successo!"
                         )}

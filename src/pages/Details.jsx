@@ -39,10 +39,11 @@ const Details = () => {
                 // console.log(resp);
                 setRev(resp.data.data)
             })
-            
+
     }, [doctor, reviews])
 
 
+    const [activePage, setActivePage] = useState("mail")
 
 
 
@@ -71,19 +72,48 @@ const Details = () => {
                     )
                 })}
             </div>
-            <h2 className="text-center my-5">Chiedi consulenza</h2>
 
-            <MailForm 
-            medSlug={slug}
-            />
+            <div className="pageSelect">
+                <button
+                    className={`btn btn-primary ${activePage === "mail" && "active"}`}
+                    onClick={() => setActivePage("mail")}
+                >
+                    Manda una mail
+                </button>
 
-            <h2 className="mt-5 text-center">Lascia una recensione</h2>
+                <button
+                    className={`btn btn-primary ms-2 ${activePage === "rev" && "active"}`}
+                    onClick={() => setActivePage("rev")}
+                >
+                    Scrivi una recensione
+                </button>
+            </div>
 
-            <SendReviewForm
-                medSlug={slug}
-            />
+            {
+                (activePage == "mail") ?
 
-        </div>
+                    (
+                        <>
+                            <h2 className="text-center my-5">Chiedi consulenza</h2>
+
+                            <MailForm
+                                medSlug={slug}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="mt-5 text-center">Lascia una recensione</h2>
+
+                            <SendReviewForm
+                                medSlug={slug}
+                            />
+                        </>
+                    )
+
+            }
+
+
+        </div >
     )
 }
 

@@ -61,6 +61,15 @@ footer{
   margin: 40px 0;
 }
 
+.pageSelect{
+  display: flex;
+  margin: 45px 0;
+}
+
+.pageSelect .btn {
+  width: 50%;
+} 
+
 
 /* Reviews */
 
