@@ -9,10 +9,10 @@ const HomePage = () => {
                 <h1>Trova il medico giusto per te</h1>
                 <p>Cerca per specializzazione, città o recensioni</p>
                 <div className="d-flex justify-content-center gap-3">
-                    <NavLink className="btn btn-primary" to="/advanced-search">
+                    <NavLink className="btn btn-primary" to="/medici">
                         🔍 Cerca un medico
                     </NavLink>
-                    <NavLink className="btn btn-outline-primary" to="/doctor-registration">
+                    <NavLink className="btn btn-outline-primary" to="/registrati">
                         👨‍⚕️ Registrati come medico
                     </NavLink>
                 </div>
