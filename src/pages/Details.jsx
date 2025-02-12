@@ -48,6 +48,7 @@ const Details = () => {
 
 
     return (
+        
         <div className="container">
             <div className="detailCard">
                 <ul className="details">
@@ -110,47 +111,13 @@ const Details = () => {
                             />
                         </>
                     )
-
-            }
-
-
-        </div >
-            <h2 className="text-center my-5">Chiedi consulenza</h2>
-            <form onSubmit={sendMail}>
-                <div className="text-center">
-                    <label className="my-3" htmlFor="subject">Soggetto</label>
-                    <input
-                        className="form-control"
-                        type="text"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={onMailChange}
-                    />
-                    <label className="my-3" htmlFor="text">Testo</label>
-                    <textarea
-                        className="form-control mb-4"
-                        name="text"
-                        value={formData.text}
-                        onChange={onMailChange}
-                    />
-                    <button type="submit" className="btn btn-primary mb-4">Invia</button>
-                </div>
-                {popup && (
-                    <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
-                        <p className="fs-4 text-center w-100 m-0">
-                            {isErr ? (
-                                "Errore nell'invio della mail"
-                            ): (
-                                "Mail inviata con successo!"
-                            )}
-                        </p>
-                    </div>
-                )}
+                }
 
 
-            </form>
+
+
+
         </div>
-
     )
 }
 
