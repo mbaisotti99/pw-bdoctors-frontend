@@ -13,14 +13,13 @@ const NavBar = () => {
     // Array di voci di menu per rendere la navbar più espandibile
     const navLinks = [
         { path: "/", label: "Home", icon: "bi-house" },
-        { path: "/medici", label: "Dottori", icon: "bi-person-lines-fill" },
-        { path: "/search", label: "Cerca", icon: "bi-search" }
+        { path: "/advanced-search", label: "Ricerca Avanzata", icon: "bi-search" },
+        { path: "/doctor-registration", label: "Registrazione Dottore", icon: "bi-person-plus" }
     ];
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
- 
                 {/* Logo del sito */}
                 <NavLink className="navbar-brand" to="/">
                     BDoctors
