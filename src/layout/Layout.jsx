@@ -4,10 +4,10 @@ import NavBar from "../components/NavBar"
 
 // PAGE LAYOUT
 const Layout = () => {
-    return(
+    return (
         <>
-            <NavBar/>
-            <Outlet/>
+            <NavBar />
+            <Outlet />
             <footer>Questo è footer</footer>
         </>
     )
