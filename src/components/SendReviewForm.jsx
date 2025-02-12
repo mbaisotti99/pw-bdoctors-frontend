@@ -5,6 +5,7 @@ const SendReviewForm = ({medSlug}) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
+    const [errMsg, setErrMsg] = useState("Errore nell'invio della recensione")
 
     const stars = Array.from({length : 5}, (_, i) => {
         return "⭐".repeat(i + 1)
@@ -16,12 +17,17 @@ const SendReviewForm = ({medSlug}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        setIsErr(false)
 
         axios
         .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
         .then((resp) => {
-            console.log(resp);
-            console.log(medSlug);
+            setPopup(true)
+        })
+        .catch((err) => {
+            setPopup(true)
+            setIsErr(true)
+            setErrMsg(err.response.data.message)
         })
     }
 
@@ -59,6 +65,17 @@ const SendReviewForm = ({medSlug}) => {
 
             <button className="btn btn-primary mb-5" type="submit">Invia Recensione</button>
 
+            {popup && (
+                <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
+                    <p className="fs-4 text-center w-100 m-0">
+                        {isErr ? (
+                            `${errMsg}`
+                        ) : (
+                            "Recensione caricata con successo!"
+                        )}
+                    </p>
+                </div>
+            )}
 
         </form>
     )
