@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import MailForm from "../components/MailForm"
+import SendReviewForm from "../components/SendReviewForm"
 
 const Details = () => {
 
@@ -52,8 +54,7 @@ const Details = () => {
             .get(`http://localhost:3000/medici/${slug}`)
             .then((resp) => {
                 // console.log(resp);
-                setDoc(resp.data.data[0])
-
+                setDoc(resp.data.data)
             })
     }, [])
 
@@ -95,39 +96,21 @@ const Details = () => {
                 })}
             </div>
             <h2 className="text-center my-5">Chiedi consulenza</h2>
-            <form onSubmit={sendMail}>
-                <div className="text-center">
-                    <label className="my-3" htmlFor="subject">Soggetto</label>
-                    <input
-                        className="form-control"
-                        type="text"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={onMailChange}
-                    />
-                    <label className="my-3" htmlFor="text">Testo</label>
-                    <textarea
-                        className="form-control mb-4"
-                        name="text"
-                        value={formData.text}
-                        onChange={onMailChange}
-                    />
-                    <button type="submit" className="btn btn-primary mb-4">Invia</button>
-                </div>
-                {popup && (
-                    <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
-                        <p className="fs-4 text-center w-100 m-0">
-                            {isErr ? (
-                                "Errore nell'invio della mail"
-                            ): (
-                                "Mail inviata con successo!"
-                                )}
-                        </p>
-                    </div>
-                )}
 
+            <MailForm 
+                send={sendMail}
+                data={formData}
+                change={onMailChange}
+                popup={popup}
+                error={isErr}
+            />
 
-            </form>
+            <h2 className="mt-5 text-center">Lascia una recensione</h2>
+
+            <SendReviewForm
+                medSlug={slug}
+            />
+
         </div>
     )
 }

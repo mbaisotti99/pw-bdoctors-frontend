@@ -85,3 +85,7 @@ footer{
   display: flex;
   flex-direction: column;
 }
+
+.reviewBox label{
+  margin: 15px 0;
+}
