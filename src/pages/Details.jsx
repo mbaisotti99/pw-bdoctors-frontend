@@ -52,7 +52,7 @@ const Details = () => {
             .get(`http://localhost:3000/medici/${slug}`)
             .then((resp) => {
                 // console.log(resp);
-                setDoc(resp.data.data[0])
+                setDoc(resp.data.data)
 
             })
     }, [])
@@ -121,7 +121,7 @@ const Details = () => {
                                 "Errore nell'invio della mail"
                             ): (
                                 "Mail inviata con successo!"
-                                )}
+                            )}
                         </p>
                     </div>
                 )}
