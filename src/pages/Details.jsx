@@ -1,43 +1,19 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import MailForm from "../components/MailForm"
+import SendReviewForm from "../components/SendReviewForm"
 
 const Details = () => {
 
 
     const [reviews, setRev] = useState([])
     const [doctor, setDoc] = useState({})
-    const [popup, setPopup] = useState(false)
-    const [isErr, setIsErr] = useState(false)
+
 
     const { slug } = useParams()
 
-    const [formData, setFormData] = useState({
-        subject: "",
-        text: "",
-    });
 
-    const sendMail = (event) => {
-        event.preventDefault()
-        setIsErr(false)
-        axios
-            .post(`http://localhost:3000/medici/${slug}/send-mail`, formData)
-            .then((resp) => {
-                console.log(resp);
-                setPopup(true);
-                // (resp.status != 200) && setIsErr(true)
-            })
-            .catch((err) => {
-                setPopup(true);
-                setIsErr(true)  
-                console.log(err);
-                
-            })
-    }
-
-    const onMailChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value })
-    }
 
     const printStars = (vote) => {
         let count = ""
@@ -53,7 +29,6 @@ const Details = () => {
             .then((resp) => {
                 // console.log(resp);
                 setDoc(resp.data.data)
-
             })
     }, [])
 
@@ -64,8 +39,11 @@ const Details = () => {
                 // console.log(resp);
                 setRev(resp.data.data)
             })
-            
-    }, [doctor])
+
+    }, [doctor, reviews])
+
+
+    const [activePage, setActivePage] = useState("mail")
 
 
 
@@ -94,6 +72,49 @@ const Details = () => {
                     )
                 })}
             </div>
+
+
+            <div className="pageSelect">
+                <button
+                    className={`btn btn-primary ${activePage === "mail" && "active"}`}
+                    onClick={() => setActivePage("mail")}
+                >
+                    Manda una mail
+                </button>
+
+                <button
+                    className={`btn btn-primary ms-2 ${activePage === "rev" && "active"}`}
+                    onClick={() => setActivePage("rev")}
+                >
+                    Scrivi una recensione
+                </button>
+            </div>
+
+            {
+                (activePage == "mail") ?
+
+                    (
+                        <>
+                            <h2 className="text-center my-5">Chiedi consulenza</h2>
+
+                            <MailForm
+                                medSlug={slug}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="mt-5 text-center">Lascia una recensione</h2>
+
+                            <SendReviewForm
+                                medSlug={slug}
+                            />
+                        </>
+                    )
+
+            }
+
+
+        </div >
             <h2 className="text-center my-5">Chiedi consulenza</h2>
             <form onSubmit={sendMail}>
                 <div className="text-center">
@@ -129,6 +150,7 @@ const Details = () => {
 
             </form>
         </div>
+
     )
 }
 
