@@ -11,6 +11,10 @@ html, body, #root {
   flex-direction: column;
 }
 
+img {
+  max-width: 100%;
+}
+
 .container{
   flex: 1 !important;
 }
@@ -50,6 +54,7 @@ footer{
 
 .details{
   list-style: none;
+  padding: 0;
 }
 
 .docName{

@@ -9,6 +9,8 @@ const inputStart = {
   indirizzo: "",
 };
 
+const inputKeys = Object.keys(inputStart)
+
 function FormRegistrazione() {
   const [inputs, setInputs] = useState(inputStart);
 
@@ -32,72 +34,41 @@ function FormRegistrazione() {
     setInputs(inputStart);
   }
 
+  const getType = (key) => {
+    if (key == "email") {
+      return "mail"
+    } else if (key == "telefono") {
+      return "tel"
+    } else {
+      return "text"
+    }
+  }
+
   console.log(inputs);
 
   return (
     <div className="container">
       <form onSubmit={HandleOnSubmit}>
-        <div>
-          <label htmlFor="nome">Nome:</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            value={inputs.nome}
-            onChange={HandleOnChange}
-            required
-          />
-        </div>
+        {
+          inputKeys.map((curKey) => {
+            return (
+              <div className="my-3">
+                <label className="my-2" htmlFor="nome">{`${curKey.charAt(0).toUpperCase()}${curKey.slice(1)}`}:</label>
+                <input
+                  type={getType(curKey)}
+                  id={curKey}
+                  name={curKey}
+                  value={inputs[curKey]}
+                  onChange={HandleOnChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+            )
+          })
+        }
 
-        <div>
-          <label htmlFor="cognome">Cognome:</label>
-          <input
-            type="text"
-            id="cognome"
-            name="cognome"
-            value={inputs.cognome}
-            onChange={HandleOnChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={inputs.email}
-            onChange={HandleOnChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="telefono">Telefono:</label>
-          <input
-            type="tel"
-            id="telefono"
-            name="telefono"
-            value={inputs.telefono}
-            onChange={HandleOnChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="indirizzo">Indirizzo:</label>
-          <input
-            type="text"
-            id="indirizzo"
-            name="indirizzo"
-            value={inputs.indirizzo}
-            onChange={HandleOnChange}
-            required
-          />
-        </div>
-
-        <button type="submit">Registrati</button>
+        <button className="btn btn-success my-5" type="submit">Registrati</button>
       </form>
     </div>
   );
