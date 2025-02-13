@@ -9,6 +9,7 @@ const NavBar = () => {
 
     // Otteniamo il percorso attuale per evidenziare il link attivo
     const location = useLocation();
+    const isHomePage = location.pathname === "/";
 
     // Array di voci di menu per rendere la navbar più espandibile
     const navLinks = [
@@ -25,31 +26,31 @@ const NavBar = () => {
                     BDoctors
                 </NavLink>
 
-                {/* Bottone per mobile (hamburger menu) */}
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+                {/* Se siamo sulla Homepage, non mostriamo il resto della navbar */}
+                {!isHomePage && (
+                    <>
+                        {/* Bottone per mobile (hamburger menu) */}
+                        <button
+                            className="navbar-toggler"
+                            type="button"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
 
-                {/* Contenitore dei link di navigazione */}
-                <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {navLinks.map((link, index) => (
-                            <li key={index} className="nav-item">
-                                <NavLink
-                                    className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
-                                    to={link.path}
-                                >
-                                    <i className={`bi ${link.icon} me-1`}></i> {/* Icona accanto al testo */}
-                                    {link.label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                        {/* Contenitore dei link di navigazione */}
+                        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/medici">🔍 Ricerca Avanzata</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/registrati">👨‍⚕️ Registrazione Dottore</NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                )}
             </div>
         </nav>
     );
