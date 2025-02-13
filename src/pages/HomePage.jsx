@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import TopDoctors from "../components/TopDoctors";
 import LatestReviews from "../components/LatestReviews";
+import SearchFilter from "../components/SearchFilter"
 
 const HomePage = () => {
     return (
@@ -28,9 +29,9 @@ const HomePage = () => {
 
             {/* Sezione Filtri (Placeholder) */}
             <section className="mb-5">
-                <h2>Filtra per specializzazione, città o voti</h2>
+                <h2 className="mb-3">Filtra per specializzazione o città</h2>
                 {/* Da sostituire con il componente dei filtri */}
-                <div className="alert alert-warning">I filtri verranno integrati qui</div>
+                <SearchFilter />
             </section>
 
             {/* Recensioni degli Utenti */}

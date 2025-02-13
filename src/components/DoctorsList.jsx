@@ -1,18 +1,21 @@
 // DATA
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DoctorCard from "./DoctorCard";
 
 // RENDER DOCTOR LIST
 const DoctorList = () => {
-    const [searchParams] = useSearchParams();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     const [doctors, setDoctors] = useState([]);
     const [specializations, setSpecializations] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedSpecialization, setSelectedSpecialization] = useState("");
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+    // RICEVI MEDICI
     const getDoctors = async (params = {}) => {
         try {
             const response = await axios.get(`${backendUrl}/medici`, { params });
@@ -24,11 +27,10 @@ const DoctorList = () => {
 
     // CARICA SPECIALIZZAZIONI
     useEffect(() => {
-
         const fetchSpecializations = async () => {
             try {
                 const response = await axios.get(`${backendUrl}/medici`);
-                const uniqueSpecializations = [...new Set(response.data.data.map(doc => doc.specializzazione))].sort(); // new Set evita duplicati
+                const uniqueSpecializations = [...new Set(response.data.data.map(doc => doc.specializzazione))].sort();
                 setSpecializations(uniqueSpecializations);
             } catch (error) {
                 console.error("Errore nel caricamento delle specializzazioni:", error);
@@ -36,46 +38,37 @@ const DoctorList = () => {
         };
 
         fetchSpecializations();
-        
     }, []);
 
     // GESTISCE PARAMS DAL URL E FA LA RICERCA INIZIALE
     useEffect(() => {
-
-        const params = {};
-        const specFromUrl = searchParams.get('specializzazione');
-        const cityFromUrl = searchParams.get('citta');
-
-        if (specFromUrl) {
-            params.specializzazione = specFromUrl;
-            setSelectedSpecialization(specFromUrl);
-        }
-        if (cityFromUrl) {
-            params.citta = cityFromUrl;
-        }
-        if (search) {
-            params.search = search;
-        }
-
+        const specFromUrl = searchParams.get("specializzazione") || "";
+        const searchFromUrl = searchParams.get("search") || "";
+        setSelectedSpecialization(specFromUrl);
+        setSearch(searchFromUrl);
+        
+        const params = Object.fromEntries(searchParams.entries());
         getDoctors(params);
+    }, [searchParams]);
 
-    }, [searchParams, search]);
-
-    const handleSearch = () => {
-        const params = {};
-        if (selectedSpecialization) {
-            params.specializzazione = selectedSpecialization;
-        }
-        if (search) {
-            params.search = search;
-        }
-        getDoctors(params);
+    // UPDATE DEI PARAMETRI DI RICERCA
+    const updateSearchParams = (newParams) => {
+        setSearchParams((prevParams) => {
+            const updatedParams = new URLSearchParams(prevParams);
+            Object.keys(newParams).forEach((key) => {
+                if (newParams[key]) {
+                    updatedParams.set(key, newParams[key]);
+                } else {
+                    updatedParams.delete(key);
+                }
+            });
+            return updatedParams;
+        });
     };
 
-    const handleEnterKey = (event) => {
-        if (event.key === "Enter") {
-            handleSearch();
-        }
+    // GESTIONE SEARCH
+    const handleSearch = () => {
+        updateSearchParams({ specializzazione: selectedSpecialization, search });
     };
 
     return (
@@ -87,8 +80,9 @@ const DoctorList = () => {
                     <select
                         value={selectedSpecialization}
                         onChange={(event) => {
-                            setSelectedSpecialization(event.target.value);
-                            getDoctors({ specializzazione: event.target.value, search });
+                            const value = event.target.value;
+                            setSelectedSpecialization(value);
+                            updateSearchParams({ specializzazione: value, search });
                         }}
                         className="form-select"
                     >
@@ -106,7 +100,9 @@ const DoctorList = () => {
                         type="search"
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
-                        onKeyUp={handleEnterKey}
+                        onKeyUp={(event) => {
+                            if (event.key === "Enter") handleSearch();
+                        }}
                         className="form-control"
                         placeholder="Cerca medico per nome o cognome..."
                     />
@@ -117,6 +113,9 @@ const DoctorList = () => {
                 >
                     <i className="fa-solid fa-magnifying-glass"></i> Cerca
                 </button>
+                <div className="mb-2">
+                    Totale medici: {doctors.length}
+                </div>
             </div>
 
             {doctors.length > 0 ? (
@@ -136,4 +135,5 @@ const DoctorList = () => {
     );
 };
 
+// EXPORT
 export default DoctorList;
