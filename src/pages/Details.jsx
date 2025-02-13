@@ -51,7 +51,7 @@ const Details = () => {
             count += reviews[i].voto
         }
 
-        return count / reviews.length
+        return (count / reviews.length).toFixed(2)
     }
 
 
@@ -66,7 +66,7 @@ const Details = () => {
                     <li>{doctor.email}</li>
                     <li>{doctor.telefono}</li>
                     <li>{doctor.specializzazione}</li>
-                    <li>{printStars(voteAvg())}</li>
+                    <li>{`${printStars(voteAvg())} (${voteAvg()})`}</li>
                 </ul>
             </div>
             <h2 className="text-center mb-5">Recensioni</h2>
