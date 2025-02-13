@@ -47,7 +47,7 @@ const TopDoctors = () => {
                                 src={`${backendUrl}/images/${doctor.immagine}`} 
                                 className="rounded-start"
                                 alt={`Dr. ${doctor.cognome}`}
-                                style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                                style={{ width: "180px", height: "180px", objectFit: "cover" }}
                             />
 
                             <div className="card-body">
@@ -56,6 +56,10 @@ const TopDoctors = () => {
 
                                 <p className="card-text small mb-1">
                                     <strong>Specializzazione:</strong> {doctor.nome_specializzazione}
+                                </p>
+
+                                <p className="card-text small mb-1">
+                                    <strong>Città:</strong> {doctor.citta}
                                 </p>
 
                                 <p className="card-text small mb-2">

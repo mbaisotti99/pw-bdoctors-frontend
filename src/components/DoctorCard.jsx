@@ -17,7 +17,7 @@ const DoctorCard = ({ doctor }) => {
                 />
             </div>
             <div className="card-body">
-                <h5 className="card-title">Dr. {nome} {cognome}</h5>
+                <h5 className="card-title">{nome} {cognome}</h5>
                 <div className="mb-5">
                     <span className="badge bg-primary">{specializzazione}</span>
                 </div>
