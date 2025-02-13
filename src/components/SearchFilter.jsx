@@ -76,22 +76,6 @@ const SearchFilter = () => {
                     </select>
                 </div>
 
-                <div className="col-md-5">
-                    <select
-                        className="form-select"
-                        name="citta"
-                        value={filters.citta}
-                        onChange={handleChange}
-                    >
-                        <option value="">Seleziona una città</option>
-                        {cities.map((city) => (
-                            <option key={city.citta} value={city.citta}>
-                                {city.citta}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
                 <div className="col-md-2">
                     <button 
                         type="submit" 
