@@ -35,7 +35,7 @@ function FormRegistrazione() {
   console.log(inputs);
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={HandleOnSubmit}>
         <div>
           <label htmlFor="nome">Nome:</label>
