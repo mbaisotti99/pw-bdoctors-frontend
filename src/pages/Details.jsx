@@ -45,6 +45,15 @@ const Details = () => {
 
     const [activePage, setActivePage] = useState("mail")
 
+    const voteAvg = () => {
+        let count = 0
+        for (let i = 0; i < reviews.length; i++){
+            count += reviews[i].voto
+        }
+
+        return count / reviews.length
+    }
+
 
 
     return (
@@ -57,6 +66,7 @@ const Details = () => {
                     <li>{doctor.email}</li>
                     <li>{doctor.telefono}</li>
                     <li>{doctor.specializzazione}</li>
+                    <li>{printStars(voteAvg())}</li>
                 </ul>
             </div>
             <h2 className="text-center mb-5">Recensioni</h2>

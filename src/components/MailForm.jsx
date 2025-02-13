@@ -15,6 +15,7 @@ const MailForm = ({ medSlug }) => {
 
     const sendMail = (event) => {
         event.preventDefault()
+        setPopup(false)
         setIsErr(false)
         axios
             .post(`http://localhost:3000/medici/${medSlug}/send-mail`, formData)
