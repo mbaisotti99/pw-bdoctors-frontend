@@ -89,12 +89,35 @@ footer{
   margin: 20px 0;
 }
 
+.reviewBox label{
+  margin: 15px 0;
+}
+
 /* SEARCHBAR */
 .search {
   display: flex;
   flex-direction: column;
 }
 
-.reviewBox label{
-  margin: 15px 0;
+/* SCROLLBARS */
+/* Vertical */
+::-webkit-scrollbar{
+  width: 10px;
+  background: #cecece;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #0d6efd;
+}
+
+/* Horizontal */
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+  background: #cecece;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+  background: #0d6efd;
+  border-radius: 10px;
 }

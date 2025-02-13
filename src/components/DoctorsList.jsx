@@ -1,7 +1,9 @@
+// DATA
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DoctorCard from "./DoctorCard";
 
+// RENDER DOCTORS LIST
 const DoctorList = () => {
     
     const [doctors, setDoctors] = useState([]);
@@ -11,35 +13,39 @@ const DoctorList = () => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     // TROVA MEDICI
-    const getDoctors = () => {
-        const params = {};
+    const getDoctors = async () => {
 
-        if (search.length > 0) {
-            params.search = search;
+        try {
+            const params = {};
+    
+            if (search.length > 0) {
+                params.search = search;
+            }
+    
+            if (selectedSpecialization !== "") {
+                params.specializzazione = selectedSpecialization;
+            }
+    
+            const response = await axios.get(`${backendUrl}/medici`, { params });
+            setDoctors(response.data.data);
+        } catch (error) {
+            console.error("Errore nel caricamento dei medici:", error);
         }
 
-        if (selectedSpecialization !== "") {
-            params.specializzazione = selectedSpecialization;
-        }
-
-        axios.get(`${backendUrl}/medici`, { params })
-            .then((resp) => {
-                setDoctors(resp.data.data);
-            })
-            .catch(error => {
-                console.error("Errore nel caricamento dei medici:", error);
-            });
     };
 
     // RICERCA CON ENTER
     const handleEnterKey = (event) => {
+
         if (event.key === "Enter") {
             getDoctors();
         }
+
     };
 
     // ESTRAE SPECIALIZZAZIONE
     const extractSpecializations = (doctorsList) => {
+
         const uniqueSpecializations = [];
         
         doctorsList.forEach((doctor) => {
@@ -49,17 +55,23 @@ const DoctorList = () => {
         });
 
         setSpecializations(uniqueSpecializations.sort());
+
     };
 
     useEffect(() => {
-        axios.get(`${backendUrl}/medici`)
-            .then((resp) => {
-                setDoctors(resp.data.data);
-                extractSpecializations(resp.data.data);
-            })
-            .catch(error => {
+
+        const fetchDoctors = async () => {
+            try {
+                const response = await axios.get(`${backendUrl}/medici`);
+                setDoctors(response.data.data);
+                extractSpecializations(response.data.data);
+            } catch (error) {
                 console.error("Errore nel caricamento iniziale:", error);
-            });
+            }
+        };
+    
+        fetchDoctors();
+
     }, []);
 
     useEffect(() => {
@@ -125,7 +137,9 @@ const DoctorList = () => {
                     </div>
                 )}
             </section>
+            
         </>
+
     );
     
 };
