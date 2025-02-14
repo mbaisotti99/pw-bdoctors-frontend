@@ -97,7 +97,7 @@ const Details = () => {
                         <li>{`${printStars(voteAvg())} (${voteAvg()})`}</li>
                     </ul>
                     <p className="docDesc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus libero, deserunt magnam, nesciunt, veritatis sint provident assumenda temporibus at modi fugiat voluptatibus vel voluptatum laboriosam velit enim aut culpa architecto!
+                        {doctor.descrizione}
                     </p>
                 </div>
                 <div className="modalsCard">
@@ -117,13 +117,20 @@ const Details = () => {
                         </button>
                     </div>
                 </div>
+
                 <h2 className="text-center mb-5">Recensioni</h2>
+
                 <div className="reviews row">
                     {reviews.map((curRev, i) => {
+                        const dataFormat = new Date(curRev.data);
+
+                        
                         return (
                             <div className="col-4">
+
                                 <div className="reviewCard" key={i}>
                                     <ul className="rev">
+                                        <li>{dataFormat.toISOString().split('T')[0]}</li>
                                         <li>{curRev.nome_utente}</li>
                                         <li>{printStars(curRev.voto)}</li>
                                         <li>{curRev.recensione}</li>
