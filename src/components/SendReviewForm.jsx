@@ -43,14 +43,14 @@ const SendReviewForm = ({medSlug}) => {
     return(
         <form className="text-center reviewBox mt-4" onSubmit={handleSubmit}>
             
-            <label htmlFor="nome_utente">Nome Utente</label>
-            <input onChange={handleChange} value={formData.nome_utente} type="text"  className="form-control" name="nome_utente"/>
+            <label htmlFor="#nome_utente">Nome Utente</label>
+            <input onChange={handleChange} value={formData.nome_utente} type="text"  className="form-control" name="nome_utente" id="nome_utente"/>
             
-            <label htmlFor="email_utente">Email Utente</label>
-            <input onChange={handleChange} value={formData.email_utente} type="text"  className="form-control" name="email_utente"/>
+            <label htmlFor="#email_utente">Email Utente</label>
+            <input onChange={handleChange} value={formData.email_utente} type="text"  className="form-control" name="email_utente" id="email_utente"/>
             
-            <label htmlFor="voto">Voto</label>
-            <select onChange={handleChange} value={formData.voto} name="voto" className="form-control text-center">
+            <label htmlFor="#voto">Voto</label>
+            <select onChange={handleChange} value={formData.voto} name="voto" className="form-control text-center" id="voto">
                 {
                     stars.map((starN, i) => {
                         return(
@@ -60,8 +60,8 @@ const SendReviewForm = ({medSlug}) => {
                 }
             </select>
 
-            <label htmlFor="recensione">Testo della recensione</label>
-            <textarea onChange={handleChange} value={formData.recensione} name="recensione" className="form-control mb-5"/>
+            <label htmlFor="#recensione">Testo della recensione</label>
+            <textarea onChange={handleChange} value={formData.recensione} name="recensione" className="form-control mb-5" id="recensione"/>
 
             <button className="btn btn-primary mb-5" type="submit">Invia Recensione</button>
 
