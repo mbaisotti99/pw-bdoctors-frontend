@@ -135,7 +135,16 @@ footer{
   margin: 20px 0;
 }
 
-.reviewBox label{
+.reviewBox{
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewBox div {
+  margin: 15px 0;
+}
+
+.reviewBox div label {
   margin: 15px 0;
 }
 
