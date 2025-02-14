@@ -1,18 +1,20 @@
 import axios from "axios"
 import { useState } from "react"
+import { FaStar } from "react-icons/fa"
 
-const SendReviewForm = ({medSlug}) => {
+const SendReviewForm = ({ medSlug }) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
     const [errMsg, setErrMsg] = useState("Errore nell'invio della recensione")
 
-    const stars = Array.from({length : 5}, (_, i) => {
-        return "⭐".repeat(i + 1)
-    })
+    const [vote, setVote] = useState(null)
+
+    const stars = Array.from({ length: 5 }, (_, i) => { i });
+
 
     const handleChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value})
+        setFormData({ ...formData, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = (event) => {
@@ -20,15 +22,15 @@ const SendReviewForm = ({medSlug}) => {
         setIsErr(false)
 
         axios
-        .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
-        .then((resp) => {
-            setPopup(true)
-        })
-        .catch((err) => {
-            setPopup(true)
-            setIsErr(true)
-            setErrMsg(err.response.data.message)
-        })
+            .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
+            .then((resp) => {
+                setPopup(true)
+            })
+            .catch((err) => {
+                setPopup(true)
+                setIsErr(true)
+                setErrMsg(err.response.data.message)
+            })
     }
 
     const [formData, setFormData] = useState({
@@ -40,28 +42,48 @@ const SendReviewForm = ({medSlug}) => {
 
 
 
-    return(
+    return (
         <form className="text-center reviewBox mt-4" onSubmit={handleSubmit}>
-            
-            <label htmlFor="nome_utente">Nome Utente</label>
-            <input onChange={handleChange} value={formData.nome_utente} type="text"  className="form-control" name="nome_utente"/>
-            
-            <label htmlFor="email_utente">Email Utente</label>
-            <input onChange={handleChange} value={formData.email_utente} type="text"  className="form-control" name="email_utente"/>
-            
-            <label htmlFor="voto">Voto</label>
-            <select onChange={handleChange} value={formData.voto} name="voto" className="form-control text-center">
+
+            <div>
+                <label htmlFor="#nome_utente">Nome Utente</label>
+                <input onChange={handleChange} value={formData.nome_utente} type="text" className="form-control" name="nome_utente" id="nome_utente" />
+            </div>
+
+            <div>
+                <label htmlFor="#email_utente">Email Utente</label>
+                <input onChange={handleChange} value={formData.email_utente} type="text" className="form-control" name="email_utente" id="email_utente" />
+            </div>
+
+            <div>
+                <label className="mx-3 my-1" htmlFor="#voto">Voto</label>
                 {
-                    stars.map((starN, i) => {
-                        return(
-                            <option key={i} value={i + 1}>{starN}</option>
+                    stars.map((star, i) => {
+                        const curStarN = i + 1
+                        return (
+                            <>
+                                <FaStar
+                                    key={curStarN}
+                                    size={30}
+                                    style={{ cursor: "pointer" }}
+                                    color={curStarN <= vote ? "yellow" : "grey"}
+                                    onClick={() => {
+                                        setVote(curStarN)
+                                        setFormData({ ...formData, voto: curStarN })
+                                    }}
+                                />
+                            </>
+
                         )
                     })
                 }
-            </select>
+            </div>
 
-            <label htmlFor="recensione">Testo della recensione</label>
-            <textarea onChange={handleChange} value={formData.recensione} name="recensione" className="form-control mb-5"/>
+            <div>
+                <label htmlFor="#recensione">Testo della recensione</label>
+                <textarea onChange={handleChange} value={formData.recensione} name="recensione" className="form-control mb-5" id="recensione" />
+            </div>
+
 
             <button className="btn btn-primary mb-5" type="submit">Invia Recensione</button>
 

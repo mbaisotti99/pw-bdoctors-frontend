@@ -56,7 +56,7 @@ const MailForm = ({ medSlug }) => {
                     value={formData.text}
                     onChange={onMailChange}
                 />
-                <button type="submit" className="btn btn-primary mb-4">Invia</button>
+                <button type="submit" className="btn btn-success mb-4">Invia</button>
             </div>
             {popup && (
                 <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
