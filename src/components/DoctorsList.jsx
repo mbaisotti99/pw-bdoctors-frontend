@@ -53,18 +53,19 @@ const DoctorList = () => {
 
     // UPDATE DEI PARAMETRI DI RICERCA
     const updateSearchParams = (newParams) => {
-        setSearchParams((prevParams) => {
-            const updatedParams = new URLSearchParams(prevParams);
-            Object.keys(newParams).forEach((key) => {
-                if (newParams[key]) {
-                    updatedParams.set(key, newParams[key]);
-                } else {
-                    updatedParams.delete(key);
-                }
-            });
-            return updatedParams;
+        const updatedParams = new URLSearchParams(searchParams);
+        
+        Object.entries(newParams).forEach(([key, value]) => {
+            if (value) {
+                updatedParams.set(key, value);
+            } else {
+                updatedParams.delete(key);
+            }
         });
+    
+        setSearchParams(updatedParams);
     };
+    
 
     // GESTIONE SEARCH
     const handleSearch = () => {

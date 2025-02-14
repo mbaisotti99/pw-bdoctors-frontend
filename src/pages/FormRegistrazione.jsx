@@ -176,9 +176,7 @@ function FormRegistrazione() {
                     onChange={handleOnChange}
                     placeholder="Es. Mario (almeno 3 caratteri)"
                   />
-                </div>
-
-                <div className="mb-3">
+                
                   <label htmlFor="cognome" className="form-label">Cognome: *</label>
                   <input
                     type="text"
@@ -189,9 +187,7 @@ function FormRegistrazione() {
                     onChange={handleOnChange}
                     placeholder="Es. Rossi (almeno 3 caratteri)"
                   />
-                </div>
 
-                <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email: *</label>
                   <input
                     type="email"
@@ -202,9 +198,7 @@ function FormRegistrazione() {
                     onChange={handleOnChange}
                     placeholder="Es. medico@example.com"
                   />
-                </div>
 
-                <div className="mb-3">
                   <label htmlFor="telefono" className="form-label">Telefono: * (inizia con +39)</label>
                   <input
                     type="tel"
@@ -228,9 +222,7 @@ function FormRegistrazione() {
                     onChange={handleOnChange}
                     placeholder="Es. Viale Roma 5"
                   />
-                </div>
-
-                <div className="mb-3">
+                
                   <label htmlFor="citta" className="form-label">Città: *</label>
                   <input
                     type="text"
@@ -241,9 +233,7 @@ function FormRegistrazione() {
                     onChange={handleOnChange}
                     placeholder="Es. Milano"
                   />
-                </div>
-
-                <div className="mb-3">
+                
                   <label htmlFor="specializzazione" className="form-label">Specializzazione: *</label>
                   <select
                     className="form-select"

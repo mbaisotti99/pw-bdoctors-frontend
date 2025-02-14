@@ -19,14 +19,15 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                {/* Logo del sito */}
-                <NavLink className="navbar-brand" to="/">
-                    BDoctors
-                </NavLink>
+        <>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    {/* Logo del sito */}
+                    <NavLink className="navbar-brand" to="/">
+                        BDoctors
+                    </NavLink>
 
-                <>
+
                     {/* Bottone per mobile (hamburger menu) */}
                     <button
                         className="navbar-toggler"
@@ -47,10 +48,9 @@ const NavBar = () => {
                             </li>
                         </ul>
                     </div>
-                </>
-                )}
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </>
     );
 };
 

@@ -126,3 +126,7 @@ footer{
   background: #0d6efd;
   border-radius: 10px;
 }
+
+.card-form {
+  border: 1px solid black;
+}
