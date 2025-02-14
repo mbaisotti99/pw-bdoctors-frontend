@@ -26,30 +26,28 @@ const NavBar = () => {
                     BDoctors
                 </NavLink>
 
-                {/* Se siamo sulla Homepage, non mostriamo il resto della navbar */}
-                {!isHomePage && (
-                    <>
-                        {/* Bottone per mobile (hamburger menu) */}
-                        <button
-                            className="navbar-toggler"
-                            type="button"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
+                <>
+                    {/* Bottone per mobile (hamburger menu) */}
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
 
-                        {/* Contenitore dei link di navigazione */}
-                        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to="/medici">🔍 Ricerca Avanzata</NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to="/registrati">👨‍⚕️ Registrazione Dottore</NavLink>
-                                </li>
-                            </ul>
-                        </div>
-                    </>
+                    {/* Contenitore dei link di navigazione */}
+                    <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/medici">🔍 Ricerca Avanzata</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/registrati">👨‍⚕️ Registrazione Dottore</NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </>
                 )}
             </div>
         </nav>
