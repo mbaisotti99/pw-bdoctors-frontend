@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0; 
@@ -13,6 +13,10 @@ html, body, #root {
 
 img {
   max-width: 100%;
+}
+
+a {
+  text-decoration: none;
 }
 
 .container{
@@ -127,6 +131,52 @@ footer{
   border-radius: 10px;
 }
 
-.card-form {
-  border: 1px solid black;
+/* HomePage.jsx */
+/* TOP DOCTORS SECTION */
+.top-doc-card {
+  border: 1px solid rgb(13, 110, 253);
+  display: flex;
+  border-radius: 21px;
+  padding: 10px;
+}
+
+.top-doc-name {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #0d6efd;
+
+}
+
+.top-doc-img-container {
+  height: 120px;
+  width: 120px;
+}
+
+.top-doc-img {
+  border-radius: 50%;
+  /* border: 1px solid rgba(0, 0, 0, 0.6); */
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+}
+
+.top-doc-text {
+  display: flex;
+  gap: 70px;
+  align-items: center;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.top-doc-btn {
+  display: block;
+  border: #0d6efd 1px solid;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 3px 5px;
+}
+
+.fa-solid.fa-arrow-right {
+  font-size: 0.9rem;
 }

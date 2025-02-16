@@ -44,10 +44,10 @@ const TopDoctors = () => {
                 // ALTRIMENTI SCORRI DI UNA CARD
                 scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
             }
-        }, 3000); 
+        }, 3000);
 
         // PULISCE INTERVALLO QUANDO IL COMPONENTE VIENE SMONTATO
-        return () => clearInterval(scrollInterval); 
+        return () => clearInterval(scrollInterval);
 
     }, [topDoctors]);
 
@@ -63,39 +63,41 @@ const TopDoctors = () => {
 
                 {topDoctors.map((doctor) => (
                     <div key={doctor.id} className="col-auto">
-                        <div className="card d-flex flex-row align-items-center shadow-sm">
-
-                            <img 
-                                src={`${backendUrl}/images/${doctor.immagine}`} 
-                                className="rounded-start"
-                                alt={`Dr. ${doctor.cognome}`}
-                                style={{ width: "150px", height: "150px", objectFit: "cover" }}
-                            />
-
-                            <div className="card-body">
-
-                                <h5 className="card-title mb-1">
+                        <div className="top-doc-card d-flex flex-column">
+                            <div>
+                                <h5 className="top-doc-name mb-3">
                                     {doctor.nome} {doctor.cognome}
                                 </h5>
+                            </div>
+                            <div className="top-doc-text">
+                                <div className="top-doc-img-container">
+                                    <img
+                                        src={`${backendUrl}/images/${doctor.immagine}`}
+                                        className="top-doc-img"
+                                        alt={`Dr. ${doctor.cognome}`}
+                                    />
+                                </div>
+                                <div>
+                                    <p className="top-doc-spec  mb-2">
+                                        {doctor.nome_specializzazione} <i className="fa-solid fa-stethoscope"></i>
+                                    </p>
 
-                                <p className="card-text small mb-1">
-                                    <strong>Specializzazione:</strong> {doctor.nome_specializzazione}
-                                </p>
+                                    <p className="top-doc-city  mb-2">
+                                        {doctor.citta} <i className="fa-solid fa-location-dot"></i>
+                                    </p>
 
-                                <p className="card-text small mb-1">
-                                    <strong>Città:</strong> {doctor.citta}
-                                </p>
-
-                                <p className="card-text small mb-2">
-                                    <strong>Voto medio:</strong> {doctor.media_voti} ⭐ ({doctor.numero_recensioni} recensioni)
-                                </p>
-
-                                <Link to={`/medici/${doctor.slug}`} className="btn btn-sm btn-primary">
-                                    Vedi Profilo
+                                    <p className="top-doc-vote mb-2">
+                                        {doctor.media_voti} <i className="fa-solid fa-star"></i> <br /> ({doctor.numero_recensioni} recensioni)
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <Link to={`/medici/${doctor.slug}`} className="top-doc-btn">
+                                    Vedi Profilo <i className="fa-solid fa-arrow-right"></i>
                                 </Link>
-
                             </div>
                         </div>
+                        
                     </div>
                 ))}
 

@@ -9,7 +9,7 @@ const HomePage = () => {
         <div className="container mt-4">
             {/* Sezione Filtri - Ora in cima */}
             <section className="mb-4">
-                <h2 className="mb-3">Trova il  tuo specialista!</h2>
+                <h2 className="mb-3">Trova il tuo specialista!</h2>
                 <SearchFilter />
             </section>
 
