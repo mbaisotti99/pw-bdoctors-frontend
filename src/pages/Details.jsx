@@ -43,11 +43,11 @@ const Details = () => {
     }, [doctor, reviews])
 
 
-    const [activePage, setActivePage] = useState("mail")
+    const [activePage, setActivePage] = useState("")
 
     const voteAvg = () => {
         let count = 0
-        for (let i = 0; i < reviews.length; i++){
+        for (let i = 0; i < reviews.length; i++) {
             count += reviews[i].voto
         }
 
@@ -57,77 +57,102 @@ const Details = () => {
 
 
     return (
-        
-        <div className="container">
-            <div className="detailCard">
-                <ul className="details">
-                    <li><img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} className="docImg" /></li>
-                    <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
-                    <li>{doctor.email}</li>
-                    <li>{doctor.telefono}</li>
-                    <li>{doctor.specializzazione}</li>
-                    <li>{`${printStars(voteAvg())} (${voteAvg()})`}</li>
-                </ul>
+        <>
+            <div className={`modalScreen ${!activePage && "d-none"}`} onClick={() => {setActivePage("")}}>
+                <div className="modal" onClick={(e) => e.stopPropagation()}>
+                    <div className="close" onClick={() => {setActivePage("")}}>
+                        X
+                    </div>
+                    {
+                        (activePage == "mail") ?
+
+                            (
+                                <>
+                                    <h2 className="text-center my-5">Chiedi consulenza</h2>
+
+                                    <MailForm
+                                        medSlug={slug}
+                                    />
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="mt-5 text-center">Lascia una recensione</h2>
+
+                                    <SendReviewForm
+                                        medSlug={slug}
+                                    />
+                                </>
+                            )
+                    }
+                </div>
             </div>
-            <h2 className="text-center mb-5">Recensioni</h2>
-            <div className="reviews">
-                {reviews.map((curRev, i) => {
-                    return (
-                        <div className="reviewCard" key={i}>
-                            <ul className="rev">
-                                <li>{curRev.nome_utente}</li>
-                                <li>{printStars(curRev.voto)}</li>
-                                <li>{curRev.recensione}</li>
-                            </ul>
-                        </div>
-                    )
-                })}
+            <div className="container">
+                <div className="detailCard">
+                    <img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} />
+                    <ul className="details">
+                        <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
+                        <li>{doctor.email}</li>
+                        <li>{doctor.telefono}</li>
+                        <li>{doctor.specializzazione}</li>
+                        <li>{`${printStars(voteAvg())} (${voteAvg()})`}</li>
+                    </ul>
+                    <p className="docDesc">
+                        {doctor.descrizione}
+                    </p>
+                </div>
+                <div className="modalsCard">
+                    <div className="pageSelect">
+                        <button
+                            className={`btn btn-primary ${activePage === "mail" && "active"}`}
+                            onClick={() => setActivePage("mail")}
+                        >
+                            Manda una mail
+                        </button>
+
+                        <button
+                            className={`btn btn-primary ms-2 ${activePage === "rev" && "active"}`}
+                            onClick={() => setActivePage("rev")}
+                        >
+                            Scrivi una recensione
+                        </button>
+                    </div>
+                </div>
+
+                <h2 className="text-center mb-5">Recensioni</h2>
+
+                <div className="reviews row">
+                    {reviews.map((curRev, i) => {
+                        const dataFormat = new Date(curRev.data);
+
+                        
+                        return (
+                            <div className="col-4">
+
+                                <div className="reviewCard" key={i}>
+                                    <ul className="rev">
+                                        <li>{dataFormat.toISOString().split('T')[0]}</li>
+                                        <li>{curRev.nome_utente}</li>
+                                        <li>{printStars(curRev.voto)}</li>
+                                        <li>{curRev.recensione}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+
+
+
+
+
+
+
+
+
+
+
             </div>
-
-
-            <div className="pageSelect">
-                <button
-                    className={`btn btn-primary ${activePage === "mail" && "active"}`}
-                    onClick={() => setActivePage("mail")}
-                >
-                    Manda una mail
-                </button>
-
-                <button
-                    className={`btn btn-primary ms-2 ${activePage === "rev" && "active"}`}
-                    onClick={() => setActivePage("rev")}
-                >
-                    Scrivi una recensione
-                </button>
-            </div>
-
-            {
-                (activePage == "mail") ?
-
-                    (
-                        <>
-                            <h2 className="text-center my-5">Chiedi consulenza</h2>
-
-                            <MailForm
-                                medSlug={slug}
-                            />
-                        </>
-                    ) : (
-                        <>
-                            <h2 className="mt-5 text-center">Lascia una recensione</h2>
-
-                            <SendReviewForm
-                                medSlug={slug}
-                            />
-                        </>
-                    )
-                }
-
-
-
-
-
-        </div>
+        </>
     )
 }
 

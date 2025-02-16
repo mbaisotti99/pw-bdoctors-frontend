@@ -45,20 +45,33 @@ footer{
 .detailCard{
   border: 1px solid lightgray;
   display: flex;
-  justify-content: center;
-  margin: 50px 100px;
+  align-items: center;
+  margin-top: 50px;
   text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45);
+  width: 100%;
+}
+
+.modalsCard {
+  box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+  border: 1px solid lightgray;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 25px;
 }
 
 .detailCard li {
   margin: 20px 0;
 }
 
-.details{
+.detailCard > * {
+  width: calc(100%/3);
+}
+
+.details, .docDesc{
   list-style: none;
   padding: 0;
+  margin: 0 25px;
 }
 
 .docName{
@@ -66,19 +79,46 @@ footer{
   font-weight: bold;
 }
 
-.docImg{
-  margin: 40px 0;
-}
 
 .pageSelect{
   display: flex;
-  margin: 45px 0;
+  padding: 45px 0;
 }
 
 .pageSelect .btn {
   width: 50%;
 } 
 
+.modalScreen{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.274);
+}
+
+.modal{
+  display: flex !important;
+  flex-direction: column;
+  max-width: 500px !important;
+  width: 90%;
+  height: auto !important;
+  justify-content: center;
+  align-items: center;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  background-color: #2a2dda;
+  border-radius: 5px;
+}
+
+.close{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+}
 
 /* Reviews */
 
@@ -92,13 +132,23 @@ footer{
 
 .rev{
   list-style: none;
+  padding: 0;
 }
 
 .rev li {
   margin: 20px 0;
 }
 
-.reviewBox label{
+.reviewBox{
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewBox div {
+  margin: 15px 0;
+}
+
+.reviewBox div label {
   margin: 15px 0;
 }
 
