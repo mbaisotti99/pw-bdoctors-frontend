@@ -1,3 +1,14 @@
+/* CUSTOM PROPERTIES */
+/* Initial color palette */
+/* 
+#0288D1 
+#29B6F6
+#4FC3F7
+#81D4FA
+#B3E5FC
+#FFFFFF
+*/
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -25,11 +36,8 @@ a {
 
 
 /* Layout */
-
-header{
-  text-align: center;
-  padding: 50px;
-  background-color: lightgray;
+body {
+  background-color: #29B6F6 !important;
 }
 
 footer{
@@ -39,6 +47,7 @@ footer{
   color: white;
   text-align: center;
 }
+
 
 /* Details */
 
@@ -166,35 +175,49 @@ footer{
 }
 
 ::-webkit-scrollbar-thumb{
-  background: #0d6efd;
+  background: #026085;
 }
 
 /* Horizontal */
 ::-webkit-scrollbar:horizontal {
   height: 10px;
   background: #cecece;
-  border-radius: 10px;
+  border-radius: 0 0 12px 12px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal{
-  background: #0d6efd;
-  border-radius: 10px;
+  background: #026085;
+  border-radius: 0 0 12px 12px;
 }
 
 /* HomePage.jsx */
 /* TOP DOCTORS SECTION */
+.medici-evidenza-title {
+  color: #FFFFFF;
+  font-size: 1.8rem;
+}
+
+.top-doc-container {
+  background-color: #81D4FA;
+  border-radius: 12px;
+  border: 4px solid #4FC3F7;
+  box-shadow: 0px 0px 10px 4px rgba(2, 96, 133, 0.6);
+}
 .top-doc-card {
-  border: 1px solid rgb(13, 110, 253);
+  background-color: #ffffff;
+  border: 1px solid #0298D1;
   display: flex;
   border-radius: 21px;
   padding: 10px;
+  box-shadow: 0px 0px 10px 4px rgba(2, 96, 133, 0.6);
 }
 
 .top-doc-name {
+  color: #0298D1;
   text-align: center;
   padding-bottom: 10px;
-  border-bottom: 1px solid #0d6efd;
-
+  font-family: "Roboto", serif;
+  font-size: 1.4rem;
 }
 
 .top-doc-img-container {
@@ -203,30 +226,157 @@ footer{
 }
 
 .top-doc-img {
-  border-radius: 50%;
-  /* border: 1px solid rgba(0, 0, 0, 0.6); */
+  border-radius: 12px;
+  border: 2px solid #0298D1;
   width: 100%;
   height: 100%; 
   object-fit: cover;
 }
 
-.top-doc-text {
+.top-doc-middle {
   display: flex;
-  gap: 70px;
+  gap: 60px;
   align-items: center;
-  text-align: right;
   margin-bottom: 20px;
+  padding: 0 10px;
+  
+}
+
+.top-doc-text {
+  font-family: "Roboto", serif;
+  text-align: right;
+}
+
+.top-doc-spec {
+  text-decoration: none;
+  color: inherit;
 }
 
 .top-doc-btn {
+  color: #ffffff;
+  background-color: #0298D1;
   display: block;
-  border: #0d6efd 1px solid;
   text-align: center;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 6px 6px 12px 12px;
   padding: 3px 5px;
+  font-family: "Roboto", serif;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.top-doc-btn:hover {
+  background-color: #027fb0;
+}
+
+.top-doc-city,
+.top-doc-spec {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 .fa-solid.fa-arrow-right {
   font-size: 0.9rem;
+}
+
+.fa-solid.fa-user-graduate,
+.fa-solid.fa-location-dot {
+  color: #0298D1;
+}
+
+.fa-solid.fa-star {
+  color: #FFD700;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0288D1;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  padding: 0 20px;
+}
+
+.logo a img {
+  width: 200px;
+  display: block;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.fa-solid.fa-magnifying-glass {
+  padding-right: 6px;
+}
+
+.fa-solid.fa-user-doctor {
+  padding-right: 8px;
+}
+
+.fa-solid.fa-xmark,
+.fa-solid.fa-bars {
+  color: #FFFFFF;
+}
+
+/* Media Queries */
+/* Tablet */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    border-radius: 12px;
+    top: 68px;
+    right: -10px;
+    background: #0288D1;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+  }
+
+  .nav-links a {
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 21px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .nav-links a:hover {
+    background-color: #29B6F6;
+    border: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    z-index: 99;
+    width: 240px;
+  }
 }

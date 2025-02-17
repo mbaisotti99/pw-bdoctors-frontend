@@ -37,11 +37,12 @@ const TopDoctors = () => {
         if (!scrollContainer) return;
 
         const scrollInterval = setInterval(() => {
-            if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth) {
-                // SE FINE TORNA A INIZIO
-                scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+            if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 10) {
+                // AGGIUNGI UNA PAUSA PRIMA DI RESETTARE LO SCROLL
+                setTimeout(() => {
+                    scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+                }, 1000); // Aspetta 1 secondo prima di tornare all'inizio
             } else {
-                // ALTRIMENTI SCORRI DI UNA CARD
                 scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
             }
         }, 3000);
@@ -58,8 +59,8 @@ const TopDoctors = () => {
     if (error) return <div className="alert alert-danger">{error}</div>;
 
     return (
-        <div className="container-fluid">
-            <div ref={scrollRef} className="row flex-nowrap overflow-auto pb-3">
+        <div className="container-fluid top-doc-container">
+            <div ref={scrollRef} className="row flex-nowrap overflow-auto py-4">
 
                 {topDoctors.map((doctor) => (
                     <div key={doctor.id} className="col-auto">
@@ -69,7 +70,7 @@ const TopDoctors = () => {
                                     {doctor.nome} {doctor.cognome}
                                 </h5>
                             </div>
-                            <div className="top-doc-text">
+                            <div className="top-doc-middle">
                                 <div className="top-doc-img-container">
                                     <img
                                         src={`${backendUrl}/images/${doctor.immagine}`}
@@ -77,17 +78,21 @@ const TopDoctors = () => {
                                         alt={`Dr. ${doctor.cognome}`}
                                     />
                                 </div>
-                                <div>
-                                    <p className="top-doc-spec  mb-2">
-                                        {doctor.nome_specializzazione} <i className="fa-solid fa-stethoscope"></i>
-                                    </p>
+                                <div className="top-doc-text">
+                                    {/* <p className="top-doc-spec mb-2">
+                                        {doctor.nome_specializzazione} <i className="fa-solid fa-user-graduate"></i>
+                                    </p> */}
 
-                                    <p className="top-doc-city  mb-2">
+                                    <Link to={`/medici?specializzazione=${doctor.nome_specializzazione}`} className="top-doc-spec mb-2">
+                                        {doctor.nome_specializzazione} <i className="fa-solid fa-user-graduate"></i>
+                                    </Link>
+
+                                    <p className="top-doc-city mb-4">
                                         {doctor.citta} <i className="fa-solid fa-location-dot"></i>
                                     </p>
 
-                                    <p className="top-doc-vote mb-2">
-                                        {doctor.media_voti} <i className="fa-solid fa-star"></i> <br /> ({doctor.numero_recensioni} recensioni)
+                                    <p className="top-doc-vote">
+                                        {doctor.media_voti} <i className="fa-solid fa-star"></i> <br /> <small>({doctor.numero_recensioni} recensioni)</small>
                                     </p>
                                 </div>
                             </div>
@@ -97,7 +102,7 @@ const TopDoctors = () => {
                                 </Link>
                             </div>
                         </div>
-                        
+
                     </div>
                 ))}
 

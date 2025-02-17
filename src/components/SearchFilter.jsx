@@ -8,10 +8,8 @@ const SearchFilter = () => {
 
     const navigate = useNavigate();
     const [specializzazioni, setSpecializzazioni] = useState([]);
-    const [cities, setCities] = useState([]);
     const [filters, setFilters] = useState({
-        specializzazione: "",
-        citta: ""
+        specializzazione: ""
     });
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -20,12 +18,8 @@ const SearchFilter = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [specResponse, citiesResponse] = await Promise.all([
-                    axios.get(`${backendUrl}/medici/specializzazioni`),
-                    axios.get(`${backendUrl}/medici/citta`)
-                ]);
+                const specResponse = await axios.get(`${backendUrl}/medici/specializzazioni`);       
                 setSpecializzazioni(specResponse.data);
-                setCities(citiesResponse.data);
             } catch (error) {
                 console.error("Errore nel caricamento dei filtri:", error);
             }
@@ -48,9 +42,6 @@ const SearchFilter = () => {
         const params = new URLSearchParams();
         if (filters.specializzazione) {
             params.append('specializzazione', filters.specializzazione);
-        }
-        if (filters.citta) {
-            params.append('citta', filters.citta);
         }
 
         // NAVIGA ALLA PAGINA DI RICERCA CON I FILTRI
