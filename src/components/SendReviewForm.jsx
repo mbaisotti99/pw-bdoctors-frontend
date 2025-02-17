@@ -20,6 +20,7 @@ const SendReviewForm = ({ medSlug }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setIsErr(false)
+        setPopup(false) 
 
         axios
             .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
@@ -45,14 +46,23 @@ const SendReviewForm = ({ medSlug }) => {
     return (
         <form className="text-center reviewBox mt-4" onSubmit={handleSubmit}>
 
-            <div>
+            <div className="has-validation">
                 <label htmlFor="#nome_utente">Nome Utente</label>
-                <input onChange={handleChange} value={formData.nome_utente} type="text" className="form-control" name="nome_utente" id="nome_utente" />
+                <input onChange={handleChange} value={formData.nome_utente} type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`} name="nome_utente" id="nome_utente" />
+                <div className={`alert ${(formData.nome_utente.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
+                    {!formData.nome_utente && "Nome Utente Obbligatorio"}
+                    {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome Utente Troppo Corto (Minimo 3 caratteri)"}
+                </div>
             </div>
 
             <div>
                 <label htmlFor="#email_utente">Email Utente</label>
-                <input onChange={handleChange} value={formData.email_utente} type="text" className="form-control" name="email_utente" id="email_utente" />
+                <input onChange={handleChange} value={formData.email_utente} type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) && "error"}`} name="email_utente" id="email_utente" />
+                <div className={`alert ${(formData.email_utente.length < 3 && popup || errMsg == "L'email inserita non è valida") ? "alert-danger" : "d-none"}`}>
+                    {!formData.email_utente && "Email Utente Obbligatoria"}
+                    {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
+                    {(formData.email_utente.length >=3 && errMsg == "L'email inserita non è valida") && "Inserisci una mail valida"}
+                </div>
             </div>
 
             <div>
@@ -77,24 +87,27 @@ const SendReviewForm = ({ medSlug }) => {
                         )
                     })
                 }
+                <div className={`alert ${(!formData.voto && popup) ? "alert-danger" : "d-none"}`}>
+                    Voto Obbligatorio
+                </div>
             </div>
 
             <div>
                 <label htmlFor="#recensione">Testo della recensione</label>
-                <textarea onChange={handleChange} value={formData.recensione} name="recensione" className="form-control mb-5" id="recensione" />
+                <textarea onChange={handleChange} value={formData.recensione} name="recensione" className={`form-control mb-5 ${(formData.recensione.length < 3 && popup) && "error"}`} id="recensione" />
+                <div className={`alert ${(formData.recensione.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
+                    {!formData.recensione && "Testo Recensione Obbligatorio"}
+                    {(formData.recensione && formData.recensione.length < 3) && "Testo Recensione Troppo Corto (Minimo 3 caratteri)"}
+                </div>
             </div>
 
 
             <button className="btn btn-primary mb-5" type="submit">Invia Recensione</button>
 
-            {popup && (
-                <div className={`alert ${isErr ? ("alert-danger") : ("alert-success")}`}>
+            {(popup) && (
+                <div className={`alert ${!isErr ? "alert-success" : "alert-danger"} `}>
                     <p className="fs-4 text-center w-100 m-0">
-                        {isErr ? (
-                            `${errMsg}`
-                        ) : (
-                            "Recensione caricata con successo!"
-                        )}
+                        {isErr ? errMsg : "Recensione caricata con successo!"}                        
                     </p>
                 </div>
             )}
