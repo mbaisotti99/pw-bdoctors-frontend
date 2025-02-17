@@ -79,9 +79,6 @@ const TopDoctors = () => {
                                     />
                                 </div>
                                 <div className="top-doc-text">
-                                    {/* <p className="top-doc-spec mb-2">
-                                        {doctor.nome_specializzazione} <i className="fa-solid fa-user-graduate"></i>
-                                    </p> */}
 
                                     <Link to={`/medici?specializzazione=${doctor.nome_specializzazione}`} className="top-doc-spec mb-2">
                                         {doctor.nome_specializzazione} <i className="fa-solid fa-user-graduate"></i>

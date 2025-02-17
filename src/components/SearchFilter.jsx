@@ -49,7 +49,7 @@ const SearchFilter = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="card p-3">
+        <form onSubmit={handleSubmit} className="filter-card p-3">
             <div className="row g-3">
                 <div className="col-md-10">
                     <select
@@ -70,7 +70,7 @@ const SearchFilter = () => {
                 <div className="col-md-2">
                     <button 
                         type="submit" 
-                        className="btn btn-primary w-100"
+                        className="search-btn"
                         disabled={!filters.specializzazione}
                     >
                         <i className="fa-solid fa-magnifying-glass"></i> Cerca

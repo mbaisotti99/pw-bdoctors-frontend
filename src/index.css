@@ -48,6 +48,14 @@ footer{
   text-align: center;
 }
 
+/* Typography */
+.find-specialist-title,
+.latest-reviews-title,
+.medici-evidenza-title {
+  color: #FFFFFF;
+  font-size: 1.8rem;
+}
+
 
 /* Details */
 
@@ -211,17 +219,12 @@ footer{
 }
 
 ::-webkit-scrollbar-thumb:horizontal{
-  background: #026085;
+  background: #035886;
   border-radius: 0 0 12px 12px;
 }
 
 /* HomePage.jsx */
 /* TOP DOCTORS SECTION */
-.medici-evidenza-title {
-  color: #FFFFFF;
-  font-size: 1.8rem;
-}
-
 .top-doc-container {
   background-color: #81D4FA;
   border-radius: 12px;
@@ -229,8 +232,8 @@ footer{
   box-shadow: 0px 0px 10px 4px rgba(2, 96, 133, 0.6);
 }
 .top-doc-card {
-  background-color: #ffffff;
-  border: 1px solid #0298D1;
+  background-color: #FFFFFF;
+  border: 3px solid #4FC3F7;
   display: flex;
   border-radius: 21px;
   padding: 10px;
@@ -238,7 +241,7 @@ footer{
 }
 
 .top-doc-name {
-  color: #0298D1;
+  color: #035886;
   text-align: center;
   padding-bottom: 10px;
   font-family: "Roboto", serif;
@@ -252,7 +255,7 @@ footer{
 
 .top-doc-img {
   border-radius: 12px;
-  border: 2px solid #0298D1;
+  border: 2px solid #035886;
   width: 100%;
   height: 100%; 
   object-fit: cover;
@@ -279,7 +282,7 @@ footer{
 
 .top-doc-btn {
   color: #ffffff;
-  background-color: #0298D1;
+  background-color: #035886;
   display: block;
   text-align: center;
   text-decoration: none;
@@ -319,9 +322,14 @@ footer{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0288D1;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  padding: 0 20px;
+  background-color: #035886;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.6);
+  padding: 20px 20px 15px 20px;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 
 .logo a img {
@@ -336,7 +344,7 @@ footer{
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -344,7 +352,10 @@ footer{
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #FFFFFF;
+  transition: background-color 0.3s ease-in-out;
+  padding: 6px 12px;
+  border-radius: 21px;
 }
 
 .menu-toggle {
@@ -368,7 +379,81 @@ footer{
   color: #FFFFFF;
 }
 
+.active {
+  background-color: #29B6F6;
+  padding: 6px 12px;
+  border-radius: 21px;
+  border: 1px solid #FFFFFF;
+}
+
+.nav-links a:hover {
+  background-color: #29B6F6;
+  padding: 6px 12px;
+}
+
+/* Latest Reviews */
+.latest-review-card {
+  background-color: #FFFFFF;
+  height: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 4px solid #4FC3F7;
+  box-shadow: 0px 0px 12px 4px rgba(2, 96, 133, 0.6);
+}
+
+.latest-review-title {
+  color: #035886;
+  font-family: "Roboto", serif;
+  font-size: 1.4rem;
+}
+
+.latest-review-image-container {
+  width: 70px;
+  height: 70px;
+}
+
+.latest-review-image {
+  width: 100%;
+  border-radius: 50%;
+  border: 2px solid #035886;
+  
+}
+
+.latest-review-top {
+  margin-bottom: 20px;
+}
+
+.latest-review-info {
+  text-align: right;
+}
+
+/* SEARCH FILTER */
+.filter-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 4px solid #4FC3F7;
+  box-shadow: 0px 0px 12px 4px rgba(2, 96, 133, 0.6);
+}
+
+/* Search Button */
+.search-btn {
+  width: 100%;
+  background-color: #035886;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 0;
+  border-radius: 12px;
+}
+
+.search-btn:disabled {
+  background-color: #81D4FA;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ////////////// */
 /* Media Queries */
+/* //////////// */
 /* Tablet */
 @media (max-width: 768px) {
   .menu-toggle {
@@ -379,8 +464,9 @@ footer{
     display: none;
     flex-direction: column;
     position: absolute;
+    gap: 20px;
     border-radius: 12px;
-    top: 68px;
+    top: 80px;
     right: -10px;
     background: #0288D1;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
@@ -389,19 +475,18 @@ footer{
 
   .nav-links a {
     color: #fff;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 21px;
     transition: background-color 0.3s ease-in-out;
   }
 
   .nav-links a:hover {
     background-color: #29B6F6;
-    border: none;
   }
 
   .nav-links.open {
     display: flex;
     z-index: 99;
-    width: 240px;
+    width: 260px;
   }
 }
