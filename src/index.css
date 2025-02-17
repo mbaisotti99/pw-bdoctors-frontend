@@ -139,6 +139,9 @@ footer{
 
 .rev li {
   margin: 20px 0;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .reviewBox{

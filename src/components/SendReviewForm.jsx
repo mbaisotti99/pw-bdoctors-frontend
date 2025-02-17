@@ -41,12 +41,20 @@ const SendReviewForm = ({ medSlug }) => {
         voto: ""
     })
 
+    const checkMail = (mail) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(mail)) {
+            return false 
+        } else {
+            return true
+        }
+    }
 
 
     return (
         <form className="text-center reviewBox mt-4" onSubmit={handleSubmit}>
 
-            <div className="has-validation">
+            <div>
                 <label htmlFor="#nome_utente">Nome Utente</label>
                 <input onChange={handleChange} value={formData.nome_utente} type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`} name="nome_utente" id="nome_utente" />
                 <div className={`alert ${(formData.nome_utente.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
@@ -55,15 +63,15 @@ const SendReviewForm = ({ medSlug }) => {
                 </div>
             </div>
 
-            <div>
-                <label htmlFor="#email_utente">Email Utente</label>
-                <input onChange={handleChange} value={formData.email_utente} type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) && "error"}`} name="email_utente" id="email_utente" />
-                <div className={`alert ${(formData.email_utente.length < 3 && popup || errMsg == "L'email inserita non è valida") ? "alert-danger" : "d-none"}`}>
-                    {!formData.email_utente && "Email Utente Obbligatoria"}
-                    {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
-                    {(formData.email_utente.length >=3 && errMsg == "L'email inserita non è valida") && "Inserisci una mail valida"}
+            <div className="mb-3">
+                    <label className="mb-3" htmlFor="#email_utente">Email Utente</label>
+                    <input onChange={handleChange} value={formData.email_utente} type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) ? "error" : ""}`} name="email_utente" id="email_utente" />
+                    <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente))) ? "alert-danger" : "d-none"}`}>
+                        {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
+                        {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
+                        {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
+                    </div>
                 </div>
-            </div>
 
             <div>
                 <label className="mx-3 my-1" htmlFor="#voto">Voto</label>
