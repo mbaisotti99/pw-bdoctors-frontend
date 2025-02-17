@@ -1,6 +1,8 @@
 // DATA
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./FormRegistrazione.css";
+
 
 const inputStart = {
   nome: "",
@@ -114,7 +116,7 @@ function FormRegistrazione() {
     formData.append('citta', inputs.citta);
     formData.append('specializzazione', inputs.specializzazione);
     formData.append('immagine', selectedFile);
-    
+
     try {
       const response = await axios.post(
         "http://localhost:3000/medici",
@@ -142,138 +144,74 @@ function FormRegistrazione() {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-10">
-          <div className="card mb-5">
-            <div className="card-header">
-              <h3 className="text-center">Sei un medico? Registrati qui!</h3>
+    <div className="form-container">
+      <div className="form-wrapper">
+        <div className="form-right">
+          {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">Registrazione completata con successo!</div>}
+
+          <form onSubmit={handleOnSubmit} encType="multipart/form-data">
+            <div className="input-group">
+              <label htmlFor="nome">Nome *</label>
+              <input type="text" id="nome" name="nome" value={inputs.nome} onChange={handleOnChange} placeholder="Es. Mario" />
             </div>
-            <div className="card-body">
 
-              {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
-
-              {success && (
-                <div className="alert alert-success" role="alert">
-                  Registrazione completata con successo!
-                </div>
-              )}
-
-              <form onSubmit={handleOnSubmit} encType="multipart/form-data">
-                <div className="mb-3">
-                  <label htmlFor="nome" className="form-label">Nome: *</label>
-
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="nome"
-                    name="nome"
-                    value={inputs.nome}
-                    onChange={handleOnChange}
-                    placeholder="Es. Mario (almeno 3 caratteri)"
-                  />
-                
-                  <label htmlFor="cognome" className="form-label">Cognome: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cognome"
-                    name="cognome"
-                    value={inputs.cognome}
-                    onChange={handleOnChange}
-                    placeholder="Es. Rossi (almeno 3 caratteri)"
-                  />
-
-                  <label htmlFor="email" className="form-label">Email: *</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={inputs.email}
-                    onChange={handleOnChange}
-                    placeholder="Es. medico@example.com"
-                  />
-
-                  <label htmlFor="telefono" className="form-label">Telefono: * (inizia con +39)</label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    id="telefono"
-                    name="telefono"
-                    value={inputs.telefono}
-                    onChange={handleOnChange}
-                    maxLength={13}
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="indirizzo" className="form-label">Indirizzo: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="indirizzo"
-                    name="indirizzo"
-                    value={inputs.indirizzo}
-                    onChange={handleOnChange}
-                    placeholder="Es. Viale Roma 5"
-                  />
-                
-                  <label htmlFor="citta" className="form-label">Città: *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="citta"
-                    name="citta"
-                    value={inputs.citta}
-                    onChange={handleOnChange}
-                    placeholder="Es. Milano"
-                  />
-                
-                  <label htmlFor="specializzazione" className="form-label">Specializzazione: *</label>
-                  <select
-                    className="form-select"
-                    id="specializzazione"
-                    name="specializzazione"
-                    value={inputs.specializzazione}
-                    onChange={handleOnChange}
-                  >
-                    <option value="">Seleziona una specializzazione</option>
-                    {specializzazioni.map((spec) => (
-                      <option key={spec.id} value={spec.id}>
-                        {spec.nome_specializzazione}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="mb-5">
-                  <label htmlFor="immagine" className="form-label">Immagine profilo: *</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    id="immagine"
-                    name="immagine"
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100"
-                  disabled={loading}
-                >
-                  {loading ? 'Registrazione in corso...' : 'Registrati'}
-                </button>
-              </form>
+            <div className="input-group">
+              <label htmlFor="cognome">Cognome *</label>
+              <input type="text" id="cognome" name="cognome" value={inputs.cognome} onChange={handleOnChange} placeholder="Es. Rossi" />
             </div>
-          </div>
+
+            <div className="input-group">
+              <label htmlFor="email">Email *</label>
+              <input type="email" id="email" name="email" value={inputs.email} onChange={handleOnChange} placeholder="Es. medico@example.com" />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="telefono">Telefono * (inizia con +39)</label>
+              <input type="tel" id="telefono" name="telefono" value={inputs.telefono} onChange={handleOnChange} maxLength={13} />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="indirizzo">Indirizzo *</label>
+              <input type="text" id="indirizzo" name="indirizzo" value={inputs.indirizzo} onChange={handleOnChange} placeholder="Es. Viale Roma 5" />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="citta">Città *</label>
+              <input type="text" id="citta" name="citta" value={inputs.citta} onChange={handleOnChange} placeholder="Es. Milano" />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="specializzazione">Specializzazione *</label>
+              <select id="specializzazione" name="specializzazione" value={inputs.specializzazione} onChange={handleOnChange}>
+                <option value="">Seleziona una specializzazione</option>
+                {specializzazioni.map((spec) => (
+                  <option key={spec.id} value={spec.id}>
+                    {spec.nome_specializzazione}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="immagine">Immagine profilo *</label>
+              <input type="file" id="immagine" name="immagine" onChange={handleFileChange} accept="image/*" required />
+            </div>
+
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? "Registrazione in corso..." : "Registrati"}
+            </button>
+          </form>
+        </div>
+
+        <div className="form-left">
+          <h2>Sei un medico? Registrati qui!</h2>
+          <p>Registrati per essere trovato dai pazienti e gestire le tue recensioni.</p>
+          <ul>
+            <li>🔹 Raggiungi più pazienti</li>
+            <li>🔹 Costruisci la tua reputazione</li>
+            <li>🔹 Gestisci il tuo profilo</li>
+          </ul>
         </div>
       </div>
     </div>
