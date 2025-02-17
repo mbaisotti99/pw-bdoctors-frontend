@@ -66,7 +66,7 @@ const SendReviewForm = ({ medSlug }) => {
                                     key={curStarN}
                                     size={30}
                                     style={{ cursor: "pointer" }}
-                                    color={curStarN <= vote ? "yellow" : "grey"}
+                                    color={curStarN <= vote ? "gold" : "grey"}
                                     onClick={() => {
                                         setVote(curStarN)
                                         setFormData({ ...formData, voto: curStarN })

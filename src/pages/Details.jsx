@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import MailForm from "../components/MailForm"
 import SendReviewForm from "../components/SendReviewForm"
+import { FaStar } from "react-icons/fa"
 
 const Details = () => {
 
@@ -16,11 +17,23 @@ const Details = () => {
 
 
     const printStars = (vote) => {
-        let count = ""
+        let count = []
         for (let i = 0; i < vote; i++) {
-            count += "⭐"
+            count.push("")
         }
-        return count
+        return (
+            <>
+            {count.map((n, i) => {
+                return (
+                    <FaStar
+                    color="gold"
+                    size={30}
+                    key={i}
+                    />
+                )
+            })}
+            </>
+        )
     }
 
     useEffect(() => {
@@ -94,7 +107,7 @@ const Details = () => {
                         <li>{doctor.email}</li>
                         <li>{doctor.telefono}</li>
                         <li>{doctor.specializzazione}</li>
-                        <li>{`${printStars(voteAvg())} (${voteAvg()})`}</li>
+                        <li>{printStars(voteAvg())} ({voteAvg()}) </li>
                     </ul>
                     <p className="docDesc">
                         {doctor.descrizione}
@@ -130,8 +143,8 @@ const Details = () => {
 
                                 <div className="reviewCard" key={i}>
                                     <ul className="rev">
-                                        <li>{dataFormat.toISOString().split('T')[0]}</li>
-                                        <li>{curRev.nome_utente}</li>
+                                        <li className="revDate">{dataFormat.toISOString().split('T')[0]}</li>
+                                        <li className="revName">{curRev.nome_utente}</li>
                                         <li>{printStars(curRev.voto)}</li>
                                         <li>{curRev.recensione}</li>
                                     </ul>

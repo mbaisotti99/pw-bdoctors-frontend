@@ -152,6 +152,16 @@ footer{
   margin: 15px 0;
 }
 
+.revDate{
+  font-size: 13px;
+  color: grey;
+  font-weight: lighter;
+}
+
+.revName{
+  font-weight: bold;
+}
+
 /* SEARCHBAR */
 .search {
   display: flex;
