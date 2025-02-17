@@ -110,6 +110,7 @@ footer{
   display: flex !important;
   flex-direction: column;
   max-width: 500px !important;
+  max-height: 100vh;
   width: 90%;
   height: auto !important;
   justify-content: center;
@@ -120,6 +121,7 @@ footer{
   transform: translate(-50%, -50%);
   background-color: #2a2dda;
   border-radius: 5px;
+  overflow: scroll;
 }
 
 .close{
@@ -146,6 +148,9 @@ footer{
 
 .rev li {
   margin: 20px 0;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .reviewBox{
@@ -159,6 +164,26 @@ footer{
 
 .reviewBox div label {
   margin: 15px 0;
+}
+
+.revDate{
+  font-size: 13px;
+  color: grey;
+  font-weight: lighter;
+}
+
+.revName{
+  font-weight: bold;
+}
+
+.error{
+  border: 2px solid transparent; 
+  border-radius: 5px;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(45deg, red, orange);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
 /* SEARCHBAR */
