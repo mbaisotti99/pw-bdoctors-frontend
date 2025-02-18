@@ -26,6 +26,13 @@ const SendReviewForm = ({ medSlug }) => {
             .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
             .then((resp) => {
                 setPopup(true)
+                setIsErr(false)
+                setFormData({
+                    nome_utente: "",
+                    email_utente: "",
+                    recensione: "",
+                    voto: ""
+                })
             })
             .catch((err) => {
                 setPopup(true)
@@ -63,7 +70,7 @@ const SendReviewForm = ({ medSlug }) => {
                     name="nome_utente" id="nome_utente"
                     placeholder="Mario Rossi"
                 />
-                <div className={`alert ${(formData.nome_utente.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
+                <div className={`alert ${(formData.nome_utente.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.nome_utente && "Nome Utente Obbligatorio"}
                     {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome Utente Troppo Corto (Minimo 3 caratteri)"}
                 </div>
@@ -74,12 +81,12 @@ const SendReviewForm = ({ medSlug }) => {
                 <input
                     onChange={handleChange}
                     value={formData.email_utente}
-                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) ? "error" : ""}`}
+                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
                     name="email_utente"
                     id="email_utente"
                     placeholder="email@esempio.it"
                 />
-                <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente))) ? "alert-danger" : "d-none"}`}>
+                <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup && isErr || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr)) ? "alert-danger" : "d-none"}`}>
                     {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
                     {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
                     {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
@@ -112,7 +119,7 @@ const SendReviewForm = ({ medSlug }) => {
                         )
                     })
                 }
-                <div className={`alert ${(!formData.voto && popup) ? "alert-danger" : "d-none"}`}>
+                <div className={`alert ${(!formData.voto && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     Voto Obbligatorio
                 </div>
             </div>
@@ -123,11 +130,11 @@ const SendReviewForm = ({ medSlug }) => {
                 onChange={handleChange} 
                 value={formData.recensione} 
                 name="recensione" 
-                className={`form-control revText mb-5 ${(formData.recensione.length < 3 && popup) && "error"}`} 
+                className={`form-control revText mb-5 ${(formData.recensione.length < 3 && popup && isErr) && "error"}`} 
                 id="recensione" 
                 placeholder="Descrivi la tua esperienza..."
                 />
-                <div className={`alert ${(formData.recensione.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
+                <div className={`alert ${(formData.recensione.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.recensione && "Testo Recensione Obbligatorio"}
                     {(formData.recensione && formData.recensione.length < 3) && "Testo Recensione Troppo Corto (Minimo 3 caratteri)"}
                 </div>
