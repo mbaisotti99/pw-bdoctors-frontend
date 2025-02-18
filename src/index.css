@@ -422,3 +422,8 @@ input.error, textarea.error{
 .modal.animate {
   animation: slideOut 0.5s ease-in forwards;
 }
+
+.latest-review-card{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
