@@ -1,100 +1,92 @@
-/* Stile generale */
+/* Contenitore principale */
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f7fa;
+    background-color: #f0f4f8;
 }
 
+/* Wrapper */
 .form-wrapper {
     display: flex;
-    width: 70%;
+    width: 75%;
     background: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
 }
 
-/* Sezione sinistra */
+/* Sezione Sinistra - Form */
 .form-left {
-    width: 40%;
-    background: #007bff;
-    color: white;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.form-left h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.form-left p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.form-left ul {
-    list-style: none;
-    padding: 0;
-}
-
-.form-left li {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-/* Sezione destra */
-.form-right {
     width: 60%;
     padding: 40px;
 }
 
-/* Messaggi di errore e successo */
-.error-message,
-.success-message {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+.form-left h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007bff;
     text-align: center;
-    font-size: 14px;
 }
 
-.error-message {
-    background: #ffcccc;
-    color: #cc0000;
+/* Griglia per campi input */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-.success-message {
-    background: #ccffcc;
-    color: #009900;
-}
-
-/* Input e label */
 .input-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: span 2;
 }
 
 .input-group label {
-    display: block;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
+/* Stili per input, select e textarea */
 .input-group input,
-.input-group select {
+.input-group select,
+.input-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
+    transition: border 0.3s ease-in-out;
 }
 
-/* Pulsante di invio */
+.input-group textarea {
+    min-height: 80px;
+    resize: none;
+}
+
+/* Effetti focus su input, select e textarea */
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border: 2px solid #0056b3;
+    box-shadow: 0px 0px 5px rgba(0, 86, 179, 0.3);
+    outline: none;
+}
+
+/* Stile placeholder */
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #555;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+/* Pulsante Registrazione */
 .submit-btn {
     width: 100%;
     padding: 12px;
@@ -104,16 +96,54 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.1s ease-in-out;
+    margin-top: 15px;
 }
 
 .submit-btn:hover {
-    background: #0056b3;
+    background: #004699;
+    transform: scale(1.02);
 }
 
 .submit-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
+}
+
+/* Sezione Destra - Info */
+.form-right {
+    width: 40%;
+    background: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.info-box {
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.info-box h3 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.info-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-box li {
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 /* Responsive */
@@ -125,12 +155,14 @@
 
     .form-left {
         width: 100%;
-        text-align: center;
-        padding: 20px;
     }
 
     .form-right {
         width: 100%;
         padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
     }
 }

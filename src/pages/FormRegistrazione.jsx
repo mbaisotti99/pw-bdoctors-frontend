@@ -11,6 +11,7 @@ const inputStart = {
   telefono: "+39",
   indirizzo: "",
   citta: "",
+  descrizione: "",
   specializzazione: "",
 };
 
@@ -91,6 +92,13 @@ function FormRegistrazione() {
       setError("L'immagine è obbligatoria");
       return false;
     }
+
+    // VALIDAZIONE DESCRIZIONE
+    if (inputs.descrizione.length < 20) {
+      setError("La descrizione deve contenere almeno 20 caratteri");
+      return false;
+    }
+
     return true;
   }
 
@@ -114,6 +122,7 @@ function FormRegistrazione() {
     formData.append('telefono', inputs.telefono);
     formData.append('indirizzo', inputs.indirizzo);
     formData.append('citta', inputs.citta);
+    formData.append('descrizione', inputs.descrizione);
     formData.append('specializzazione', inputs.specializzazione);
     formData.append('immagine', selectedFile);
 
@@ -146,56 +155,74 @@ function FormRegistrazione() {
   return (
     <div className="form-container">
       <div className="form-wrapper">
-        <div className="form-right">
+
+        {/* Sezione Sinistra - Form */}
+        <div className="form-left">
+          <h2>Registrati come medico</h2>
+
           {error && <div className="error-message">{error}</div>}
           {success && <div className="success-message">Registrazione completata con successo!</div>}
 
           <form onSubmit={handleOnSubmit} encType="multipart/form-data">
-            <div className="input-group">
-              <label htmlFor="nome">Nome *</label>
-              <input type="text" id="nome" name="nome" value={inputs.nome} onChange={handleOnChange} placeholder="Es. Mario" />
-            </div>
+            <div className="form-grid">
+              <div className="input-group">
+                <label htmlFor="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" value={inputs.nome} onChange={handleOnChange} placeholder="Es. Mario" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="cognome">Cognome *</label>
-              <input type="text" id="cognome" name="cognome" value={inputs.cognome} onChange={handleOnChange} placeholder="Es. Rossi" />
-            </div>
+              <div className="input-group">
+                <label htmlFor="cognome">Cognome *</label>
+                <input type="text" id="cognome" name="cognome" value={inputs.cognome} onChange={handleOnChange} placeholder="Es. Rossi" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="email">Email *</label>
-              <input type="email" id="email" name="email" value={inputs.email} onChange={handleOnChange} placeholder="Es. medico@example.com" />
-            </div>
+              <div className="input-group">
+                <label htmlFor="email">Email *</label>
+                <input type="email" id="email" name="email" value={inputs.email} onChange={handleOnChange} placeholder="Es. medico@example.com" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="telefono">Telefono * (inizia con +39)</label>
-              <input type="tel" id="telefono" name="telefono" value={inputs.telefono} onChange={handleOnChange} maxLength={13} />
-            </div>
+              <div className="input-group">
+                <label htmlFor="telefono">Telefono *</label>
+                <input type="tel" id="telefono" name="telefono" value={inputs.telefono} onChange={handleOnChange} maxLength={13} placeholder="+39 123 456 7890" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="indirizzo">Indirizzo *</label>
-              <input type="text" id="indirizzo" name="indirizzo" value={inputs.indirizzo} onChange={handleOnChange} placeholder="Es. Viale Roma 5" />
-            </div>
+              <div className="input-group">
+                <label htmlFor="indirizzo">Indirizzo *</label>
+                <input type="text" id="indirizzo" name="indirizzo" value={inputs.indirizzo} onChange={handleOnChange} placeholder="Es. Viale Roma 5" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="citta">Città *</label>
-              <input type="text" id="citta" name="citta" value={inputs.citta} onChange={handleOnChange} placeholder="Es. Milano" />
-            </div>
+              <div className="input-group">
+                <label htmlFor="citta">Città *</label>
+                <input type="text" id="citta" name="citta" value={inputs.citta} onChange={handleOnChange} placeholder="Es. Milano" />
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="specializzazione">Specializzazione *</label>
-              <select id="specializzazione" name="specializzazione" value={inputs.specializzazione} onChange={handleOnChange}>
-                <option value="">Seleziona una specializzazione</option>
-                {specializzazioni.map((spec) => (
-                  <option key={spec.id} value={spec.id}>
-                    {spec.nome_specializzazione}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="input-group full-width">
+                <label htmlFor="descrizione">Descrizione *</label>
+                <textarea
+                  id="descrizione"
+                  name="descrizione"
+                  value={inputs.descrizione}
+                  onChange={handleOnChange}
+                  placeholder="Scrivi una breve descrizione di te (minimo 20 caratteri)"
+                  rows="4">
+                </textarea>
+              </div>
 
-            <div className="input-group">
-              <label htmlFor="immagine">Immagine profilo *</label>
-              <input type="file" id="immagine" name="immagine" onChange={handleFileChange} accept="image/*" required />
+              <div className="input-group full-width">
+                <label htmlFor="specializzazione">Specializzazione *</label>
+                <select id="specializzazione" name="specializzazione" value={inputs.specializzazione} onChange={handleOnChange}>
+                  <option value="">Seleziona una specializzazione</option>
+                  {specializzazioni.map((spec) => (
+                    <option key={spec.id} value={spec.id}>
+                      {spec.nome_specializzazione}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="input-group full-width">
+                <label htmlFor="immagine">Immagine profilo *</label>
+                <input type="file" id="immagine" name="immagine" onChange={handleFileChange} accept="image/*" required />
+              </div>
             </div>
 
             <button type="submit" className="submit-btn" disabled={loading}>
@@ -204,15 +231,19 @@ function FormRegistrazione() {
           </form>
         </div>
 
-        <div className="form-left">
-          <h2>Sei un medico? Registrati qui!</h2>
-          <p>Registrati per essere trovato dai pazienti e gestire le tue recensioni.</p>
-          <ul>
-            <li>🔹 Raggiungi più pazienti</li>
-            <li>🔹 Costruisci la tua reputazione</li>
-            <li>🔹 Gestisci il tuo profilo</li>
-          </ul>
+        {/* Sezione Destra - Informazioni */}
+        <div className="form-right">
+          <div className="info-box">
+            <h3>Perché registrarti?</h3>
+            <p>Registrati per essere trovato dai pazienti e gestire le tue recensioni.</p>
+            <ul>
+              <li>✅ Raggiungi più pazienti</li>
+              <li>✅ Costruisci la tua reputazione</li>
+              <li>✅ Gestisci il tuo profilo in modo semplice</li>
+            </ul>
+          </div>
         </div>
+
       </div>
     </div>
   );
