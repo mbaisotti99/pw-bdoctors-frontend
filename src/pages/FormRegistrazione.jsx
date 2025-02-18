@@ -1,7 +1,7 @@
 // DATA
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./FormRegistrazione.css";
+import "../styles/FormRegistrazione.css";
 
 
 const inputStart = {

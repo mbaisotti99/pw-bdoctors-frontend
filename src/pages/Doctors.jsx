@@ -9,17 +9,19 @@ const Doctors = () => {
     return (
 
         <div className="container mt-4">
-            <section className="presentation mb-5">
+            <section className="doctor-page">
+                <div className="doctor-header">
+                    <Link
+                        to="/"
+                        className="home-btn"
+                    >
+                        <i className="fas fa-arrow-left"></i> Home
+                    </Link>
 
-                <Link
-                    to="/"
-                    className="home-btn"
-                >
-                    <i className="fas fa-arrow-left"></i> Home
-                </Link>
-
-                {/* TITOLO SEZIONE */}
-                <h1 className="my-4">Cerca lo specialista che fa per te!</h1>
+                    {/* TITOLO SEZIONE */}
+                    <h1 className="doctor-title">Cerca lo specialista che fa per te</h1> 
+                </div>
+                
 
                 {/* LISTA MEDICI */}
                 <DoctorsList />

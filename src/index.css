@@ -68,18 +68,28 @@ footer {
   align-items: center;
   background-color: var(--blu-1);
   box-shadow: 0 5px 20px 2px var(--ombre);
-  padding: 10px 20px;
   position: sticky;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 99;
+  height: 80px;
+  padding: 10px; 
 }
 
 /* Logo */
-.logo a img {
-  width: 200px;
-  display: block;
+.logo {
+  width: 180px; 
+  height: auto; 
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 100%;
+  height: auto; 
+  min-height: unset; 
+  object-fit: contain;
 }
 
 /* Navbar */

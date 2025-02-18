@@ -1,9 +1,9 @@
 // PAGINATOR COMPONENT
 const PaginationControls = ({ pagination, currentPage, onPageChange }) => {
-    
+
     return (
 
-        <div className="pagination-controls mb-3 d-flex justify-content-center gap-2 mt-4">
+        <div className="pagination-controls d-flex justify-content-center gap-1">
 
             {/* Previous Page Button */}
             <button

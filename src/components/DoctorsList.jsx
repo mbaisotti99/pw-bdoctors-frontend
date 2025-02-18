@@ -107,22 +107,42 @@ const DoctorList = () => {
 
     // GESTIONE SEARCH
     const handleSearch = () => {
-        updateSearchParams({ specializzazione: selectedSpecialization, search });
+        // RESET ALLA PAGINA 1 QUANDO SI EFFETTUA UNA NUOVA RICERCA
+        updateSearchParams({ 
+            specializzazione: selectedSpecialization, 
+            search, 
+            page: 1 
+        });
+
+        // RESETTA STATO PAGINA
+        setCurrentPage(1); 
+    };
+    
+    // UPDATE SPECIALIZZAZIONE
+    const handleSpecializationChange = (event) => {
+        const value = event.target.value;
+        setSelectedSpecialization(value);
+
+        // RESETTA A PAGINA 1 QUANDO SI CAMBIA SPECIALIZZAZIONE
+        updateSearchParams({ 
+            specializzazione: value, 
+            search, 
+            page: 1 
+        });
+
+        setCurrentPage(1);
     };
 
+    // RENDER
     return (
 
-        <section className="mb-2">
+        <section className="">
 
             <div className="search mb-3">
                 <div className="filters mb-4">
                     <select
                         value={selectedSpecialization}
-                        onChange={(event) => {
-                            const value = event.target.value;
-                            setSelectedSpecialization(value);
-                            updateSearchParams({ specializzazione: value, search });
-                        }}
+                        onChange={handleSpecializationChange}
                         className="form-select"
                     >
                         <option value="">Tutte le Specializzazioni</option>

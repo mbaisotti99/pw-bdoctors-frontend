@@ -1,3 +1,17 @@
+.doctor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.doctor-title {
+    color: var(--testi-primario);
+    font-family: "Roboto", serif;
+    font-size: 1.3rem;
+}
+
+
 /* SEARCHBAR */
 .search {
     display: flex;
@@ -29,6 +43,7 @@
     font-size: 1.1rem;
     padding: 6px 10px;
     border-radius: 12px;
+    margin-bottom: 10px;
 }
 
 /* INPAGINAZIONE */
@@ -38,6 +53,7 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    margin: 20px;
 }
 
 .pagination-numbers,
