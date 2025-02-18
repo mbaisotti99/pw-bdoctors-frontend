@@ -96,7 +96,11 @@ const SendReviewForm = ({ medSlug }) => {
                                 <FaStar
                                     key={curStarN}
                                     size={50}
-                                    style={{ cursor: "pointer" }}
+                                    style={{ 
+                                        cursor: "pointer",
+                                        stroke: "black",
+                                        strokeWidth: "5px",
+                                     }}
                                     color={curStarN <= vote ? "gold" : "grey"}
                                     onClick={() => {
                                         setVote(curStarN)
@@ -132,10 +136,18 @@ const SendReviewForm = ({ medSlug }) => {
 
             <button className="btn btn-success mb-5" type="submit">Invia Recensione</button>
 
-            {(popup) && (
-                <div className={`alert ${errMsg !== "Hai già recensito questo medico"  ? "alert-success" : "alert-danger"} `}>
+            {(popup && !isErr) && (
+                <div className={`alert alert-success mb-3`}>
                     <p className="fs-4 text-center w-100 m-0">
-                        {isErr ? errMsg : "Recensione caricata con successo!"}
+                        Recensione caricata con successo!
+                    </p>
+                </div>
+            )
+        }
+         { (popup && errMsg == "Hai già recensito questo medico")  && (
+                <div className={`alert alert-danger mb-3`}>
+                    <p className="fs-4 text-center w-100 m-0">
+                        {errMsg}
                     </p>
                 </div>
             )}

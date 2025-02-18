@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import MailForm from "../components/MailForm"
 import SendReviewForm from "../components/SendReviewForm"
 import { FaStar } from "react-icons/fa"
+import { IoIosCloseCircleOutline } from "react-icons/io"
 
 
 const Details = () => {
@@ -24,15 +25,20 @@ const Details = () => {
         }
         return (
             <>
-            {count.map((n, i) => {
-                return (
-                    <FaStar
-                    color="gold"
-                    size={30}
-                    key={i}
-                    />
-                )
-            })}
+                {count.map((n, i) => {
+                    return (
+                        <FaStar
+                            color="gold"
+                            size={30}
+                            key={i}
+                            style={{
+                                color: "gold",
+                                stroke: "black",
+                                strokeWidth: "5px", // Spessore del bordo
+                            }}
+                        />
+                    )
+                })}
             </>
         )
     }
@@ -73,11 +79,14 @@ const Details = () => {
 
     return (
         <>
-        
-            <div className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => {setAnimate(true); setTimeout( () => {setActivePage(""); setAnimate(false)}, 500)}}>
+
+            <div className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
                 <div className={`modal ${animate && "animate"}`} onClick={(e) => e.stopPropagation()}>
-                    <div className="close" onClick={() => {setAnimate(true); setTimeout( () => {setActivePage(""); setAnimate(false)}, 500)}}>
-                        X
+                    <div className="close" onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
+                        <IoIosCloseCircleOutline
+                            size={30}
+                            className="closeBtn"
+                        />
                     </div>
                     {
                         (activePage == "mail") ?
@@ -102,7 +111,7 @@ const Details = () => {
                     }
                 </div>
             </div>
-            
+
             <div className="container">
                 <div className="detailCard">
                     <img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} />
@@ -141,7 +150,7 @@ const Details = () => {
                     {reviews.map((curRev, i) => {
                         const dataFormat = new Date(curRev.data);
 
-                        
+
                         return (
                             <div className="col-4">
 

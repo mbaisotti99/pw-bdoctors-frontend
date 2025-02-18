@@ -205,7 +205,7 @@ height: 150px;
   display: flex !important;
   flex-direction: column;
   max-width: 500px !important;
-  max-height: 100vh;
+  max-height: 90vh !important;
   width: 90%;
   height: auto !important;
   justify-content: center;
@@ -218,13 +218,29 @@ height: 150px;
   border-radius: 5px;
   overflow: scroll;
   font-size: 18px;
+  border-bottom: 10px solid transparent;
+}
+
+.reviewBox div .alert {
+  font-size: 16px !important;
 }
 
 .close{
-  position: absolute;
-  top: 0;
-  right: 10px;
+  position: sticky;
+  top: 0px;
+  right: 0px;
   cursor: pointer;
+  width: 30px;
+}
+
+.close:hover{
+  color: #000000;
+  transition: color 0.5s ease;
+}
+
+.closeBtn {
+  position: relative;
+  right: -220px;
 }
 
 /* Reviews */
@@ -261,6 +277,8 @@ height: 150px;
 .reviewBox{
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
+  height: 100%;
 }
 
 .reviewBox div {
