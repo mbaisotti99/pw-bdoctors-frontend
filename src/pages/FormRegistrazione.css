@@ -1,139 +1,60 @@
-/* Contenitore principale */
+/* ✅ Imposta il form al centro senza sfondi extra */
 .form-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f4f8;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f9fafb;
+    padding: 50px 20px;
 }
 
-/* Wrapper */
+/* ✅ Struttura principale del form */
 .form-wrapper {
     display: flex;
-    width: 75%;
-    background: white;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1100px;
+    gap: 50px;
 }
 
-/* Sezione Sinistra - Form */
+/* ✅ Sezione sinistra - Form */
 .form-left {
-    width: 60%;
-    padding: 40px;
+    width: 65%;
 }
 
+/* ✅ Stile titolo */
 .form-left h2 {
-    font-size: 24px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 14px;
+    color: #6c757d;
     margin-bottom: 20px;
-    color: #007bff;
-    text-align: center;
 }
 
-/* Griglia per campi input */
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.full-width {
-    grid-column: span 2;
-}
-
-.input-group label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Stili per input, select e textarea */
-.input-group input,
-.input-group select,
-.input-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border 0.3s ease-in-out;
-}
-
-.input-group textarea {
-    min-height: 80px;
-    resize: none;
-}
-
-/* Effetti focus su input, select e textarea */
-.input-group input:focus,
-.input-group select:focus,
-.input-group textarea:focus {
-    border: 2px solid #0056b3;
-    box-shadow: 0px 0px 5px rgba(0, 86, 179, 0.3);
-    outline: none;
-}
-
-/* Stile placeholder */
-.input-group input::placeholder,
-.input-group textarea::placeholder {
-    color: #555;
-    letter-spacing: 0.5px;
-    font-size: 14px;
-}
-
-/* Pulsante Registrazione */
-.submit-btn {
-    width: 100%;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease-in-out;
-    margin-top: 15px;
-}
-
-.submit-btn:hover {
-    background: #004699;
-    transform: scale(1.02);
-}
-
-.submit-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
-/* Sezione Destra - Info */
+/* ✅ Sezione destra - Info */
 .form-right {
-    width: 40%;
-    background: #007bff;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
+    width: 35%;
+    background-color: #f1f5f9;
+    /* Sfondo chiaro per differenziare */
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-right h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .info-box {
-    text-align: center;
-    color: #f0f0f0;
-}
-
-.info-box h3 {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.info-box p {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    color: #444;
 }
 
 .info-box ul {
@@ -142,21 +63,97 @@
 }
 
 .info-box li {
-    font-size: 14px;
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
 }
 
-/* Responsive */
+.info-box li::before {
+    content: "✅";
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* ✅ Griglia degli input */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* ✅ Stile generico input */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* ✅ Rendi alcuni campi più larghi */
+.input-group.full-width {
+    grid-column: span 2;
+}
+
+/* ✅ Migliora il design degli input */
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+}
+
+/* ✅ Effetto hover sugli input */
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-color: #2b65e5;
+    box-shadow: 0px 0px 5px rgba(43, 101, 229, 0.3);
+    outline: none;
+}
+
+.error-input {
+    border: 1px solid red !important;
+    background-color: #ffe6e6;
+}
+
+/* ✅ Stile pulsante Registrati */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #2b65e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #1f4dc3;
+}
+
+/* ✅ Media query per mobile */
 @media (max-width: 768px) {
     .form-wrapper {
         flex-direction: column;
-        width: 90%;
+        max-width: 100%;
+        padding: 20px;
     }
 
-    .form-left {
-        width: 100%;
-    }
-
+    .form-left,
     .form-right {
         width: 100%;
         padding: 20px;
@@ -164,5 +161,9 @@
 
     .form-grid {
         grid-template-columns: 1fr;
+    }
+
+    .form-right {
+        text-align: center;
     }
 }
