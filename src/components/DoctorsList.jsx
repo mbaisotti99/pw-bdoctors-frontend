@@ -114,8 +114,8 @@ const DoctorList = () => {
 
         <section className="mb-2">
 
-            <div className="search">
-                <div className="filters mb-2">
+            <div className="search mb-3">
+                <div className="filters mb-4">
                     <select
                         value={selectedSpecialization}
                         onChange={(event) => {
@@ -134,7 +134,7 @@ const DoctorList = () => {
                     </select>
                 </div>
 
-                <div className="searchbar mb-4">
+                <div className="searchbar mb-2">
                     <input
                         type="search"
                         value={search}
@@ -148,13 +148,14 @@ const DoctorList = () => {
                 </div>
                 <button
                     onClick={handleSearch}
-                    className="search-btn mb-4"
+                    className="search-btn"
+                    disabled={!search}
                 >
                     <i className="fa-solid fa-magnifying-glass"></i> Cerca
                 </button>
-                <div className="search-length mb-2">
+            </div>
+            <div className="search-length">
                     Medici trovati: {pagination.totalItems}
-                </div>
             </div>
 
             {/* Paginator Control */}
@@ -189,7 +190,7 @@ const DoctorList = () => {
         </section>
 
     );
-    
+
 };
 
 // EXPORT

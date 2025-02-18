@@ -18,10 +18,12 @@
 * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0; 
+  margin: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100% !important;
   margin: 0;
   display: flex;
@@ -41,7 +43,7 @@ ul {
   list-style: none;
 }
 
-.container{
+.container {
   flex: 1 !important;
 }
 
@@ -50,7 +52,7 @@ body {
   background-color: var(--blu-3) !important;
 }
 
-footer{
+footer {
   position: static;
   padding: 40px;
   background-color: var(--blu-1);
@@ -92,7 +94,7 @@ footer{
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-} 
+}
 
 /* Navlinks */
 .nav-links {
@@ -125,7 +127,7 @@ footer{
 }
 
 /* DETAILS */
-.detailCard{
+.detailCard {
   border: 3px solid var(--blu-4);
   display: flex;
   align-items: center;
@@ -153,22 +155,23 @@ footer{
   margin: 20px 0;
 }
 
-.detailCard > * {
+.detailCard>* {
   width: calc(100%/3);
 }
 
-.details, .docDesc{
+.details,
+.docDesc {
   list-style: none;
   padding: 0;
   margin: 0 25px;
 }
 
-.docName{
+.docName {
   font-size: 24px;
   font-weight: bold;
 }
 
-.pageSelect{
+.pageSelect {
   display: flex;
   padding: 20px 0;
   justify-content: space-around;
@@ -178,17 +181,17 @@ footer{
   width: 48%;
   height: 50px;
   font-size: 25px;
-} 
-
-.pageSelect .top-doc-btn:nth-child(1){
-  border-radius: 6px 6px 6px 28px ;
 }
 
-.pageSelect .top-doc-btn:nth-child(2){
-  border-radius: 6px 6px 28px 6px ;
+.pageSelect .top-doc-btn:nth-child(1) {
+  border-radius: 6px 6px 6px 28px;
 }
 
-.modalScreen{
+.pageSelect .top-doc-btn:nth-child(2) {
+  border-radius: 6px 6px 28px 6px;
+}
+
+.modalScreen {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -197,12 +200,12 @@ footer{
   color: white;
 }
 
-.mailTxt{
-width: 350px !important;
-height: 150px;
+.mailTxt {
+  width: 350px !important;
+  height: 150px;
 }
 
-.modal{
+.modal {
   display: flex !important;
   flex-direction: column;
   max-width: 500px !important;
@@ -226,7 +229,7 @@ height: 150px;
   font-size: 16px !important;
 }
 
-.close{
+.close {
   position: sticky;
   top: 0px;
   right: 0px;
@@ -234,7 +237,7 @@ height: 150px;
   width: 30px;
 }
 
-.close:hover{
+.close:hover {
   color: #000000;
   transition: color 0.5s ease;
 }
@@ -245,7 +248,7 @@ height: 150px;
 }
 
 /* Reviews */
-.reviewCard{
+.reviewCard {
   border: 3px solid var(--blu-4);
   margin: 20px 0;
   text-align: center;
@@ -254,7 +257,7 @@ height: 150px;
   background-color: white;
 }
 
-.rev{
+.rev {
   list-style: none;
   padding: 0;
 }
@@ -266,7 +269,7 @@ height: 150px;
   overflow-wrap: break-word;
 }
 
-.revText{
+.revText {
   width: 350px !important;
   height: 150px;
 }
@@ -275,7 +278,7 @@ height: 150px;
   margin-right: 10px !important;
 }
 
-.reviewBox{
+.reviewBox {
   display: flex;
   flex-direction: column;
   max-height: 90vh;
@@ -290,21 +293,22 @@ height: 150px;
   margin: 15px 0;
 }
 
-.revDate{
+.revDate {
   font-size: 13px;
   color: grey;
   font-weight: lighter;
 }
 
-.revName{
+.revName {
   font-weight: bold;
 }
 
-input.error, textarea.error{
-  border: 2px solid rgb(138, 0, 0); 
+input.error,
+textarea.error {
+  border: 2px solid rgb(138, 0, 0);
   border-radius: 5px;
-  background-image: linear-gradient(white, white), 
-                    linear-gradient(45deg, red, orange);
+  background-image: linear-gradient(white, white),
+    linear-gradient(45deg, red, orange);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   box-shadow: 0 4px 16px rgba(255, 0, 0, 0.6);
@@ -314,7 +318,6 @@ input.error, textarea.error{
 .home-btn {
   background-color: var(--blu-1);
   color: var(--testi-primario);
-  box-shadow: 0px 0px 12px 4px var(--ombre);
   text-decoration: none;
   border-radius: 12px;
   padding: 6px 12px;
@@ -352,6 +355,9 @@ input.error, textarea.error{
   color: #FFFFFF;
 }
 
+.fa-solid.fa-map-location-dot,
+.fa-solid.fa-envelope,
+.fa-solid.fa-phone,
 .fa-solid.fa-comments,
 .fa-solid.fa-heart,
 .fa-solid.fa-star-of-life {
@@ -451,6 +457,14 @@ input.error, textarea.error{
     width: 260px;
   }
 
+  .pagination-numbers,
+  .prev-page-btn,
+  .next-page-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 35px;
+  }
+
 }
 
 
@@ -459,6 +473,7 @@ input.error, textarea.error{
     transform: translate(-50%, -150%);
     opacity: 0;
   }
+
   to {
     transform: translate(-50%, -50%);
     opacity: 1;
@@ -470,6 +485,7 @@ input.error, textarea.error{
     transform: translate(-50%, -50%);
     opacity: 1;
   }
+
   to {
     transform: translate(-50%, 150%);
     opacity: 0;
@@ -484,7 +500,7 @@ input.error, textarea.error{
   animation: slideOut 0.5s ease-in forwards;
 }
 
-.latest-review-card{
+.latest-review-card {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }

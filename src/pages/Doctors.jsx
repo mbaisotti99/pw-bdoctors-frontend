@@ -1,6 +1,7 @@
 // DATA
 import { Link } from "react-router-dom";
 import DoctorsList from "../components/DoctorsList";
+import '../styles/Doctors.css';
 
 // PAGE RENDER
 const Doctors = () => {

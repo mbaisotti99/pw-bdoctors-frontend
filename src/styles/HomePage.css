@@ -277,15 +277,4 @@ small {
     color: var(--btn-hover);
 }
 
-/* SEARCH */
-.search-input {
-    background-color: var(--blu-1) !important;
-    color: var(--testi-primario) !important;
-    border: 1px solid var(--blu-4) !important;
-}
 
-.search-input::placeholder {
-    color: var(--testi-primario) !important;
-    opacity: 1;
-    /* Firefox needs this */
-}
