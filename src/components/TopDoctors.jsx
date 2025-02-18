@@ -35,21 +35,67 @@ const TopDoctors = () => {
 
         const scrollContainer = scrollRef.current;
         if (!scrollContainer) return;
-
-        const scrollInterval = setInterval(() => {
-            if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 10) {
-                // AGGIUNGI UNA PAUSA PRIMA DI RESETTARE LO SCROLL
-                setTimeout(() => {
-                    scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
-                }, 1000); // Aspetta 1 secondo prima di tornare all'inizio
-            } else {
-                scrollContainer.scrollBy({ left: 300, behavior: "smooth" });
+    
+        let animationFrameId;
+        let scrollPosition = 0;
+        const scrollSpeed = 0.3;
+        let isPaused = false;
+        let isTouching = false;
+    
+        // ANIMAZIONE SCORRIMENTO
+        const animate = () => {
+            if (!isPaused && !isTouching) {
+                scrollPosition += scrollSpeed;
+                
+                if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+                    scrollContainer.scrollLeft = 0;
+                    scrollPosition = 0;
+                } else {
+                    scrollContainer.scrollLeft = scrollPosition;
+                }
             }
-        }, 3000);
-
-        // PULISCE INTERVALLO QUANDO IL COMPONENTE VIENE SMONTATO
-        return () => clearInterval(scrollInterval);
-
+            animationFrameId = requestAnimationFrame(animate);
+        };
+    
+        // EVENT HANDLERS DEL MOUSE
+        const handleMouseEnter = () => {
+            isPaused = true;
+        };
+        
+        const handleMouseLeave = () => {
+            isPaused = false;
+            scrollPosition = scrollContainer.scrollLeft;
+        };
+    
+        // EVENT HANDLERS DEL TOUCH
+        const handleTouchStart = () => {
+            isTouching = true;
+        };
+    
+        const handleTouchEnd = () => {
+            isTouching = false;
+            scrollPosition = scrollContainer.scrollLeft;
+        };
+    
+        // AGGIUNGI EVENT LISTENERS
+        scrollContainer.addEventListener('mouseenter', handleMouseEnter);
+        scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+        scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+        scrollContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+        
+        // INIZIA ANIMAZIONE
+        animationFrameId = requestAnimationFrame(animate);
+    
+        // PULIZIA 
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
+            scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+            scrollContainer.removeEventListener('touchstart', handleTouchStart);
+            scrollContainer.removeEventListener('touchend', handleTouchEnd);
+        };
     }, [topDoctors]);
 
     // GESTIONE CARICAMENTO
@@ -59,8 +105,16 @@ const TopDoctors = () => {
     if (error) return <div className="alert alert-danger">{error}</div>;
 
     return (
-        <div className="container-fluid top-doc-container">
-            <div ref={scrollRef} className="row flex-nowrap overflow-auto py-4">
+        <div 
+            className="container-fluid top-doc-container"
+            aria-label="Medici in evidenza"
+        >
+            <div 
+                ref={scrollRef} 
+                className="row flex-nowrap overflow-auto py-4"
+                role="region"
+                aria-label="Slider dei medici in evidenza"
+            >
 
                 {topDoctors.map((doctor) => (
                     <div key={doctor.id} className="col-auto">
@@ -75,7 +129,8 @@ const TopDoctors = () => {
                                     <img
                                         src={`${backendUrl}/images/${doctor.immagine}`}
                                         className="top-doc-img"
-                                        alt={`Dr. ${doctor.cognome}`}
+                                        alt={`Foto del Dottor ${doctor.nome} ${doctor.cognome}`}
+                                        loading="lazy"
                                     />
                                 </div>
                                 <div className="top-doc-text">

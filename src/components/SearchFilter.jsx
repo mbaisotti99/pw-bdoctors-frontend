@@ -64,18 +64,27 @@ const SearchFilter = () => {
             <div className="row g-3">
                 <div className="col-md-10">
                     <select
+                        id="select-specializzazione"
                         className="form-select"
                         name="specializzazione"
                         value={filters.specializzazione}
                         onChange={handleChange}
+                        aria-label="Seleziona una specializzazione medica"
+                        aria-describedby="specialization-help"
                     >
                         <option value="">Seleziona una specializzazione</option>
                         {specializzazioni.map((spec) => (
-                            <option key={spec.id} value={spec.nome_specializzazione}>
+                            <option 
+                                key={spec.id} 
+                                value={spec.nome_specializzazione}
+                            >
                                 {spec.nome_specializzazione}
                             </option>
                         ))}
                     </select>
+                    <div id="specialization-help" className="form-text visually-hidden">
+                        Seleziona una specializzazione medica per filtrare i dottori
+                    </div>
                 </div>
 
                 <div className="col-md-2">
@@ -83,8 +92,9 @@ const SearchFilter = () => {
                         type="submit" 
                         className="search-btn"
                         disabled={!filters.specializzazione}
+                        aria-label="Cerca dottori per specializzazione"
                     >
-                        <i className="fa-solid fa-magnifying-glass"></i> Cerca
+                        <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Cerca
                     </button>
                 </div>
             </div>

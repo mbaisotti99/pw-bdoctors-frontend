@@ -30,6 +30,7 @@ html, body, #root {
 
 img {
   max-width: 100%;
+  min-height: 100%;
 }
 
 a {
@@ -309,10 +310,19 @@ input.error, textarea.error{
   box-shadow: 0 4px 16px rgba(255, 0, 0, 0.6);
 }
 
-/* SEARCHBAR */
-.search {
-  display: flex;
-  flex-direction: column;
+/* HOME BUTTON */
+.home-btn {
+  background-color: var(--blu-1);
+  color: var(--testi-primario);
+  box-shadow: 0px 0px 12px 4px var(--ombre);
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 6px 12px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.home-btn:hover {
+  background-color: var(--btn-hover);
 }
 
 /* FONT AWESOME ICONS */
@@ -322,12 +332,11 @@ input.error, textarea.error{
 
 .fa-solid.fa-user-graduate,
 .fa-solid.fa-location-dot {
-  color: var(--blu-2);
+  color: var(--testi-terziario);
 }
 
 .fa-solid.fa-star {
   color: #FFD700;
-  font-size: 0.8rem;
 }
 
 .fa-solid.fa-magnifying-glass {
@@ -351,7 +360,7 @@ input.error, textarea.error{
 
 /* SCROLLBARS */
 /* Vertical */
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px;
   background: var(--blu-6);
 }
@@ -365,16 +374,50 @@ input.error, textarea.error{
   height: 10px;
   background: var(--blu-6);
   border-radius: 0 0 12px 12px;
+  cursor: grab;
 }
 
-::-webkit-scrollbar-thumb:horizontal{
+::-webkit-scrollbar-thumb:horizontal {
   background: var(--blu-1);
   border-radius: 0 0 12px 12px;
+  cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:horizontal:active {
+  cursor: grabbing;
+  background: var(--blu-2);
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background: var(--blu-2);
 }
 
 /* ////////////// */
 /* Media Queries */
 /* //////////// */
+/* XS Devices */
+@media (max-width: 320px) {
+  .top-doc-img-container {
+    max-width: 80px;
+    max-height: 100px;
+  }
+
+  .top-doc-middle {
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+
+  .top-doc-name {
+    font-size: 1.2rem !important;
+  }
+
+  .top-doc-city,
+  .top-doc-spec,
+  .top-doc-text {
+    font-size: 0.8rem !important;
+  }
+}
+
 /* Tablet */
 @media (max-width: 768px) {
 

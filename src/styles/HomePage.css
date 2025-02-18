@@ -30,6 +30,24 @@
     opacity: 0.7;
 }
 
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.top-doc-btn:focus,
+.top-doc-spec:focus {
+    outline: 2px solid var(--blu-1);
+    outline-offset: 2px;
+}
+
 /* TOP DOCTORS SECTION */
 /* Layout */
 .top-doc-container {
@@ -59,7 +77,7 @@
 
 /* Card Title */
 .top-doc-name {
-    color: var(--blu-1);
+    color: var(--testi-terziario);
     text-align: center;
     padding-bottom: 10px;
     font-family: "Roboto", serif;
@@ -69,7 +87,8 @@
 /* Card Body */
 .top-doc-middle {
     display: flex;
-    gap: 60px;
+    justify-content: space-between;
+    gap: 50px;
     margin-bottom: 20px;
     padding: 0 10px;
 }
@@ -84,7 +103,6 @@
     border-radius: 12px;
     border: 1px solid var(--ombre);
     width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
@@ -112,6 +130,13 @@
     justify-content: flex-end;
     gap: 5px;
     font-size: 1rem;
+    color: var(--blu-1);
+    font-style: italic;
+    font-weight: 500;
+}
+
+small {
+    color: var(--blu-1);
 }
 
 /* Vote */
@@ -178,9 +203,13 @@
 }
 
 .latest-review-title {
-    color: var(--blu-1);
+    color: var(--testi-terziario);
     font-family: "Roboto", serif;
     font-size: 1.4rem;
+}
+
+.latest-review-subtitle {
+    color: var(--blu-1);
 }
 
 .latest-review-image-container {
@@ -192,7 +221,6 @@
     width: 100%;
     border-radius: 50%;
     border: 2px solid var(--blu-1);
-
 }
 
 .latest-review-top {
@@ -254,24 +282,10 @@
     background-color: var(--blu-1) !important;
     color: var(--testi-primario) !important;
     border: 1px solid var(--blu-4) !important;
-  }
-  
-  .search-input::placeholder {
-    color: var(--testi-primario) !important; /* This controls the placeholder text color */
-    opacity: 1; /* Firefox needs this */
-  }
-  
-  /* Home Button */
-  .home-btn {
-    background-color: var(--blu-1);
-    color: var(--testi-primario);
-    box-shadow: 0px 0px 12px 4px var(--ombre);
-    text-decoration: none;
-    border-radius: 12px;
-    padding: 6px 12px;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .home-btn:hover {
-    background-color: var(--btn-hover);
-  }
+}
+
+.search-input::placeholder {
+    color: var(--testi-primario) !important;
+    opacity: 1;
+    /* Firefox needs this */
+}
