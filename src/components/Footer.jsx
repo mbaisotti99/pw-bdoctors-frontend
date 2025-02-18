@@ -1,6 +1,8 @@
 import React from "react";
 
 const Footer = () => {
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     return (
         <footer className="py-2 mt-5">
             <div className="container text-center">
@@ -21,6 +23,7 @@ const Footer = () => {
 
                 {/* Copyright */}
                 <div className="mt-3">
+                    <img className="mb-2" width="50" src={`${backendUrl}/images/bdoctors-logo-senza-testo.png`} alt="BDoctors Logo" />
                     <p className="small mb-0">&copy; {new Date().getFullYear()} BDoctors. Tutti i diritti riservati.</p>
                 </div>
             </div>
