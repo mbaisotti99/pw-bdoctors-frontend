@@ -11,6 +11,7 @@
     color: var(--testi-primario) !important;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23ffffff' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
     background-color: var(--blu-1) !important;
+    border: 1px solid var(--blu-4) !important;
 }
 
 /* Search Button */
@@ -247,3 +248,30 @@
 .latest-review-btn:hover {
     color: var(--btn-hover);
 }
+
+/* SEARCH */
+.search-input {
+    background-color: var(--blu-1) !important;
+    color: var(--testi-primario) !important;
+    border: 1px solid var(--blu-4) !important;
+  }
+  
+  .search-input::placeholder {
+    color: var(--testi-primario) !important; /* This controls the placeholder text color */
+    opacity: 1; /* Firefox needs this */
+  }
+  
+  /* Home Button */
+  .home-btn {
+    background-color: var(--blu-1);
+    color: var(--testi-primario);
+    box-shadow: 0px 0px 12px 4px var(--ombre);
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 6px 12px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .home-btn:hover {
+    background-color: var(--btn-hover);
+  }

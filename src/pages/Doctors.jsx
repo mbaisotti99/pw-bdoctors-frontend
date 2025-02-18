@@ -1,4 +1,5 @@
 // DATA
+import { Link } from "react-router-dom";
 import DoctorsList from "../components/DoctorsList";
 
 // PAGE RENDER
@@ -8,14 +9,21 @@ const Doctors = () => {
 
         <div className="container mt-4">
             <section className="presentation mb-5">
-                
+
+                <Link
+                    to="/"
+                    className="home-btn"
+                >
+                    <i className="fas fa-arrow-left"></i> Home
+                </Link>
+
                 {/* TITOLO SEZIONE */}
-                <h1 className="mb-5">Cerca lo specialista che fa per te!</h1>
+                <h1 className="my-4">Cerca lo specialista che fa per te!</h1>
+
+                {/* LISTA MEDICI */}
+                <DoctorsList />
 
             </section>
-
-            {/* LISTA MEDICI */}
-            <DoctorsList />
         </div>
 
     )

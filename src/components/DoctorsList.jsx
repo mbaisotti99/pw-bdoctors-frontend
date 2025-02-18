@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DoctorCard from "./DoctorCard";
+import PaginationControls from "./PaginationControls";
 
 // RENDER DOCTOR LIST
 const DoctorList = () => {
@@ -13,40 +14,78 @@ const DoctorList = () => {
     const [specializations, setSpecializations] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedSpecialization, setSelectedSpecialization] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pagination, setPagination] = useState({
+        currentPage: 1,
+        itemsPerPage: 10,
+        totalItems: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPrevPage: false
+    });
+
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     // RICEVI MEDICI
     const getDoctors = async (params = {}) => {
         try {
-            const response = await axios.get(`${backendUrl}/medici`, { params });
+            const response = await axios.get(`${backendUrl}/medici`, {
+                params: {
+                    ...params,
+                    page: params.page || 1,
+                    limit: 6
+                }
+            });
             setDoctors(response.data.data);
+            setPagination(response.data.pagination);
         } catch (error) {
             console.error("Errore nel caricamento dei medici:", error);
         }
+    };
+
+    // GESTISCE CAMBIO PAGINA
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+        updateSearchParams({
+            specializzazione: selectedSpecialization,
+            search,
+            page: newPage
+        });
     };
 
     // CARICA SPECIALIZZAZIONI
     useEffect(() => {
         const fetchSpecializations = async () => {
             try {
-                const response = await axios.get(`${backendUrl}/medici`);
-                const uniqueSpecializations = [...new Set(response.data.data.map(doc => doc.specializzazione))].sort();
+                // TUTTI I MEDICI PER CARICARE TUTTE LE SPECIALIZZAZIONI
+                const response = await axios.get(`${backendUrl}/medici`, {
+                    params: {
+                        limit: 1000, // Setta limite alto per caricare tutte le specializzazioni
+                        orderBy: 'specializzazione' // Aggiungi orderBy per ordinare specializzazioni
+                    }
+                });
+                // USA LOCALCOMPARE PER ORDINARE SPECIALIZZAZIONI ALFABETICAMENTE
+                const uniqueSpecializations = [...new Set(response.data.data.map(doc => doc.specializzazione))]
+                    .sort((a, b) => a.localeCompare(b, 'it', { sensitivity: 'base' }));
                 setSpecializations(uniqueSpecializations);
             } catch (error) {
                 console.error("Errore nel caricamento delle specializzazioni:", error);
             }
         };
-
+    
         fetchSpecializations();
-    }, []);
+    }, [backendUrl]);
 
     // GESTISCE PARAMS DAL URL E FA LA RICERCA INIZIALE
     useEffect(() => {
         const specFromUrl = searchParams.get("specializzazione") || "";
         const searchFromUrl = searchParams.get("search") || "";
+        const pageFromUrl = parseInt(searchParams.get("page")) || 1;
+
         setSelectedSpecialization(specFromUrl);
         setSearch(searchFromUrl);
-        
+        setCurrentPage(pageFromUrl);
+
         const params = Object.fromEntries(searchParams.entries());
         getDoctors(params);
     }, [searchParams]);
@@ -54,7 +93,7 @@ const DoctorList = () => {
     // UPDATE DEI PARAMETRI DI RICERCA
     const updateSearchParams = (newParams) => {
         const updatedParams = new URLSearchParams(searchParams);
-        
+
         Object.entries(newParams).forEach(([key, value]) => {
             if (value) {
                 updatedParams.set(key, value);
@@ -62,10 +101,9 @@ const DoctorList = () => {
                 updatedParams.delete(key);
             }
         });
-    
+
         setSearchParams(updatedParams);
     };
-    
 
     // GESTIONE SEARCH
     const handleSearch = () => {
@@ -73,8 +111,8 @@ const DoctorList = () => {
     };
 
     return (
-        <section className="mb-5">
-            <h3 className="mb-4">Filtra i nostri Specialisti:</h3>
+
+        <section className="mb-2">
 
             <div className="search">
                 <div className="filters mb-2">
@@ -96,7 +134,7 @@ const DoctorList = () => {
                     </select>
                 </div>
 
-                <div className="searchbar mb-2">
+                <div className="searchbar mb-4">
                     <input
                         type="search"
                         value={search}
@@ -104,21 +142,29 @@ const DoctorList = () => {
                         onKeyUp={(event) => {
                             if (event.key === "Enter") handleSearch();
                         }}
-                        className="form-control"
+                        className="form-control search-input"
                         placeholder="Cerca medico per nome o cognome..."
                     />
                 </div>
                 <button
                     onClick={handleSearch}
-                    className="btn btn-primary search-btn mb-5"
+                    className="search-btn mb-4"
                 >
                     <i className="fa-solid fa-magnifying-glass"></i> Cerca
                 </button>
-                <div className="mb-2">
-                    Totale medici: {doctors.length}
+                <div className="search-length mb-2">
+                    Medici trovati: {pagination.totalItems}
                 </div>
             </div>
 
+            {/* Paginator Control */}
+            <PaginationControls
+                pagination={pagination}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
+
+            {/* Doctor Cards */}
             {doctors.length > 0 ? (
                 <div className="row g-4">
                     {doctors.map((doctor) => (
@@ -132,8 +178,18 @@ const DoctorList = () => {
                     Nessun medico trovato. Riprova con un altro filtro.
                 </div>
             )}
+
+            {/* Paginator Control */}
+            <PaginationControls
+                pagination={pagination}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
+
         </section>
+
     );
+    
 };
 
 // EXPORT

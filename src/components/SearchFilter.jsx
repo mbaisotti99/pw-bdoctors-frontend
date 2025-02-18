@@ -14,19 +14,29 @@ const SearchFilter = () => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-    // CARICA SPECIALIZZAZIONI E CITTA 
+    // CARICA SPECIALIZZAZIONI
     useEffect(() => {
+
         const fetchData = async () => {
+
             try {
-                const specResponse = await axios.get(`${backendUrl}/medici/specializzazioni`);       
-                setSpecializzazioni(specResponse.data);
+                const specResponse = await axios.get(`${backendUrl}/medici/specializzazioni`);
+                // SORT SPECIALIZZAZIONI ALFABETICAMENTE PER NOME SPECIALIZZAZIONE (IT) 
+                const sortedSpecializations = specResponse.data.sort((a, b) => 
+                    a.nome_specializzazione.localeCompare(b.nome_specializzazione, 'it', { sensitivity: 'base' })
+                );
+                setSpecializzazioni(sortedSpecializations);
             } catch (error) {
                 console.error("Errore nel caricamento dei filtri:", error);
             }
-        };
-        fetchData();
-    }, []);
 
+        };
+
+        fetchData();
+
+    }, [backendUrl]);
+
+    // GESTISCE CAMBIO FILTRO
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFilters(prev => ({
@@ -35,6 +45,7 @@ const SearchFilter = () => {
         }));
     };
 
+    // GESTISCE INVIO
     const handleSubmit = (e) => {
         e.preventDefault();
         
