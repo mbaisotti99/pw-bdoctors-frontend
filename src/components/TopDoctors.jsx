@@ -66,7 +66,7 @@ const TopDoctors = () => {
                     <div key={doctor.id} className="col-auto">
                         <div className="top-doc-card d-flex flex-column">
                             <div>
-                                <h5 className="top-doc-name mb-3">
+                                <h5 className="top-doc-name mb-0">
                                     {doctor.nome} {doctor.cognome}
                                 </h5>
                             </div>
@@ -84,13 +84,18 @@ const TopDoctors = () => {
                                         {doctor.nome_specializzazione} <i className="fa-solid fa-user-graduate"></i>
                                     </Link>
 
-                                    <p className="top-doc-city mb-4">
+                                    <p className="top-doc-city">
                                         {doctor.citta} <i className="fa-solid fa-location-dot"></i>
                                     </p>
 
-                                    <p className="top-doc-vote">
-                                        {doctor.media_voti} <i className="fa-solid fa-star"></i> <br /> <small>({doctor.numero_recensioni} recensioni)</small>
-                                    </p>
+                                    <div className="top-doc-vote">
+                                        <div className="top-doc-badge">
+                                            {doctor.media_voti} <i className="fa-solid fa-star"></i>
+                                        </div>
+                                        <div>
+                                            <small>({doctor.numero_recensioni} recensioni)</small>
+                                        </div>                                       
+                                    </div>
                                 </div>
                             </div>
                             <div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <footer className="bg-dark text-light py-2 mt-5">
+        <footer className="py-2 mt-5">
             <div className="container text-center">
                 <div className="row justify-content-center">
                     {/* Sezione informazioni */}

@@ -53,35 +53,33 @@ const LatestReviews = () => {
                                 </div>
 
                                 <div className="latest-review-info">
-                                    <h5 className="latest-review-title mb-0">
+                                    <h5 className="latest-review-title mb-1">
                                         {review.nome_medico} {review.cognome_medico}
                                     </h5>
-                                    <h6 className="latest-review-subtitle mb-2">
+                                    <h6 className="latest-review-subtitle mb-1">
                                         {review.nome_specializzazione}
                                     </h6>
+
+                                    <Link to={`/medici/${review.medico_slug}`} className="latest-review-btn">
+                                        Vedi Profilo <i className="fa-solid fa-arrow-right"></i>
+                                    </Link>
                                 </div>
 
                             </div>
-
-
 
                             <p className="card-text">
                                 {review.recensione}
                             </p>
 
-                            <span className="vote-badge">
-                                {review.voto} <i className="fa-solid fa-star"></i>
-                            </span>
-
                             <div className="latest-review-footer d-flex justify-content-between align-items-center">
 
-                                <small className="">
+                                <small className="review-author">
                                     Recensito da: {review.nome_utente}
                                 </small>
 
-                                <Link to={`/medici/${review.medico_slug}`} className="btn btn-sm btn-outline-primary">
-                                    Vedi Profilo
-                                </Link>
+                                <span className="vote-badge">
+                                    {review.voto} <i className="fa-solid fa-star"></i>
+                                </span>
 
                             </div>
                         </div>

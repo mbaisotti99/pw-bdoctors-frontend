@@ -1,0 +1,249 @@
+/* HomePage.jsx */
+/* SEARCH FILTER */
+.filter-card {
+    background-color: var(--blu-5);
+    border-radius: 12px;
+    border: 4px solid var(--blu-4);
+    box-shadow: 0px 0px 12px 4px var(--ombre);
+}
+
+.form-select {
+    color: var(--testi-primario) !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23ffffff' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-color: var(--blu-1) !important;
+}
+
+/* Search Button */
+.search-btn {
+    width: 100%;
+    background-color: var(--blu-1);
+    color: var(--testi-primario);
+    border: none;
+    padding: 6px 0;
+    border-radius: 12px;
+}
+
+.search-btn:disabled {
+    background-color: var(--blu-4);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* TOP DOCTORS SECTION */
+/* Layout */
+.top-doc-container {
+    background-color: var(--blu-5);
+    border-radius: 12px;
+    border: 4px solid var(--blu-4);
+    box-shadow: 0px 0px 10px 4px var(--ombre);
+}
+
+/* Typography */
+.find-specialist-title,
+.latest-reviews-title,
+.medici-evidenza-title {
+    color: var(--testi-primario);
+    font-size: 1.8rem;
+}
+
+/* Card */
+.top-doc-card {
+    background-color: var(--testi-primario);
+    border: 3px solid var(--blu-4);
+    display: flex;
+    border-radius: 21px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 4px var(--ombre);
+}
+
+/* Card Title */
+.top-doc-name {
+    color: var(--blu-1);
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: "Roboto", serif;
+    font-size: 1.4rem;
+}
+
+/* Card Body */
+.top-doc-middle {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+/* Image */
+.top-doc-img-container {
+    height: 120px;
+    width: 120px;
+}
+
+.top-doc-img {
+    border-radius: 12px;
+    border: 1px solid var(--ombre);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Text */
+.top-doc-text {
+    font-family: "Roboto", serif;
+    text-align: right;
+}
+
+/* Specialization */
+.top-doc-spec {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* City */
+.top-doc-city {
+    padding-right: 2px;
+}
+
+.top-doc-city,
+.top-doc-spec {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    font-size: 1rem;
+}
+
+/* Vote */
+.top-doc-vote {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.top-doc-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 6px;
+    background-color: var(--blu-1);
+    color: var(--testi-primario);
+    border-radius: 7px;
+    font-size: 0.9rem;
+}
+
+/* Show Profile Button */
+.top-doc-btn {
+    color: var(--testi-primario);
+    background-color: var(--blu-1);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px 6px 12px 12px;
+    padding: 3px 5px;
+    font-family: "Roboto", serif;
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+/* Button Hover */
+.top-doc-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+/* LATEST REVIEWS SECTION */
+.latest-review-card {
+    background-color: var(--testi-primario);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    border-radius: 6px;
+    border: 4px solid var(--blu-4);
+    box-shadow: 0px 0px 12px 4px var(--ombre);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    color: var(--blu-1);
+    font-family: "Roboto", serif;
+    text-wrap: wrap;
+    flex: 1;
+    padding: 10px 5px;
+    margin-bottom: 0;
+    user-select: none;
+}
+
+.latest-review-title {
+    color: var(--blu-1);
+    font-family: "Roboto", serif;
+    font-size: 1.4rem;
+}
+
+.latest-review-image-container {
+    width: 90px;
+    height: 90px;
+}
+
+.latest-review-image {
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--blu-1);
+
+}
+
+.latest-review-top {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--blu-4);
+}
+
+.latest-review-info {
+    text-align: right;
+}
+
+.latest-review-footer {
+    user-select: none;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid var(--blu-4);
+}
+
+.vote-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 6px;
+    background-color: var(--blu-1);
+    color: var(--testi-primario);
+    border-radius: 7px;
+    font-size: 0.9rem;
+}
+
+.latest-reviews-title,
+.medici-evidenza-title,
+.find-specialist-title {
+    background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
+    border-radius: 0px 34px 34px 0px;
+    padding: 12px;
+    font-size: 1.5rem;
+}
+
+.review-author {
+    color: var(--testi-light);
+}
+
+.latest-review-btn {
+    color: var(--blu-1);
+    text-align: center;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-family: "Roboto", serif;
+    transition: color 0.3s ease-in-out;
+}
+
+.latest-review-btn:hover {
+    color: var(--btn-hover);
+}
