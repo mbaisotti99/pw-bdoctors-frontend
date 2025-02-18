@@ -20,7 +20,7 @@ const SendReviewForm = ({ medSlug }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setIsErr(false)
-        setPopup(false) 
+        setPopup(false)
 
         axios
             .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
@@ -44,7 +44,7 @@ const SendReviewForm = ({ medSlug }) => {
     const checkMail = (mail) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(mail)) {
-            return false 
+            return false
         } else {
             return true
         }
@@ -52,11 +52,17 @@ const SendReviewForm = ({ medSlug }) => {
 
 
     return (
-        <form className="text-center reviewBox mt-4" onSubmit={handleSubmit}>
+        <form className="reviewBox" onSubmit={handleSubmit}>
 
             <div>
                 <label htmlFor="#nome_utente">Nome Utente</label>
-                <input onChange={handleChange} value={formData.nome_utente} type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`} name="nome_utente" id="nome_utente" />
+                <input
+                    onChange={handleChange}
+                    value={formData.nome_utente}
+                    type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`}
+                    name="nome_utente" id="nome_utente"
+                    placeholder="Mario Rossi"
+                />
                 <div className={`alert ${(formData.nome_utente.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
                     {!formData.nome_utente && "Nome Utente Obbligatorio"}
                     {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome Utente Troppo Corto (Minimo 3 caratteri)"}
@@ -64,17 +70,24 @@ const SendReviewForm = ({ medSlug }) => {
             </div>
 
             <div className="mb-3">
-                    <label className="mb-3" htmlFor="#email_utente">Email Utente</label>
-                    <input onChange={handleChange} value={formData.email_utente} type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) ? "error" : ""}`} name="email_utente" id="email_utente" />
-                    <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente))) ? "alert-danger" : "d-none"}`}>
-                        {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
-                        {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
-                        {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
-                    </div>
+                <label className="mb-3" htmlFor="#email_utente">Email Utente</label>
+                <input
+                    onChange={handleChange}
+                    value={formData.email_utente}
+                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) ? "error" : ""}`}
+                    name="email_utente"
+                    id="email_utente"
+                    placeholder="email@esempio.it"
+                />
+                <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente))) ? "alert-danger" : "d-none"}`}>
+                    {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
+                    {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
+                    {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
                 </div>
+            </div>
 
             <div>
-                <label className="mx-3 my-1" htmlFor="#voto">Voto</label>
+                <label className="my-1 voteTxt" htmlFor="#voto">Voto</label>
                 {
                     stars.map((star, i) => {
                         const curStarN = i + 1
@@ -82,7 +95,7 @@ const SendReviewForm = ({ medSlug }) => {
                             <>
                                 <FaStar
                                     key={curStarN}
-                                    size={30}
+                                    size={50}
                                     style={{ cursor: "pointer" }}
                                     color={curStarN <= vote ? "gold" : "grey"}
                                     onClick={() => {
@@ -102,7 +115,14 @@ const SendReviewForm = ({ medSlug }) => {
 
             <div>
                 <label htmlFor="#recensione">Testo della recensione</label>
-                <textarea onChange={handleChange} value={formData.recensione} name="recensione" className={`form-control mb-5 ${(formData.recensione.length < 3 && popup) && "error"}`} id="recensione" />
+                <textarea 
+                onChange={handleChange} 
+                value={formData.recensione} 
+                name="recensione" 
+                className={`form-control revText mb-5 ${(formData.recensione.length < 3 && popup) && "error"}`} 
+                id="recensione" 
+                placeholder="Descrivi la tua esperienza..."
+                />
                 <div className={`alert ${(formData.recensione.length < 3 && popup) ? "alert-danger" : "d-none"}`}>
                     {!formData.recensione && "Testo Recensione Obbligatorio"}
                     {(formData.recensione && formData.recensione.length < 3) && "Testo Recensione Troppo Corto (Minimo 3 caratteri)"}
@@ -110,12 +130,12 @@ const SendReviewForm = ({ medSlug }) => {
             </div>
 
 
-            <button className="btn btn-primary mb-5" type="submit">Invia Recensione</button>
+            <button className="btn btn-success mb-5" type="submit">Invia Recensione</button>
 
             {(popup) && (
-                <div className={`alert ${!isErr ? "alert-success" : "alert-danger"} `}>
+                <div className={`alert ${errMsg !== "Hai già recensito questo medico"  ? "alert-success" : "alert-danger"} `}>
                     <p className="fs-4 text-center w-100 m-0">
-                        {isErr ? errMsg : "Recensione caricata con successo!"}                        
+                        {isErr ? errMsg : "Recensione caricata con successo!"}
                     </p>
                 </div>
             )}

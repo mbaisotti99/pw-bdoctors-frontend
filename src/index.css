@@ -125,21 +125,27 @@ footer{
 
 /* DETAILS */
 .detailCard{
-  border: 1px solid lightgray;
+  border: 3px solid var(--blu-4);
   display: flex;
   align-items: center;
   margin-top: 50px;
   text-align: center;
-  border-radius: 5px 5px 0 0;
+  border-radius: 15px 15px 0 0;
   box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45);
   width: 100%;
+  background-color: white;
+}
+
+.detailCard img {
+  border-radius: 10px 0 0 0;
 }
 
 .modalsCard {
   box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
-  border: 1px solid lightgray;
-  border-radius: 0 0 5px 5px;
+  border: 3px solid var(--blu-4);
+  border-radius: 0 0 35px 35px;
   margin-bottom: 25px;
+  background-color: white;
 }
 
 .detailCard li {
@@ -163,19 +169,36 @@ footer{
 
 .pageSelect{
   display: flex;
-  padding: 45px 0;
+  padding: 35px 0 15px 0;
+  justify-content: space-around;
 }
 
-.pageSelect .btn {
-  width: 50%;
+.pageSelect .top-doc-btn {
+  width: 48%;
+  height: 50px;
+  font-size: 25px;
 } 
+
+.pageSelect .top-doc-btn:nth-child(1){
+  border-radius: 6px 6px 6px 28px ;
+}
+
+.pageSelect .top-doc-btn:nth-child(2){
+  border-radius: 6px 6px 28px 6px ;
+}
 
 .modalScreen{
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 5;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.274);
+  color: white;
+}
+
+.mailTxt{
+width: 350px !important;
+height: 150px;
 }
 
 .modal{
@@ -191,9 +214,10 @@ footer{
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
-  background-color: #2a2dda;
+  background-color: var(--blu-1);
   border-radius: 5px;
   overflow: scroll;
+  font-size: 18px;
 }
 
 .close{
@@ -205,11 +229,12 @@ footer{
 
 /* Reviews */
 .reviewCard{
-  border: 1px solid lightgray;
+  border: 3px solid var(--blu-4);
   margin: 20px 0;
   text-align: center;
   border-radius: 15px;
   box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45);
+  background-color: white;
 }
 
 .rev{
@@ -222,6 +247,15 @@ footer{
   max-width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.revText{
+  width: 350px !important;
+  height: 150px;
+}
+
+.voteTxt {
+  margin-right: 10px !important;
 }
 
 .reviewBox{
@@ -247,14 +281,14 @@ footer{
   font-weight: bold;
 }
 
-.error{
-  border: 2px solid transparent; 
+input.error, textarea.error{
+  border: 2px solid rgb(138, 0, 0); 
   border-radius: 5px;
   background-image: linear-gradient(white, white), 
                     linear-gradient(45deg, red, orange);
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(255, 0, 0, 0.6);
 }
 
 /* SEARCHBAR */
@@ -356,4 +390,35 @@ footer{
     width: 260px;
   }
 
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, 150%);
+    opacity: 0;
+  }
+}
+
+.modal {
+  animation: slideIn 0.5s ease-out;
+}
+
+.modal.animate {
+  animation: slideOut 0.5s ease-in forwards;
 }

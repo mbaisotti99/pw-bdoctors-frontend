@@ -5,6 +5,7 @@ import MailForm from "../components/MailForm"
 import SendReviewForm from "../components/SendReviewForm"
 import { FaStar } from "react-icons/fa"
 
+
 const Details = () => {
 
 
@@ -58,6 +59,8 @@ const Details = () => {
 
     const [activePage, setActivePage] = useState("")
 
+    const [animate, setAnimate] = useState(false)
+
     const voteAvg = () => {
         let count = 0
         for (let i = 0; i < reviews.length; i++) {
@@ -68,12 +71,12 @@ const Details = () => {
     }
 
 
-
     return (
         <>
-            <div className={`modalScreen ${!activePage && "d-none"}`} onClick={() => {setActivePage("")}}>
-                <div className="modal" onClick={(e) => e.stopPropagation()}>
-                    <div className="close" onClick={() => {setActivePage("")}}>
+        
+            <div className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => {setAnimate(true); setTimeout( () => {setActivePage(""); setAnimate(false)}, 500)}}>
+                <div className={`modal ${animate && "animate"}`} onClick={(e) => e.stopPropagation()}>
+                    <div className="close" onClick={() => {setAnimate(true); setTimeout( () => {setActivePage(""); setAnimate(false)}, 500)}}>
                         X
                     </div>
                     {
@@ -99,6 +102,7 @@ const Details = () => {
                     }
                 </div>
             </div>
+            
             <div className="container">
                 <div className="detailCard">
                     <img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} />
@@ -116,14 +120,14 @@ const Details = () => {
                 <div className="modalsCard">
                     <div className="pageSelect">
                         <button
-                            className={`btn btn-primary ${activePage === "mail" && "active"}`}
+                            className={`top-doc-btn ${activePage === "mail" && "active"}`}
                             onClick={() => setActivePage("mail")}
                         >
                             Manda una mail
                         </button>
 
                         <button
-                            className={`btn btn-primary ms-2 ${activePage === "rev" && "active"}`}
+                            className={`top-doc-btn ${activePage === "rev" && "active"}`}
                             onClick={() => setActivePage("rev")}
                         >
                             Scrivi una recensione
@@ -131,7 +135,7 @@ const Details = () => {
                     </div>
                 </div>
 
-                <h2 className="text-center mb-5">Recensioni</h2>
+                <h2 className="text-center mb-3 mt-5">Recensioni</h2>
 
                 <div className="reviews row">
                     {reviews.map((curRev, i) => {
