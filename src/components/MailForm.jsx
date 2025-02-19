@@ -50,7 +50,6 @@ const MailForm = ({ medSlug }) => {
 
 
     return (
-            <div className="form-container">
             <form onSubmit={sendMail} className="">
                 <div>
                     <div className="mb-3">
@@ -117,7 +116,6 @@ const MailForm = ({ medSlug }) => {
                     )}
                 </div>
             </form>
-            </div>
     )
 }
 

@@ -385,10 +385,11 @@ footer {
   right: 0px;
   cursor: pointer;
   width: 30px;
+  
 }
 
 .close:hover {
-  color: #000000;
+  color: var(--blu-1);
   transition: color 0.5s ease;
 }
 

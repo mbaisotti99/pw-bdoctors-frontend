@@ -66,7 +66,7 @@ const SendReviewForm = ({ medSlug }) => {
                 <input
                     onChange={handleChange}
                     value={formData.nome_utente}
-                    type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`}
+                    type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) && "error"}`}
                     name="nome_utente" id="nome_utente"
                     placeholder="Mario Rossi"
                 />
@@ -81,7 +81,7 @@ const SendReviewForm = ({ medSlug }) => {
                 <input
                     onChange={handleChange}
                     value={formData.email_utente}
-                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
+                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup && isErr) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
                     name="email_utente"
                     id="email_utente"
                     placeholder="email@esempio.it"
