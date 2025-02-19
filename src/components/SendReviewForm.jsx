@@ -4,7 +4,7 @@ import { createPortal } from "react-dom"
 import { FaStar } from "react-icons/fa"
 
 
-const SendReviewForm = ({ medSlug, setActivePage, setAnimate, animate }) => {
+const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
@@ -37,8 +37,8 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, animate }) => {
                     voto: ""
                 })
                 setAnimate(true);
-                setTimeout(() => {setFading(true)}, 2000)
-                setTimeout(() => { setActivePage(""); setAnimate(false) }, 2500)
+                setTimeout(() => {setFading(true); setModalFading(true)}, 2000)
+                setTimeout(() => { setActivePage(""); setAnimate(false); setModalFading(false) }, 2500)
             })
             .catch((err) => {
                 setPopup(true)

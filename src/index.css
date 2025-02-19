@@ -777,6 +777,6 @@ textarea.error {
   width: 50%;
 }
 
-.alert.fading{
+.alert.fading, .modalScreen.fading{
   animation: fadeOut 1s ease;
 }

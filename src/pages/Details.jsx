@@ -76,13 +76,20 @@ const Details = ({ activePage, setActivePage }) => {
         return (count / reviews.length).toFixed(2)
     }
 
+    const [modalFading, setModalFading] = useState(false)
+
+    const animation = () => {
+        setAnimate(true);
+        setModalFading(true) 
+        setTimeout(() => { setActivePage(""); setAnimate(false); setModalFading(false) }, 500) 
+    }
 
     return (
         <>
 
-            <div id="modalScreen" className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
+            <div id="modalScreen" className={`modalScreen ${!activePage ? "d-none" : ""} ${animate ? "animate" : ""} ${modalFading ? "fading" : ""}`} onClick={animation}>
                 <div className={`modal ${animate && "animate"}`} onClick={(e) => e.stopPropagation()}>
-                    <div className="close" onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
+                    <div className="close" onClick={() => { animation }}>
                         <IoIosCloseCircleOutline
                             size={30}
                             className="closeBtn"
@@ -99,7 +106,7 @@ const Details = ({ activePage, setActivePage }) => {
                                     medSlug={slug}
                                     setActivePage={setActivePage}
                                     setAnimate={setAnimate}
-                                    animate = {animate}
+                                    setModalFading = {setModalFading}
                                 />
                             </>
                         )
@@ -114,7 +121,7 @@ const Details = ({ activePage, setActivePage }) => {
                                     medSlug={slug}
                                     setActivePage={setActivePage}
                                     setAnimate={setAnimate}
-                                    animate = {animate}
+                                    setModalFading = {setModalFading}
                                 />
                             </>
                         )
