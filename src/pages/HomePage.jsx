@@ -15,7 +15,7 @@ const HomePage = () => {
 
             {/* Medici in Evidenza */}
             <section className="mb-4">
-                <h2 className="mb-3 medici-evidenza-title"><i class="fa-solid fa-heart"></i> Medici in evidenza</h2>
+                <h2 className="mb-3 medici-evidenza-title"><i className="fa-solid fa-heart"></i> Medici in evidenza</h2>
                 <TopDoctors />
             </section>
 

@@ -53,13 +53,17 @@ function FormRegistrazione() {
     let errors = {}; // Oggetto per raccogliere gli errori sui campi
     let isValid = true; // Flag per verificare se il form è valido
 
-    // VALIDAZIONE NOME E COGNOME
+    // VALIDAZIONE NOME
     if (inputs.nome.trim().length < 3) {
       errors.nome = true;
+      setError("Il nome deve avere almeno 3 caratteri");
       isValid = false;
     }
+
+    // VALIDAZIONE COGNOME
     if (inputs.cognome.trim().length < 3) {
       errors.cognome = true;
+      setError("Il cognome deve avere almeno 3 caratteri");
       isValid = false;
     }
 
@@ -67,6 +71,7 @@ function FormRegistrazione() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(inputs.email.trim())) {
       errors.email = true;
+      setError("L'email inserita non è valida");
       isValid = false;
     }
 
@@ -74,43 +79,48 @@ function FormRegistrazione() {
     const telefonoRegex = /^\+\d{6,}$/;
     if (!telefonoRegex.test(inputs.telefono.trim())) {
       errors.telefono = true;
+      setError("Il numero di telefono può contenere solo numeri e '+' all'inizio");
       isValid = false;
     }
 
     // VALIDAZIONE INDIRIZZO
     if (inputs.indirizzo.trim().length < 5) {
       errors.indirizzo = true;
+      setError("L'indirizzo deve avere almeno 5 caratteri");
       isValid = false;
     }
 
     // VALIDAZIONE CITTÀ
     if (!inputs.citta.trim()) {
       errors.citta = true;
+      setError("La città è obbligatoria");
       isValid = false;
     }
 
     // VALIDAZIONE SPECIALIZZAZIONE
     if (!inputs.specializzazione.trim()) {
       errors.specializzazione = true;
+      setError("La specializzazione è obbligatoria");
       isValid = false;
     }
 
     // VALIDAZIONE DESCRIZIONE
     if (inputs.descrizione.trim().length < 20) {
       errors.descrizione = true;
+      setError("La descrizione deve avere almeno 20 caratteri");
       isValid = false;
     }
 
     // VALIDAZIONE IMMAGINE
     if (!selectedFile) {
       errors.immagine = true;
+      setError("L'immagine è obbligatoria");
       isValid = false;
     }
 
     // **🔴 Se ci sono errori, aggiorno lo stato e impedisco l'invio del form**
     setInputErrors(errors); // 🔥 Aggiorna lo stato degli errori
     if (!isValid) {
-      setError("Compila tutti i campi correttamente.");
       return false;
     }
 
@@ -188,6 +198,7 @@ function FormRegistrazione() {
                 className={inputErrors.nome ? "error-input" : ""}
                 placeholder="Mario"
               />
+              {inputErrors.nome && <span className="error-message">Il nome deve avere almeno 3 caratteri</span>}
             </div>
 
             <div className="input-group">
@@ -201,6 +212,7 @@ function FormRegistrazione() {
                 className={inputErrors.cognome ? "error-input" : ""}
                 placeholder="Rossi"
               />
+              {inputErrors.cognome && <span className="error-message">Il cognome deve avere almeno 3 caratteri</span>}
             </div>
 
             <div className="input-group full-width">
@@ -219,6 +231,7 @@ function FormRegistrazione() {
                   </option>
                 ))}
               </select>
+              {inputErrors.specializzazione && <span className="error-message">La specializzazione è obbligatoria</span>}
             </div>
 
             <div className="input-group">
@@ -232,6 +245,7 @@ function FormRegistrazione() {
                 className={inputErrors.email ? "error-input" : ""}
                 placeholder="medico@example.com"
               />
+              {inputErrors.email && <span className="error-message">L'email inserita non è valida</span>}
             </div>
 
             <div className="input-group">
@@ -245,6 +259,7 @@ function FormRegistrazione() {
                 className={inputErrors.telefono ? "error-input" : ""}
                 placeholder="+39 123 456 7890"
               />
+              {inputErrors.telefono && <span className="error-message">Il numero di telefono può contenere solo numeri e '+' all'inizio</span>}
             </div>
 
             <div className="input-group">
@@ -258,6 +273,7 @@ function FormRegistrazione() {
                 className={inputErrors.indirizzo ? "error-input" : ""}
                 placeholder="Viale Roma 5"
               />
+              {inputErrors.indirizzo && <span className="error-message">L'indirizzo deve avere almeno 5 caratteri</span>}
             </div>
 
             <div className="input-group">
@@ -271,6 +287,7 @@ function FormRegistrazione() {
                 className={inputErrors.citta ? "error-input" : ""}
                 placeholder="Milano"
               />
+              {inputErrors.citta && <span className="error-message">La città è obbligatoria</span>}
             </div>
 
             <div className="input-group full-width">
@@ -284,6 +301,7 @@ function FormRegistrazione() {
                 placeholder="Breve descrizione (minimo 20 caratteri)"
                 rows="4"
               />
+              {inputErrors.descrizione && <span className="error-message">La descrizione deve avere almeno 20 caratteri</span>}
             </div>
 
             <div className="input-group full-width">
@@ -296,6 +314,7 @@ function FormRegistrazione() {
                 accept="image/*"
                 className={inputErrors.immagine ? "error-input" : ""}
               />
+              {inputErrors.immagine && <span className="error-message">L'immagine è obbligatoria</span>}
             </div>
           </div>
 
