@@ -29,7 +29,7 @@ const Details = () => {
                     return (
                         <FaStar
                             color="gold"
-                            size={20}
+                            size={15}
                             key={i}
                             style={{
                                 color: "gold",
@@ -117,8 +117,8 @@ const Details = () => {
                     <div className="detail-middle">
                         <div className="detail-img-div">
                             <img
-                                src={`http://localhost:3000/images/${doctor.immagine}`} 
-                                alt={`${doctor.nome} ${doctor.cognome}`} 
+                                src={`http://localhost:3000/images/${doctor.immagine}`}
+                                alt={`${doctor.nome} ${doctor.cognome}`}
                                 className="detail-img"
                             />
                         </div>
@@ -134,7 +134,7 @@ const Details = () => {
                         <p className="docDesc">"{doctor.descrizione}"</p>
                     </div>
                 </div>
-                <div className="modalsCard">
+                <div className="modalsCard  mb-5">
                     <div className="pageSelect">
                         <button
                             className={`detail-btn ${activePage === "mail" && "active"}`}
@@ -152,23 +152,28 @@ const Details = () => {
                     </div>
                 </div>
 
-                <h2 className="text-center mb-3 mt-5">Recensioni</h2>
+                <h2 className="review-main-title mb-3"><i className="fa-solid fa-comment"></i> Recensioni</h2>
 
                 <div className="reviews row">
                     {reviews.map((curRev, i) => {
                         const dataFormat = new Date(curRev.data);
 
-
                         return (
-                            <div className="col-12 col-md-3 g-3" key={i}>
+
+                            
+                            <div className="col-12 col-md-4 g-3" key={i}>
 
                                 <div className="reviewCard h-100">
-                                    <ul className="rev">
-                                        <li className="revDate">{dataFormat.toISOString().split('T')[0]}</li>
-                                        <li className="revName">{curRev.nome_utente}</li>
-                                        <li>{printStars(curRev.voto)}</li>
-                                        <li>{curRev.recensione}</li>
-                                    </ul>
+                                    <div className="rev">
+                                        <div className="review-card-header">
+                                            <p className="revDate">{dataFormat.toISOString().split('T')[0]}</p>
+                                            <p className="review-stars">{printStars(curRev.voto)}</p>
+                                        </div>
+                                        <div className="review-body">
+                                            <p className="revName">{curRev.nome_utente}</p>
+                                            <p className="user-review">{curRev.recensione}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )

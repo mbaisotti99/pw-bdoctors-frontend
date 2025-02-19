@@ -30,6 +30,10 @@ body,
   flex-direction: column;
 }
 
+body {
+  font-family: "Roboto", serif !important;
+}
+
 img {
   max-width: 100%;
   min-height: 100%;
@@ -374,30 +378,37 @@ footer {
 
 /* Reviews */
 .reviewCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border: 4px solid var(--blu-4);
-  margin: 20px 0;
   border-radius: 6px;
   box-shadow: 0px 0px 12px 4px var(--ombre);
   background-color: var(--testi-primario);
-  padding: 20px;
-}
-
-.latest-review-card {
-  background-color: var(--testi-primario);
-  display: flex;
-  flex-direction: column;
-  
-  
-  border: 4px solid var(--blu-4);
+  padding: 10px;
 }
 
 .rev {
   list-style: none;
   padding: 0;
 }
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--blu-4);
+  margin-bottom: 10px;
+}
+
+.review-main-title {
+  background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
+  border-radius: 0px 34px 34px 0px;
+  padding: 12px;
+  font-size: 1.5rem;
+  align-self: flex-start;
+  width: 100%;
+  color: var(--testi-primario);
+}
+
+
 
 .rev li {
   margin: 20px 0;
@@ -438,6 +449,12 @@ footer {
 
 .revName {
   font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--testi-terziario);
+}
+
+.user-review {
+  font-size: 0.9rem;
 }
 
 input.error,
@@ -493,6 +510,7 @@ textarea.error {
   color: var(--testi-primario);
 }
 
+.fa-solid.fa-comment,
 .fa-solid.fa-map-location-dot,
 .fa-solid.fa-envelope,
 .fa-solid.fa-phone,
