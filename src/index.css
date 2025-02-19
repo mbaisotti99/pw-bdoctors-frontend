@@ -69,7 +69,7 @@ body {
   left: 0;
   z-index: 99;
   height: 80px;
-  padding: 20px 10px; 
+  padding: 20px; 
 }
 
 /* Logo */
@@ -510,6 +510,8 @@ textarea.error {
   color: var(--testi-primario);
 }
 
+.fa-solid.fa-plus,
+.fa-solid.fa-check,
 .fa-solid.fa-comment,
 .fa-solid.fa-map-location-dot,
 .fa-solid.fa-envelope,
@@ -518,6 +520,27 @@ textarea.error {
 .fa-solid.fa-heart,
 .fa-solid.fa-star-of-life {
   color: var(--testi-terziario);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .mail-form {
+      padding: 0.5rem;
+      max-height: 80vh;
+  }
+
+  .mail-form textarea {
+      min-height: 80px;
+  }
+
+  .mail-form .mb-2 {
+      margin-bottom: 0.5rem !important;
+  }
+
+  .mail-form .alert {
+      margin-top: 0.25rem !important;
+      margin-bottom: 0.25rem !important;
+  }
 }
 
 /* SCROLLBARS */

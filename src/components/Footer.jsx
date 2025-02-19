@@ -5,7 +5,7 @@ const Footer = () => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     return (
-        <footer className="py-4 mt-5">
+        <footer className="py-4 mt-3">
             <div className="container text-center">
                 <div className="row justify-content-center mb-3">
 

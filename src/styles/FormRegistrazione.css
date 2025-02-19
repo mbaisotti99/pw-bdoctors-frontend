@@ -2,83 +2,79 @@
 .form-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    background-color: var(--testi-primario);
+    border: 4px solid var(--blu-4);
+    box-shadow: 0px 0px 12px 4px var(--ombre);
+    box-shadow: 0;
     width: 100%;
-    min-height: 100vh;
-    background-color: #f9fafb;
-    padding: 50px 20px;
+    align-items: center;
+    border-radius: 12px;
+    margin: 0 auto;
+    padding: 10px;
 }
+
+.error-message {
+    margin-top: 2px;
+    font-size: 0.8rem;
+    color: var(--testi-terziario);
+}
+
 
 /* ✅ Struttura principale del form */
 .form-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 1100px;
     gap: 50px;
 }
 
 /* ✅ Sezione sinistra - Form */
 .form-left {
-    width: 65%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ✅ Stile titolo */
-.form-left h2 {
-    font-size: 26px;
-    font-weight: 600;
-    color: #000;
-    margin-bottom: 10px;
-}
 
-.form-subtitle {
-    font-size: 14px;
-    color: #6c757d;
-    margin-bottom: 20px;
-}
 
 /* ✅ Sezione destra - Info */
 .form-right {
-    width: 35%;
-    background-color: #f1f5f9;
-    /* Sfondo chiaro per differenziare */
-    padding: 30px;
-    border-radius: 8px;
-}
-
-.form-right h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.info-box {
-    font-size: 14px;
-    color: #444;
-}
-
-.info-box ul {
-    list-style: none;
-    padding: 0;
-}
-
-.info-box li {
+    width: 40%;
+    background-color: var(--blu-2);
+    border: 4px solid var(--blu-4); 
+    color: var(--testi-primario);
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* Sfondo chiaro per differenziare */
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.reg-info {
+    font-size: 0.9rem;
     margin-bottom: 10px;
 }
 
-.info-box li::before {
-    content: "✅";
-    margin-right: 8px;
-    font-size: 16px;
+.reg-benefits p {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.form-right h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--testi-terziario);
 }
 
 /* ✅ Griglia degli input */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* ✅ Stile generico input */
@@ -90,8 +86,8 @@
 .input-group label {
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: 5px;
-    color: #333;
+    color: var(--testi-terziario);
+    margin: 2px;
 }
 
 /* ✅ Rendi alcuni campi più larghi */
@@ -104,66 +100,115 @@
 .input-group textarea,
 .input-group select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 5px;
+    border: 1px solid var(--blu-1);
+    border-radius: 12px !important;
     font-size: 14px;
     transition: all 0.3s ease-in-out;
-    background-color: white;
+    background-color: var(--testi-primario);
 }
 
 /* ✅ Effetto hover sugli input */
 .input-group input:focus,
 .input-group textarea:focus,
 .input-group select:focus {
-    border-color: #2b65e5;
-    box-shadow: 0px 0px 5px rgba(43, 101, 229, 0.3);
+    border-color: var(--blu-4);
+    box-shadow: 0px 0px 5px var(--ombre);
     outline: none;
 }
 
 .error-input {
-    border: 1px solid red !important;
-    background-color: #ffe6e6;
+    border: 1px solid var(--testi-terziario) !important;
+    background-color: var(--testi-primario);
+}
+
+.register-title {
+    background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
+    border-radius: 0px 34px 34px 0px;
+    padding: 12px;
+    font-size: 1.5rem;
+    align-self: flex-start;
+    width: 100%;
+    color: var(--testi-primario);
+    margin: 20px 0;
 }
 
 /* ✅ Stile pulsante Registrati */
 .submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: #2b65e5;
-    color: white;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: var(--blu-1);
+    color: var(--testi-primario);
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 500;
     transition: background 0.3s ease-in-out;
-    margin-top: 20px;
 }
 
 .submit-btn:hover {
-    background: #1f4dc3;
+    background: var(--btn-hover);
 }
 
-/* ✅ Media query per mobile */
+/* ✅ Media query per tablet */
 @media (max-width: 768px) {
+    .form-container {
+        padding: 0;
+    }
+    
     .form-wrapper {
         flex-direction: column;
         max-width: 100%;
-        padding: 20px;
+        padding: 10px;
+        gap: 5px;
     }
 
     .form-left,
     .form-right {
         width: 100%;
-        padding: 20px;
+        padding: 10px;
     }
 
     .form-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .input-group.full-width {
+        grid-column: span 2;
     }
 
     .form-right {
         text-align: center;
+    }
+}
+
+/* ✅ Media query per mobile */
+@media (max-width: 425px) {
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0px;
+    }
+
+    .input-group.full-width {
+        grid-column: auto;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+}
+
+@media (max-width: 320px) {
+    .register-title {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+    .form-container {
+        width: 100%;
+        padding: 0;
     }
 }

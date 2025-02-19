@@ -124,9 +124,9 @@ const Details = () => {
                         </div>
                         <div className="details">
                             <p className="docName">{`${doctor.nome} ${doctor.cognome}`}</p>
+                            <p className="details-spec mb-2">{doctor.specializzazione}</p>
                             <a href={`mailto:${doctor.email}`} className="detail-mail">{doctor.email}</a>
-                            <a href={`tel:${doctor.telefono}`} className="detail-phone">{doctor.telefono}</a>
-                            <p className="details-spec">{doctor.specializzazione}</p>
+                            <a href={`tel:${doctor.telefono}`} className="detail-phone mb-3">{doctor.telefono}</a>
                             <p className="details-vote">{printStars(voteAvg())}  ({voteAvg()}) </p>
                         </div>
                     </div>
