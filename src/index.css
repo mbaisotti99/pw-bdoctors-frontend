@@ -484,7 +484,7 @@ footer {
 
 .revDate {
   font-size: 13px;
-  color: var(--blu-2);
+  color: var(--testi-light);
   font-weight: 400;
 }
 
@@ -685,6 +685,13 @@ form textarea {
 /* Tablet */
 @media (max-width: 768px) {
 
+  .logo {
+    width: 140px;
+  }
+
+  .fa-solid.fa-bars {
+    font-size: 1.2rem;
+  }
   
   .detailCard {
     width: 80%;
@@ -760,6 +767,10 @@ form textarea {
 
   .modalsCard {
     width: 100%;
+  }
+
+  .logo {
+    width: 120px;
   }
 
 }

@@ -132,10 +132,10 @@ const Details = ({ activePage, setActivePage }) => {
 
             <div className="reg-header more-margin container">
                 <Link
-                    to="/"
+                    to="/medici"
                     className="home-btn"
                 >
-                    <i className="fas fa-arrow-left"></i> Home
+                    <i className="fas fa-arrow-left"></i> Lista medici
                 </Link>
             </div>
             <h1 className="detail-title container"><i className="fa-solid fa-id-card"></i>{`Pagina di ${doctor.nome} ${doctor.cognome}`}</h1>
