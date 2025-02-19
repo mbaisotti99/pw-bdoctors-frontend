@@ -195,12 +195,6 @@ function FormRegistrazione() {
           <div className="registration-alert alert alert-success alert-dismissible fade show" role="alert">
             <i className="fas fa-check-circle me-2"></i>
             Registrazione completata con successo!
-            <button
-              type="button"
-              className="btn-close"
-              onClick={() => setSuccess(false)}
-              aria-label="Close"
-            ></button>
           </div>
         )}
         <form onSubmit={handleOnSubmit} className="form-container" encType="multipart/form-data">

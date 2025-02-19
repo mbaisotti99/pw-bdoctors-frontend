@@ -10,7 +10,7 @@ const Doctors = () => {
 
         <div className="container mt-1">
             <section className="doctor-page">
-                <div className="doctor-header">
+                <div className="reg-header mt-3 mb-4">
                     <Link
                         to="/"
                         className="home-btn"

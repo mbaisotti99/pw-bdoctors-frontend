@@ -175,7 +175,7 @@ const DoctorList = () => {
                 </button>
             </div>
             
-               <h2 className="search-length"><i className="fa-solid fa-list-ul"></i> Lista dei medici trovati {pagination.totalItems}</h2> 
+               <h2 className="search-length"><i className="fa-solid fa-list-ul"></i> Lista dei medici trovati ({pagination.totalItems})</h2> 
 
             {/* Paginator Control */}
             <PaginationControls
