@@ -109,7 +109,6 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                         return (
                             <React.Fragment key={curStarN}>
                                 <FaStar
-                                    size={50}
                                     style={{
                                         cursor: "pointer",
                                         stroke: "black",
@@ -120,6 +119,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                                         setVote(curStarN)
                                         setFormData({ ...formData, voto: curStarN })
                                     }}
+                                    className="starIcon"
                                 />
                             </React.Fragment>
 

@@ -58,7 +58,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
 
 
     return (
-            <form onSubmit={sendMail} className="">
+            <form onSubmit={sendMail} className="row">
                 <div>
                     <div className="mb-3">
                         <label className="mb-3" htmlFor="#nome_utente">Nome Utente</label>

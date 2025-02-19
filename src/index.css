@@ -8,11 +8,12 @@
   --blu-6: #B3E5FC;
   --testi-primario: #FFFFFF;
   --testi-secondario: #000000;
-  --testi-terziario:#12747b;
+  --testi-terziario: #12747b;
   --testi-light: rgba(0, 0, 0, 0.6);
   --btn-hover: #027fb0;
   --ombre: rgba(2, 96, 133, 0.7);
 }
+
 /* #c72a2a
 #1a8b93 */
 /* RESET */
@@ -56,6 +57,7 @@ ul {
 body {
   background-color: var(--blu-3) !important;
 }
+
 /* HEADER */
 .header {
   display: flex;
@@ -69,21 +71,21 @@ body {
   left: 0;
   z-index: 99;
   height: 80px;
-  padding: 20px; 
+  padding: 20px;
 }
 
 /* Logo */
 .logo {
-  width: 180px; 
-  height: auto; 
+  width: 180px;
+  height: auto;
   display: flex;
   align-items: center;
 }
 
 .logo-img {
   width: 100%;
-  height: auto; 
-  min-height: unset; 
+  height: auto;
+  min-height: unset;
   object-fit: contain;
 }
 
@@ -281,7 +283,7 @@ footer {
   align-items: center;
   gap: 10px;
   margin: 20px 0;
-  
+
 }
 
 .detail-title {
@@ -291,7 +293,7 @@ footer {
   font-weight: 500;
   font-size: 1.2rem;
   padding: 12px 0;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 
 }
 
@@ -397,7 +399,7 @@ footer {
   right: 0px;
   cursor: pointer;
   width: 30px;
-  
+
 }
 
 .close:hover {
@@ -439,7 +441,7 @@ footer {
   font-weight: 500;
   font-size: 1.2rem;
   width: 100%;
-  padding: 12px 0; 
+  padding: 12px 0;
 }
 
 
@@ -534,6 +536,7 @@ textarea.error {
 .fa-solid.fa-magnifying-glass {
   padding-right: 6px;
 }
+
 .fa-solid.fa-list-ul,
 .fa-solid.fa-user-doctor {
   padding-right: 8px;
@@ -565,29 +568,36 @@ textarea.error {
 .fa-solid.fa-id-card {
   padding-right: 5px;
 }
+
 .fa-solid.fa-check {
   margin-right: 5px;
   vertical-align: middle;
 }
 
+
+form,
+form textarea {
+  max-width: 100%;
+}
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .mail-form {
-      padding: 0.5rem;
-      max-height: 80vh;
+    padding: 0.5rem;
+    max-height: 80vh;
   }
 
   .mail-form textarea {
-      min-height: 80px;
+    min-height: 80px;
   }
 
   .mail-form .mb-2 {
-      margin-bottom: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
 
   .mail-form .alert {
-      margin-top: 0.25rem !important;
-      margin-bottom: 0.25rem !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
   }
 }
 
@@ -625,6 +635,10 @@ textarea.error {
   background: var(--blu-2);
 }
 
+.starIcon{
+  font-size: 30px;
+}
+
 /* ////////////// */
 /* Media Queries */
 /* //////////// */
@@ -649,6 +663,8 @@ textarea.error {
   .top-doc-text {
     font-size: 0.8rem !important;
   }
+
+
 }
 
 @media (max-width: 992px) {
@@ -664,7 +680,7 @@ textarea.error {
 /* Tablet */
 @media (max-width: 768px) {
 
-
+  
   .detailCard {
     width: 80%;
   }
@@ -743,6 +759,21 @@ textarea.error {
 
 }
 
+@media (min-width: 320px){
+  .starIcon{
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 768px){
+  .starIcon{
+    font-size: 50px;
+  }
+}
+
+
+/* Animations */
+
 
 @keyframes slideIn {
   from {
@@ -791,13 +822,14 @@ textarea.error {
   overflow-wrap: break-word;
 }
 
-.success-box{
+.success-box {
   position: absolute;
   top: 50%;
   left: 25%;
   width: 50%;
 }
 
-.alert.fading, .modalScreen.fading{
+.alert.fading,
+.modalScreen.fading {
   animation: fadeOut 1s ease;
 }
