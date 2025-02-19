@@ -29,7 +29,7 @@ const Details = () => {
                     return (
                         <FaStar
                             color="gold"
-                            size={30}
+                            size={20}
                             key={i}
                             style={{
                                 color: "gold",
@@ -112,31 +112,39 @@ const Details = () => {
                 </div>
             </div>
 
-            <div className="container">
+            <div className="container detail-container">
                 <div className="detailCard">
-                    <img src={`http://localhost:3000/images/${doctor.immagine}`} alt={`${doctor.nome} ${doctor.cognome}`} width={350} />
-                    <ul className="details">
-                        <li className="docName">{`${doctor.nome} ${doctor.cognome}`}</li>
-                        <li>{doctor.email}</li>
-                        <li>{doctor.telefono}</li>
-                        <li>{doctor.specializzazione}</li>
-                        <li>{printStars(voteAvg())} ({voteAvg()}) </li>
-                    </ul>
-                    <p className="docDesc">
-                        {doctor.descrizione}
-                    </p>
+                    <div className="detail-middle">
+                        <div className="detail-img-div">
+                            <img
+                                src={`http://localhost:3000/images/${doctor.immagine}`} 
+                                alt={`${doctor.nome} ${doctor.cognome}`} 
+                                className="detail-img"
+                            />
+                        </div>
+                        <div className="details">
+                            <p className="docName">{`${doctor.nome} ${doctor.cognome}`}</p>
+                            <a href={`mailto:${doctor.email}`} className="detail-mail">{doctor.email}</a>
+                            <a href={`tel:${doctor.telefono}`} className="detail-phone">{doctor.telefono}</a>
+                            <p className="details-spec">{doctor.specializzazione}</p>
+                            <p className="details-vote">{printStars(voteAvg())}  ({voteAvg()}) </p>
+                        </div>
+                    </div>
+                    <div className="detail-description">
+                        <p className="docDesc">"{doctor.descrizione}"</p>
+                    </div>
                 </div>
                 <div className="modalsCard">
                     <div className="pageSelect">
                         <button
-                            className={`top-doc-btn ${activePage === "mail" && "active"}`}
+                            className={`detail-btn ${activePage === "mail" && "active"}`}
                             onClick={() => setActivePage("mail")}
                         >
                             Manda una mail
                         </button>
 
                         <button
-                            className={`top-doc-btn ${activePage === "rev" && "active"}`}
+                            className={`detail-btn ${activePage === "rev" && "active"}`}
                             onClick={() => setActivePage("rev")}
                         >
                             Scrivi una recensione
@@ -152,9 +160,9 @@ const Details = () => {
 
 
                         return (
-                            <div className="col-4" key={i}>
+                            <div className="col-12 col-md-3 g-3" key={i}>
 
-                                <div className="reviewCard">
+                                <div className="reviewCard h-100">
                                     <ul className="rev">
                                         <li className="revDate">{dataFormat.toISOString().split('T')[0]}</li>
                                         <li className="revName">{curRev.nome_utente}</li>

@@ -168,35 +168,114 @@ footer {
 
 /* DETAILS */
 .detailCard {
-  border: 3px solid var(--blu-4);
+  background-color: var(--blu-5);
+  border-top: 4px solid var(--blu-4);
+  border-right: 4px solid var(--blu-4);
+  border-left: 4px solid var(--blu-4);
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  padding: 20px;
   text-align: center;
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45);
-  width: 100%;
-  background-color: white;
+  width: 50%;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0px 0px 12px 4px var(--ombre);
 }
 
-.detailCard img {
-  border-radius: 10px 0 0 0;
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.detail-middle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details a {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.detail-img-div {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  border: 1px solid var(--ombre);
+}
+
+.details-spec {
+  color: var(--blu-1);
+  font-weight: 500;
+}
+
+.detail-mail,
+.detail-phone {
+  color: var(--testi-primario);
+  background-color: var(--blu-2);
+  border-radius: 12px;
+  text-decoration: none;
+  padding: 3px 5px;
+  font-family: "Roboto", serif;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.detail-mail:hover,
+.detail-phone:hover {
+  background-color: var(--blu-1);
+}
+
+.detail-btn {
+  color: var(--testi-primario);
+  background-color: var(--blu-1);
+  border-radius: 12px;
+  padding: 3px 15px;
+  font-family: "Roboto", serif;
+  transition: background-color 0.3s ease-in-out;
+  border: none;
+}
+
+.detail-btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.details-vote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--blu-1);
 }
 
 .modalsCard {
   box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
-  border: 3px solid var(--blu-4);
   border-radius: 0 0 35px 35px;
   margin-bottom: 25px;
-  background-color: white;
+  background-color: var(--blu-5);
+  border-top: var(--blu-1) 2px solid;
+  border-bottom: 4px solid var(--blu-4);
+  border-right: 4px solid var(--blu-4);
+  border-left: 4px solid var(--blu-4);
+  width: 50%;
 }
 
-.detailCard li {
-  margin: 20px 0;
-}
-
-.detailCard>* {
-  width: calc(100%/3);
+.detailCard p {
+  margin-bottom: 8px;
 }
 
 .details,
@@ -206,9 +285,15 @@ footer {
   margin: 0 25px;
 }
 
+.docDesc {
+  margin-top: 20px;
+  color: var(--blu-1);
+}
+
 .docName {
-  font-size: 24px;
+  font-size: 1.3rem;
   font-weight: bold;
+  color: var(--testi-terziario);
 }
 
 .pageSelect {
@@ -289,12 +374,24 @@ footer {
 
 /* Reviews */
 .reviewCard {
-  border: 3px solid var(--blu-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 4px solid var(--blu-4);
   margin: 20px 0;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45);
-  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 4px var(--ombre);
+  background-color: var(--testi-primario);
+  padding: 20px;
+}
+
+.latest-review-card {
+  background-color: var(--testi-primario);
+  display: flex;
+  flex-direction: column;
+  
+  
+  border: 4px solid var(--blu-4);
 }
 
 .rev {
@@ -359,6 +456,7 @@ textarea.error {
   background-color: var(--blu-1);
   color: var(--testi-primario);
   text-decoration: none;
+  font-size: 0.8rem;
   border-radius: 12px;
   padding: 6px 12px;
   transition: background-color 0.3s ease-in-out;
@@ -392,7 +490,7 @@ textarea.error {
 
 .fa-solid.fa-xmark,
 .fa-solid.fa-bars {
-  color: #FFFFFF;
+  color: var(--testi-primario);
 }
 
 .fa-solid.fa-map-location-dot,
@@ -464,11 +562,47 @@ textarea.error {
   }
 }
 
+@media (max-width: 992px) {
+  .detailCard {
+    width: 80%;
+  }
+
+  .modalsCard {
+    width: 80%;
+  }
+}
+
 /* Tablet */
 @media (max-width: 768px) {
 
+  .detailCard {
+    width: 80%;
+  }
+
+  .modalsCard {
+    width: 80%;
+  }
+
+  .detail-btn {
+    font-size: 0.9rem;
+    padding: 0;
+    width: 100px;
+  }
+
   .menu-toggle {
     display: block;
+  }
+
+  .detail-middle {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail-img-div {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
   }
 
   .nav-links {

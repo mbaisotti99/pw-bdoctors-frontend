@@ -3,12 +3,16 @@
     justify-content: space-between;
     align-items: center;
     margin: 15px 0;
+    gap: 20px;
 }
 
 .doctor-title {
-    color: var(--testi-primario);
+    color: var(--testi-terziario);
     font-family: "Roboto", serif;
     font-size: 1.3rem;
+    margin: 0; /* Reset default margins */
+    padding: 6px 0; /* Match the home-btn padding */
+    line-height: 1.2; 
 }
 
 
