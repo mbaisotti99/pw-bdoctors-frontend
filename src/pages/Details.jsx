@@ -89,7 +89,7 @@ const Details = ({ activePage, setActivePage }) => {
 
             <div id="modalScreen" className={`modalScreen ${!activePage ? "d-none" : ""} ${animate ? "animate" : ""} ${modalFading ? "fading" : ""}`} onClick={animation}>
                 <div className={`modal ${animate && "animate"}`} onClick={(e) => e.stopPropagation()}>
-                    <div className="close" onClick={() => { animation }}>
+                    <div className="close" onClick={animation }>
                         <IoIosCloseCircleOutline
                             size={30}
                             className="closeBtn"
