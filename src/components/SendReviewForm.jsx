@@ -1,8 +1,10 @@
 import axios from "axios"
 import React, { useState } from "react"
+import { createPortal } from "react-dom"
 import { FaStar } from "react-icons/fa"
 
-const SendReviewForm = ({ medSlug }) => {
+
+const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
@@ -22,6 +24,7 @@ const SendReviewForm = ({ medSlug }) => {
         setIsErr(false)
         setPopup(false)
 
+
         axios
             .post(`http://localhost:3000/medici/${medSlug}/recensioni`, formData)
             .then((resp) => {
@@ -33,6 +36,9 @@ const SendReviewForm = ({ medSlug }) => {
                     recensione: "",
                     voto: ""
                 })
+                setAnimate(true);
+                setTimeout(() => {setFading(true); setModalFading(true)}, 2000)
+                setTimeout(() => { setActivePage(""); setAnimate(false); setModalFading(false) }, 2500)
             })
             .catch((err) => {
                 setPopup(true)
@@ -40,6 +46,8 @@ const SendReviewForm = ({ medSlug }) => {
                 setErrMsg(err.response.data.message)
             })
     }
+
+    const [fading, setFading] = useState(false)
 
     const [formData, setFormData] = useState({
         nome_utente: "",
@@ -66,7 +74,7 @@ const SendReviewForm = ({ medSlug }) => {
                 <input
                     onChange={handleChange}
                     value={formData.nome_utente}
-                    type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup) && "error"}`}
+                    type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) && "error"}`}
                     name="nome_utente" id="nome_utente"
                     placeholder="Mario Rossi"
                 />
@@ -81,7 +89,7 @@ const SendReviewForm = ({ medSlug }) => {
                 <input
                     onChange={handleChange}
                     value={formData.email_utente}
-                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
+                    type="text" className={`form-control ${(formData.email_utente.length < 3 && popup && isErr) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
                     name="email_utente"
                     id="email_utente"
                     placeholder="email@esempio.it"
@@ -102,11 +110,11 @@ const SendReviewForm = ({ medSlug }) => {
                             <React.Fragment key={curStarN}>
                                 <FaStar
                                     size={50}
-                                    style={{ 
+                                    style={{
                                         cursor: "pointer",
                                         stroke: "black",
                                         strokeWidth: "5px",
-                                     }}
+                                    }}
                                     color={curStarN <= vote ? "gold" : "grey"}
                                     onClick={() => {
                                         setVote(curStarN)
@@ -125,13 +133,13 @@ const SendReviewForm = ({ medSlug }) => {
 
             <div>
                 <label htmlFor="#recensione">Testo della recensione</label>
-                <textarea 
-                onChange={handleChange} 
-                value={formData.recensione} 
-                name="recensione" 
-                className={`form-control revText mb-5 ${(formData.recensione.length < 3 && popup && isErr) && "error"}`} 
-                id="recensione" 
-                placeholder="Descrivi la tua esperienza..."
+                <textarea
+                    onChange={handleChange}
+                    value={formData.recensione}
+                    name="recensione"
+                    className={`form-control revText mb-5 ${(formData.recensione.length < 3 && popup && isErr) && "error"}`}
+                    id="recensione"
+                    placeholder="Descrivi la tua esperienza..."
                 />
                 <div className={`alert ${(formData.recensione.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.recensione && "Testo Recensione Obbligatorio"}
@@ -142,15 +150,15 @@ const SendReviewForm = ({ medSlug }) => {
 
             <button className="btn btn-success mb-5" type="submit">Invia Recensione</button>
 
-            {(popup && !isErr) && (
-                <div className={`alert alert-success mb-3`}>
+            {createPortal((popup && !isErr) && (
+                <div className={`alert alert-success mb-3 success-box ${fading ? "fading" : ""}`}>
                     <p className="fs-4 text-center w-100 m-0">
                         Recensione caricata con successo!
                     </p>
                 </div>
-            )
-        }
-         { (popup && errMsg == "Hai già recensito questo medico")  && (
+            ), document.getElementById("modalScreen"))
+            }
+            {(popup && errMsg == "Hai già recensito questo medico") && (
                 <div className={`alert alert-danger mb-3`}>
                     <p className="fs-4 text-center w-100 m-0">
                         {errMsg}

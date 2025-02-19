@@ -1,5 +1,5 @@
 /* ✅ Imposta il form al centro senza sfondi extra */
-.form-container {
+.form-container, .modal {
     display: flex;
     justify-content: center;
     background-color: var(--testi-primario);
@@ -10,6 +10,7 @@
     border-radius: 12px;
     margin: 20px auto;
     padding: 10px;
+    color: black;
 }
 
 .error-message {

@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
-const MailForm = ({ medSlug }) => {
+const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
 
     const [popup, setPopup] = useState(false)
     const [isErr, setIsErr] = useState(false)
@@ -33,6 +34,9 @@ const MailForm = ({ medSlug }) => {
             .then((resp) => {
                 console.log(resp);
                 setPopup(true);
+                setAnimate(true); 
+                setTimeout(() => {setFading(true); setModalFading(true)}, 2000)
+                setTimeout(() => { setActivePage(""); setAnimate(false);  setModalFading(false) }, 2500)
             })
             .catch((err) => {
                 setPopup(true);
@@ -47,10 +51,13 @@ const MailForm = ({ medSlug }) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
 
+    const [fading, setFading] = useState(false)
+
+
+
 
 
     return (
-            <div className="form-container">
             <form onSubmit={sendMail} className="">
                 <div>
                     <div className="mb-3">
@@ -108,16 +115,15 @@ const MailForm = ({ medSlug }) => {
                     <div className="text-center w-100">
                         <button type="submit" className="btn btn-success mb-4">Invia</button>
                     </div>
-                    {(popup && !isErr) && (
-                        <div className={`alert alert-success mb-3`}>
+                    {createPortal((popup && !isErr) && (
+                        <div className={`alert alert-success mb-3 success-box ${fading ? "fading" : ""}`}>
                             <p className="fs-4 text-center w-100 m-0">
                                 Mail inviata con successo!
                             </p>
                         </div>
-                    )}
+                    ), document.getElementById("modalScreen"))}
                 </div>
             </form>
-            </div>
     )
 }
 
