@@ -21,6 +21,17 @@
 
 
 /* ✅ Struttura principale del form */
+.reg-wrapper {
+    margin-top: 20px;
+}
+
+.reg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 .form-wrapper {
     display: flex;
     flex-direction: row;
@@ -122,17 +133,6 @@
     background-color: var(--testi-primario);
 }
 
-.register-title {
-    background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
-    border-radius: 0px 34px 34px 0px;
-    padding: 12px;
-    font-size: 1.5rem;
-    align-self: flex-start;
-    width: 100%;
-    color: var(--testi-primario);
-    margin: 20px 0;
-}
-
 /* ✅ Stile pulsante Registrati */
 .submit-btn {
     margin: 0 auto;
@@ -203,6 +203,10 @@
 }
 
 @media (max-width: 320px) {
+    .doctor-title {
+        font-size: 1rem;
+    }
+
     .register-title {
         font-size: 1.2rem;
         margin: 10px 0;

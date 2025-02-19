@@ -8,7 +8,7 @@ const Doctors = () => {
 
     return (
 
-        <div className="container mt-4">
+        <div className="container mt-1">
             <section className="doctor-page">
                 <div className="doctor-header">
                     <Link

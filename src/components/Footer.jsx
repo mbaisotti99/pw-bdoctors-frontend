@@ -5,12 +5,12 @@ const Footer = () => {
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     return (
-        <footer className="py-4 mt-3">
+        <footer className="mt-3">
             <div className="container text-center">
-                <div className="row justify-content-center mb-3">
+                <div className="row justify-content-center mb-1">
 
                     {/* Sezione informazioni */}
-                    <div className="col-md-6 mb-3">
+                    <div className="col-md-6 intro">
                         <h5>BDoctors</h5>
                         <p>Trova il miglior specialista per le tue esigenze in pochi <Link className="footer-link" to="/medici">click</Link>.</p>
                     </div>

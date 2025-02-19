@@ -134,11 +134,17 @@ body {
 /* FOOTER */
 footer {
   position: static;
-  padding: 40px;
+  padding-top: 20px;
   background-color: var(--blu-1);
   color: var(--testi-primario);
   text-align: center;
   box-shadow: 0 -5px 20px 2px var(--ombre);
+  font-size: 0.9rem;
+}
+
+.footer-contacts,
+.intro h5 {
+  color: var(--blu-3);
 }
 
 .footer-contacts {
@@ -520,6 +526,11 @@ textarea.error {
 .fa-solid.fa-heart,
 .fa-solid.fa-star-of-life {
   color: var(--testi-terziario);
+}
+
+.fa-solid.fa-check {
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 /* Mobile Adjustments */
