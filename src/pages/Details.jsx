@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa"
 import { IoIosCloseCircleOutline } from "react-icons/io"
 
 
-const Details = () => {
+const Details = ({ activePage, setActivePage }) => {
 
 
     const [reviews, setRev] = useState([])
@@ -63,7 +63,7 @@ const Details = () => {
     }, [doctor, reviews])
 
 
-    const [activePage, setActivePage] = useState("")
+    // const [activePage, setActivePage] = useState("")
 
     const [animate, setAnimate] = useState(false)
 
@@ -80,7 +80,7 @@ const Details = () => {
     return (
         <>
 
-            <div className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
+            <div id="modalScreen" className={`modalScreen ${!activePage && "d-none"} ${animate && "animate"}`} onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
                 <div className={`modal ${animate && "animate"}`} onClick={(e) => e.stopPropagation()}>
                     <div className="close" onClick={() => { setAnimate(true); setTimeout(() => { setActivePage(""); setAnimate(false) }, 500) }}>
                         <IoIosCloseCircleOutline
@@ -89,26 +89,37 @@ const Details = () => {
                         />
                     </div>
                     {
-                        (activePage == "mail") ?
+                        (activePage == "mail") &&
 
-                            (
-                                <>
-                                    <h2 className="text-center my-5">Chiedi consulenza</h2>
+                        (
+                            <>
+                                <h2 className="text-center my-5">Chiedi consulenza</h2>
 
-                                    <MailForm
-                                        medSlug={slug}
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    <h2 className="mt-5 text-center">Lascia una recensione</h2>
-
-                                    <SendReviewForm
-                                        medSlug={slug}
-                                    />
-                                </>
-                            )
+                                <MailForm
+                                    medSlug={slug}
+                                    setActivePage={setActivePage}
+                                    setAnimate={setAnimate}
+                                    animate = {animate}
+                                />
+                            </>
+                        )
                     }
+
+                    {
+                        (activePage == "rev") && (
+                            <>
+                                <h2 className="mt-5 text-center">Lascia una recensione</h2>
+
+                                <SendReviewForm
+                                    medSlug={slug}
+                                    setActivePage={setActivePage}
+                                    setAnimate={setAnimate}
+                                    animate = {animate}
+                                />
+                            </>
+                        )
+                    }
+
                 </div>
             </div>
 

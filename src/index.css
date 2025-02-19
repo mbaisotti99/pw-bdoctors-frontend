@@ -373,6 +373,7 @@ footer {
   overflow: scroll;
   font-size: 18px;
   border-bottom: 10px solid transparent;
+  z-index: 101 !important;
 }
 
 .reviewBox div .alert {
@@ -746,6 +747,16 @@ textarea.error {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .modal {
   animation: slideIn 0.5s ease-out;
 }
@@ -757,4 +768,15 @@ textarea.error {
 .latest-review-card {
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.success-box{
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 50%;
+}
+
+.alert.fading{
+  animation: fadeOut 1s ease;
 }
