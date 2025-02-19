@@ -138,7 +138,7 @@ const DoctorList = () => {
 
         <section className="">
 
-            <div className="search mb-3">
+            <div className="search">
                 <div className="filters mb-4">
                     <select
                         value={selectedSpecialization}
@@ -174,9 +174,8 @@ const DoctorList = () => {
                     <i className="fa-solid fa-magnifying-glass"></i> Cerca
                 </button>
             </div>
-            <div className="search-length">
-                    Medici trovati: {pagination.totalItems}
-            </div>
+            
+               <h2 className="search-length"><i className="fa-solid fa-list-ul"></i> Lista dei medici trovati {pagination.totalItems}</h2> 
 
             {/* Paginator Control */}
             <PaginationControls
@@ -195,7 +194,7 @@ const DoctorList = () => {
                     ))}
                 </div>
             ) : (
-                <div className="alert alert-danger mt-4">
+                <div className="alert mt-4">
                     Nessun medico trovato. Riprova con un altro filtro.
                 </div>
             )}

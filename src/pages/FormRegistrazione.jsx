@@ -180,7 +180,6 @@ function FormRegistrazione() {
 
   return (
     <>
-
       <div className="reg-wrapper container">
         <div className="reg-header">
           <Link
@@ -189,11 +188,23 @@ function FormRegistrazione() {
           >
             <i className="fas fa-arrow-left"></i> Home
           </Link>
-
-          {/* TITOLO SEZIONE */}
-          <h1 className="doctor-title">Registarti come medico</h1>
         </div>
+        <h1 className="doctor-title"> <i class="fa-solid fa-user-doctor reg-page"></i> Registarti come medico</h1>
+        {/* Success Alert */}
+        {success && (
+          <div className="registration-alert alert alert-success alert-dismissible fade show" role="alert">
+            <i className="fas fa-check-circle me-2"></i>
+            Registrazione completata con successo!
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => setSuccess(false)}
+              aria-label="Close"
+            ></button>
+          </div>
+        )}
         <form onSubmit={handleOnSubmit} className="form-container" encType="multipart/form-data">
+
           <div className="form-wrapper">
 
             {/* Sezione Sinistra - Form */}

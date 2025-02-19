@@ -8,12 +8,13 @@
   --blu-6: #B3E5FC;
   --testi-primario: #FFFFFF;
   --testi-secondario: #000000;
-  --testi-terziario: #c72a2a;
+  --testi-terziario:#12747b;
   --testi-light: rgba(0, 0, 0, 0.6);
   --btn-hover: #027fb0;
   --ombre: rgba(2, 96, 133, 0.7);
 }
-
+/* #c72a2a
+#1a8b93 */
 /* RESET */
 * {
   box-sizing: border-box;
@@ -55,7 +56,6 @@ ul {
 body {
   background-color: var(--blu-3) !important;
 }
-
 /* HEADER */
 .header {
   display: flex;
@@ -281,6 +281,18 @@ footer {
   align-items: center;
   gap: 10px;
   margin: 20px 0;
+  
+}
+
+.detail-title {
+  background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
+  border-radius: 0px 34px 34px 0px;
+  color: var(--testi-primario);
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 12px 0;
+  margin-bottom: 20px;  
+
 }
 
 .modalsCard {
@@ -360,9 +372,8 @@ footer {
   flex-direction: column;
   max-width: 500px !important;
   max-height: 90vh !important;
-  width: 90%;
   height: auto !important;
-  justify-content: center;
+
   align-items: center;
   position: fixed !important;
   top: 50% !important;
@@ -424,11 +435,11 @@ footer {
 .review-main-title {
   background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
   border-radius: 0px 34px 34px 0px;
-  padding: 12px;
-  font-size: 1.5rem;
-  align-self: flex-start;
-  width: 100%;
   color: var(--testi-primario);
+  font-weight: 500;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 12px 0; 
 }
 
 
@@ -466,8 +477,8 @@ footer {
 
 .revDate {
   font-size: 13px;
-  color: grey;
-  font-weight: lighter;
+  color: var(--blu-2);
+  font-weight: 400;
 }
 
 .revName {
@@ -523,7 +534,7 @@ textarea.error {
 .fa-solid.fa-magnifying-glass {
   padding-right: 6px;
 }
-
+.fa-solid.fa-list-ul,
 .fa-solid.fa-user-doctor {
   padding-right: 8px;
 }
@@ -533,8 +544,14 @@ textarea.error {
   color: var(--testi-primario);
 }
 
+.fa-solid.fa-check {
+  color: var(--blu-1);
+}
+
+.fa-solid.fa-id-card,
+.fa-solid.fa-user-doctor.reg-page,
+.fa-solid.fa-list-ul,
 .fa-solid.fa-plus,
-.fa-solid.fa-check,
 .fa-solid.fa-comment,
 .fa-solid.fa-map-location-dot,
 .fa-solid.fa-envelope,
@@ -545,6 +562,9 @@ textarea.error {
   color: var(--testi-terziario);
 }
 
+.fa-solid.fa-id-card {
+  padding-right: 5px;
+}
 .fa-solid.fa-check {
   margin-right: 5px;
   vertical-align: middle;
@@ -644,6 +664,7 @@ textarea.error {
 /* Tablet */
 @media (max-width: 768px) {
 
+
   .detailCard {
     width: 80%;
   }
@@ -719,7 +740,7 @@ textarea.error {
   .modalsCard {
     width: 100%;
   }
-  
+
 }
 
 

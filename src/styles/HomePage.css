@@ -259,8 +259,8 @@ small {
 .find-specialist-title {
     background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
     border-radius: 0px 34px 34px 0px;
-    padding: 12px;
-    font-size: 1.5rem;
+    padding: 12px 0;
+    font-size: 1.2rem;
 }
 
 .review-author {

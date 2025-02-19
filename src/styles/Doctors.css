@@ -7,14 +7,17 @@
 }
 
 .doctor-title {
-    color: var(--testi-terziario);
     font-family: "Roboto", serif;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin: 0; /* Reset default margins */
     padding: 6px 0; /* Match the home-btn padding */
     line-height: 1.2; 
+    margin-top: 30px;
 }
 
+.advanced {
+    color: var(--testi-terziario);
+}
 
 /* SEARCHBAR */
 .search {
@@ -41,13 +44,26 @@
 }
 
 /* MEDICI TROVATI */
-.search-length {
+.search-length { 
+    margin-bottom: 0;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.search-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.search-length,
+.search-title {
+    background: linear-gradient(to right, var(--blu-3) 10%, var(--blu-1) 95%);
+    border-radius: 0px 34px 34px 0px;
     color: var(--testi-primario);
-    font-family: "Roboto", serif;
-    font-size: 1.1rem;
-    padding: 6px 10px;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 12px 0;
 }
 
 /* INPAGINAZIONE */
@@ -57,7 +73,7 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
-    margin: 20px;
+    margin: 10px 0;
 }
 
 .pagination-numbers,
@@ -67,12 +83,12 @@
     color: var(--testi-primario);
     border: 1px solid var(--blu-4);
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 4px 0px;
     margin: 5px;
     font-family: "Roboto", serif;
     font-size: 0.9rem;
     transition: all 0.3s ease-in-out;
-    min-width: 40px;
+    min-width: 30px;
     text-align: center;
 }
 
