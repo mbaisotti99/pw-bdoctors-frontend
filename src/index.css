@@ -319,12 +319,16 @@ footer {
   margin: 0 25px;
 }
 
+.more-margin {
+  margin: 20px 0;
+}
+
 .docDesc {
   margin-top: 20px;
   color: var(--testi-primario);
   padding: 10px;
   border-radius: 12px;
-  border: 2px solid var(--blu-1);
+  border: 1px solid var(--blu-1);
   background-color: var(--blu-2);
 }
 
