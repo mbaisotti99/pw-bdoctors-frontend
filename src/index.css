@@ -556,18 +556,21 @@ textarea.error {
   color: var(--blu-1);
 }
 
+.fa-solid.fa-map-location-dot,
+.fa-solid.fa-envelope,
+.fa-solid.fa-phone {
+  color: var(--testi-terziario)
+}
+
 .fa-solid.fa-id-card,
 .fa-solid.fa-user-doctor.reg-page,
 .fa-solid.fa-list-ul,
 .fa-solid.fa-plus,
 .fa-solid.fa-comment,
-.fa-solid.fa-map-location-dot,
-.fa-solid.fa-envelope,
-.fa-solid.fa-phone,
 .fa-solid.fa-comments,
 .fa-solid.fa-heart,
 .fa-solid.fa-star-of-life {
-  color: var(--testi-terziario);
+  color: var(--errore);
 }
 
 .fa-solid.fa-id-card {
