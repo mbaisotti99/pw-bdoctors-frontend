@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import MailForm from "../components/MailForm"
 import SendReviewForm from "../components/SendReviewForm"
 import { FaStar } from "react-icons/fa"
@@ -112,6 +112,18 @@ const Details = () => {
                 </div>
             </div>
 
+            <div className="detail-header container">
+                <Link
+                    to="/"
+                    className="home-btn"
+                >
+                    <i className="fas fa-arrow-left"></i> Home
+                </Link>
+
+                {/* TITOLO SEZIONE */}
+                <h1 className="doctor-title">{`Pagina di ${doctor.nome} ${doctor.cognome}`}</h1>
+            </div>
+
             <div className="container detail-container">
                 <div className="detailCard">
                     <div className="detail-middle">
@@ -160,7 +172,7 @@ const Details = () => {
 
                         return (
 
-                            
+
                             <div className="col-12 col-md-4 g-3" key={i}>
 
                                 <div className="reviewCard h-100">

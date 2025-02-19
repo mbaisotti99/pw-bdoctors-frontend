@@ -185,7 +185,6 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
   padding: 20px;
   text-align: center;
   width: 50%;
@@ -268,12 +267,24 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
   gap: 5px;
-  color: var(--blu-1);
+  color: var(--testi-primario);
+  padding: 3px 5px;
+  border-radius: 12px;
+  background-color: var(--blu-2);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 .modalsCard {
-  box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 8px 12px 4px var(--ombre);
   border-radius: 0 0 35px 35px;
   margin-bottom: 25px;
   background-color: var(--blu-5);
@@ -297,7 +308,11 @@ footer {
 
 .docDesc {
   margin-top: 20px;
-  color: var(--blu-1);
+  color: var(--testi-primario);
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid var(--blu-1);
+  background-color: var(--blu-2);
 }
 
 .docName {
@@ -691,6 +706,18 @@ textarea.error {
     min-width: 35px;
   }
 
+}
+
+@media (max-width: 320px) {
+
+  .detailCard {
+    width: 100%;
+  }
+
+  .modalsCard {
+    width: 100%;
+  }
+  
 }
 
 
