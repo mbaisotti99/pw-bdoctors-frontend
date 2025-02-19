@@ -16,7 +16,7 @@
 .error-message {
     margin-top: 2px;
     font-size: 0.8rem;
-    color: var(--testi-terziario);
+    color: var(--errore);
 }
 
 .doctor-title {
@@ -55,10 +55,6 @@
 }
 
 .reg-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -159,7 +155,7 @@
 }
 
 .error-input {
-    border: 1px solid var(--testi-terziario) !important;
+    border: 1px solid var(--errore) !important;
     background-color: var(--testi-primario);
 }
 

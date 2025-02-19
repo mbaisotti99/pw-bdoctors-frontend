@@ -171,7 +171,15 @@
     text-decoration: none;
     padding: 3px 5px;
     font-family: "Roboto", serif;
+    transition: background-color 0.3s ease-in-out;
 }
+
+.phone-btn:hover,
+.email:hover,
+.address-link:hover {
+    background-color: var(--blu-1);
+}
+
 
 .profile-btn {
     color: var(--testi-primario);

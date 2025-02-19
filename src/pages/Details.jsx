@@ -130,7 +130,7 @@ const Details = ({ activePage, setActivePage }) => {
                 </div>
             </div>
 
-            <div className="detail-header container">
+            <div className="reg-header more-margin container">
                 <Link
                     to="/"
                     className="home-btn"
