@@ -152,9 +152,9 @@ const Details = () => {
 
 
                         return (
-                            <div className="col-4">
+                            <div className="col-4" key={i}>
 
-                                <div className="reviewCard" key={i}>
+                                <div className="reviewCard">
                                     <ul className="rev">
                                         <li className="revDate">{dataFormat.toISOString().split('T')[0]}</li>
                                         <li className="revName">{curRev.nome_utente}</li>

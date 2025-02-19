@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import React, { useState } from "react"
 import { FaStar } from "react-icons/fa"
 
 const SendReviewForm = ({ medSlug }) => {
@@ -99,9 +99,8 @@ const SendReviewForm = ({ medSlug }) => {
                     stars.map((star, i) => {
                         const curStarN = i + 1
                         return (
-                            <>
+                            <React.Fragment key={curStarN}>
                                 <FaStar
-                                    key={curStarN}
                                     size={50}
                                     style={{ 
                                         cursor: "pointer",
@@ -114,7 +113,7 @@ const SendReviewForm = ({ medSlug }) => {
                                         setFormData({ ...formData, voto: curStarN })
                                     }}
                                 />
-                            </>
+                            </React.Fragment>
 
                         )
                     })
