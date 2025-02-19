@@ -58,7 +58,7 @@ const MailForm = ({ medSlug }) => {
                         onChange={onMailChange}
                         value={formData.nome_utente}
                         type="text"
-                        className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) && "error"}`}
+                        className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) ? "error" : ""}`}
                         name="nome_utente"
                         id="nome_utente"
                         placeholder="Mario Rossi"
@@ -101,7 +101,7 @@ const MailForm = ({ medSlug }) => {
                     placeholder="Descrivi il tuo problema..."
                 />
                 <div className={`alert mt-3 ${(formData.text.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
-                    {!formData.text && "Nome Utente Obbligatorio"}
+                    {!formData.text && "Testo della mail obbligatorio"}
                     {(formData.text && formData.text.length < 3) && "Testo della mail troppo corto (Minimo 3 caratteri)"}
                 </div>
                 <div className="text-center w-100">
