@@ -119,12 +119,10 @@ const Details = () => {
                 >
                     <i className="fas fa-arrow-left"></i> Home
                 </Link>
-
-                {/* TITOLO SEZIONE */}
-                <h1 className="doctor-title">{`Pagina di ${doctor.nome} ${doctor.cognome}`}</h1>
             </div>
-
+            <h1 className="detail-title container"><i className="fa-solid fa-id-card"></i>{`Pagina di ${doctor.nome} ${doctor.cognome}`}</h1>
             <div className="container detail-container">
+            
                 <div className="detailCard">
                     <div className="detail-middle">
                         <div className="detail-img-div">
@@ -164,7 +162,7 @@ const Details = () => {
                     </div>
                 </div>
 
-                <h2 className="review-main-title mb-3"><i className="fa-solid fa-comment"></i> Recensioni</h2>
+                <h2 className="review-main-title"><i className="fa-solid fa-comment"></i> Recensioni</h2>
 
                 <div className="reviews row">
                     {reviews.map((curRev, i) => {

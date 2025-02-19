@@ -17,12 +17,9 @@ const Doctors = () => {
                     >
                         <i className="fas fa-arrow-left"></i> Home
                     </Link>
-
-                    {/* TITOLO SEZIONE */}
-                    <h1 className="doctor-title">Cerca lo specialista che fa per te</h1> 
                 </div>
                 
-
+                <h1 className="search-title"><i class="fa-solid fa-magnifying-glass advanced"></i> Cerca il tuo specialista</h1> 
                 {/* LISTA MEDICI */}
                 <DoctorsList />
 
