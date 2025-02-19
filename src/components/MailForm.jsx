@@ -69,7 +69,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
                             className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) ? "error" : ""}`}
                             name="nome_utente"
                             id="nome_utente"
-                            placeholder="Mario Rossi"
+                            placeholder="es. Mario Rossi"
                         />
                         <div className={`alert mt-3 ${(formData.nome_utente.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                             {!formData.nome_utente && "Nome Utente Obbligatorio"}
@@ -88,7 +88,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
                             className={`form-control ${(formData.email_utente.length < 3 && popup) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
                             name="email_utente"
                             id="email_utente"
-                            placeholder="email@esempio.it"
+                            placeholder="es. email@esempio.it"
                         />
 
                         <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr)) ? "alert-danger" : "d-none"}`}>
@@ -106,7 +106,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
                         name="text"
                         value={formData.text}
                         onChange={onMailChange}
-                        placeholder="Descrivi il tuo problema..."
+                        placeholder="Descrivi la tua situazione..."
                     />
                     <div className={`alert mt-3 ${(formData.text.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                         {!formData.text && "Testo della mail obbligatorio"}

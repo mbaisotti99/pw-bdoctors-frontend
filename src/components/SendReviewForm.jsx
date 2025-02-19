@@ -76,7 +76,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                     value={formData.nome_utente}
                     type="text" className={`form-control ${(formData.nome_utente.length < 3 && popup && isErr) && "error"}`}
                     name="nome_utente" id="nome_utente"
-                    placeholder="Mario Rossi"
+                    placeholder="es. Mario Rossi"
                 />
                 <div className={`alert ${(formData.nome_utente.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.nome_utente && "Nome Utente Obbligatorio"}
@@ -92,7 +92,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                     type="text" className={`form-control ${(formData.email_utente.length < 3 && popup && isErr) || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr) ? "error" : ""}`}
                     name="email_utente"
                     id="email_utente"
-                    placeholder="email@esempio.it"
+                    placeholder="es. email@esempio.it"
                 />
                 <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup && isErr || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr)) ? "alert-danger" : "d-none"}`}>
                     {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}

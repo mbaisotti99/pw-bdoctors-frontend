@@ -100,7 +100,7 @@ const Details = ({ activePage, setActivePage }) => {
 
                         (
                             <>
-                                <h2 className="text-center my-5">Chiedi consulenza</h2>
+                                <h2 className="text-center my-5">Chiedi consulenza al Dt. {doctor.nome} {doctor.cognome} </h2>
 
                                 <MailForm
                                     medSlug={slug}
@@ -115,7 +115,7 @@ const Details = ({ activePage, setActivePage }) => {
                     {
                         (activePage == "rev") && (
                             <>
-                                <h2 className="mt-5 text-center">Lascia una recensione</h2>
+                                <h2 className="mt-5 text-center">Lascia una recensione per {doctor.nome} {doctor.cognome} </h2>
 
                                 <SendReviewForm
                                     medSlug={slug}
