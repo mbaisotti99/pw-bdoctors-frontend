@@ -838,3 +838,7 @@ form textarea {
 .modalScreen.fading {
   animation: fadeOut 1s ease;
 }
+
+.alert{
+  max-width: 100% !important; 
+}

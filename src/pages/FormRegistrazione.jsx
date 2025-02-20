@@ -170,6 +170,7 @@ function FormRegistrazione() {
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
       setTimeout(() => setSuccess(false), 4000);
+
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.message || 'Errore durante la registrazione');

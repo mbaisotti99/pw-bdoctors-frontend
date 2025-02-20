@@ -73,7 +73,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
                         />
                         <div className={`alert mt-3 ${(formData.nome_utente.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                             {!formData.nome_utente && "Nome Utente Obbligatorio"}
-                            {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome utente troppo corto (Minimo 3 caratteri)"}
+                            {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome utente troppo corto \n (Minimo 3 caratteri)"}
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@ const MailForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) => {
 
                         <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr)) ? "alert-danger" : "d-none"}`}>
                             {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
-                            {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
+                            {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta \n (Minimo 3 caratteri)"}
                             {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
                         </div>
                     </div>

@@ -80,7 +80,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                 />
                 <div className={`alert ${(formData.nome_utente.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.nome_utente && "Nome Utente Obbligatorio"}
-                    {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome Utente Troppo Corto (Minimo 3 caratteri)"}
+                    {(formData.nome_utente && formData.nome_utente.length < 3) && "Nome Utente Troppo Corto \n (Minimo 3 caratteri)"}
                 </div>
             </div>
 
@@ -96,7 +96,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                 />
                 <div className={`alert mt-3 ${(formData.email_utente.length < 3 && popup && isErr || (formData.email_utente.length >= 3 && !checkMail(formData.email_utente) && isErr)) ? "alert-danger" : "d-none"}`}>
                     {(!formData.email_utente && popup) && "Email Utente Obbligatoria"}
-                    {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta (Minimo 3 caratteri)"}
+                    {(formData.email_utente && formData.email_utente.length < 3) && "Email Utente Troppo Corta \n (Minimo 3 caratteri)"}
                     {(formData.email_utente.length >= 3 && !checkMail(formData.email_utente)) && "Inserisci una mail valida"}
                 </div>
             </div>
@@ -143,7 +143,7 @@ const SendReviewForm = ({ medSlug, setActivePage, setAnimate, setModalFading }) 
                 />
                 <div className={`alert ${(formData.recensione.length < 3 && popup && isErr) ? "alert-danger" : "d-none"}`}>
                     {!formData.recensione && "Testo Recensione Obbligatorio"}
-                    {(formData.recensione && formData.recensione.length < 3) && "Testo Recensione Troppo Corto (Minimo 3 caratteri)"}
+                    {(formData.recensione && formData.recensione.length < 3) && "Testo Recensione Troppo Corto \n (Minimo 3 caratteri)"}
                 </div>
             </div>
 
