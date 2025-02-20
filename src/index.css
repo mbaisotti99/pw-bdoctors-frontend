@@ -484,7 +484,7 @@ footer {
 
 .revDate {
   font-size: 13px;
-  color: var(--blu-2);
+  color: var(--testi-light);
   font-weight: 400;
 }
 
@@ -556,18 +556,21 @@ textarea.error {
   color: var(--blu-1);
 }
 
+.fa-solid.fa-map-location-dot,
+.fa-solid.fa-envelope,
+.fa-solid.fa-phone {
+  color: var(--testi-terziario)
+}
+
 .fa-solid.fa-id-card,
 .fa-solid.fa-user-doctor.reg-page,
 .fa-solid.fa-list-ul,
 .fa-solid.fa-plus,
 .fa-solid.fa-comment,
-.fa-solid.fa-map-location-dot,
-.fa-solid.fa-envelope,
-.fa-solid.fa-phone,
 .fa-solid.fa-comments,
 .fa-solid.fa-heart,
 .fa-solid.fa-star-of-life {
-  color: var(--testi-terziario);
+  color: var(--errore);
 }
 
 .fa-solid.fa-id-card {
@@ -583,6 +586,15 @@ textarea.error {
 form,
 form textarea {
   max-width: 100%;
+}
+
+.alert-custom {
+  background-color: var(--blu-2);
+  color: var(--testi-primario);
+  padding: 12px;
+  text-align: center;
+  border-radius: 12px;
+  border: 1px solid var(--blu-1);
 }
 
 /* Mobile Adjustments */
@@ -685,6 +697,13 @@ form textarea {
 /* Tablet */
 @media (max-width: 768px) {
 
+  .logo {
+    width: 140px;
+  }
+
+  .fa-solid.fa-bars {
+    font-size: 1.2rem;
+  }
   
   .detailCard {
     width: 80%;
@@ -760,6 +779,10 @@ form textarea {
 
   .modalsCard {
     width: 100%;
+  }
+
+  .logo {
+    width: 120px;
   }
 
 }

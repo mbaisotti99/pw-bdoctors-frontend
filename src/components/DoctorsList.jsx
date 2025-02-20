@@ -194,8 +194,8 @@ const DoctorList = () => {
                     ))}
                 </div>
             ) : (
-                <div className="alert mt-4">
-                    Nessun medico trovato. Riprova con un altro filtro.
+                <div className="alert-custom  mt-2">
+                    Nessun medico trovato. Riprova con un altro nome o cognome.
                 </div>
             )}
 
